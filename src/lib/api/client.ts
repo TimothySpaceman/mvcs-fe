@@ -41,9 +41,10 @@ export class ApiClient {
     private completeOptions(options: ApiRequestOptions): ApiRequestOptions {
         const auth = options.auth ?? false;
         return {
-            ...options,
+            credentials: "include",
             auth,
             retry: options.retry ?? auth,
+            ...options
         }
     }
 
@@ -53,7 +54,7 @@ export class ApiClient {
 
     private enqueue(request: ApiRequest): Promise<Response> {
         return new Promise((resolve, reject) => {
-            const onReady = async () => resolve(await this.perform(request));
+            const onReady = () => this.perform(request).then(resolve).catch(reject);
             const onAbort = () => reject(new Error("Auth refresh failed"));
             this.queue.push({request, onReady, onAbort});
         })
@@ -78,7 +79,7 @@ export class ApiClient {
             const success = await this.refresh(this);
             if (success) {
                 response = await this.perform(request);
-                for(const enqueued of this.queue.splice(0)) enqueued.onReady();
+                for (const enqueued of this.queue.splice(0)) enqueued.onReady();
             } else {
                 this.queue.splice(0).forEach(enqueued => enqueued.onAbort());
             }
