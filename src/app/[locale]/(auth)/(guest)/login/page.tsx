@@ -1,7 +1,7 @@
 import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {getTranslations} from "next-intl/server";
 import type {Metadata} from "next";
-import LoginForm from "@/app/[locale]/(auth)/login/(components)/loginForm";
+import LoginForm from "@/app/[locale]/(auth)/(guest)/login/(components)/loginForm";
 
 export async function generateMetadata(): Promise<Metadata> {
     const t = await getTranslations("Login.meta");

@@ -9,6 +9,7 @@ import {GeistSans} from "geist/font/sans"
 import {GeistMono} from "geist/font/mono"
 import {PropsWithChildren} from "react";
 import {Toaster} from "@/components/ui/sonner";
+import {NuqsAdapter} from "nuqs/adapters/next";
 
 export async function generateMetadata(): Promise<Metadata> {
     const t = await getTranslations("global.meta");
@@ -28,18 +29,20 @@ export default function RootLayout({children}: PropsWithChildren) {
         >
         <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>
-            <UserProvider>
-                <ThemeProvider
-                    attribute="class"
-                    defaultTheme="system"
-                    enableSystem
-                    disableTransitionOnChange
-                >
-                    <Header/>
-                    {children}
-                    <Toaster/>
-                </ThemeProvider>
-            </UserProvider>
+            <NuqsAdapter>
+                <UserProvider>
+                    <ThemeProvider
+                        attribute="class"
+                        defaultTheme="system"
+                        enableSystem
+                        disableTransitionOnChange
+                    >
+                        <Header/>
+                        {children}
+                        <Toaster/>
+                    </ThemeProvider>
+                </UserProvider>
+            </NuqsAdapter>
         </NextIntlClientProvider>
         </body>
         </html>

@@ -9,11 +9,12 @@ import {api} from "@/lib/api";
 import {useUser} from "@/components/userProvider/userProvider";
 import {Spinner} from "@/components/ui/spinner";
 import {useRouter} from "@/i18n/navigation";
+import {useQueryState} from "nuqs";
 
 type Errors = {
     email?: string,
     password?: string
-    global?: string
+    general?: string
 }
 
 type LoginSchema = {
@@ -21,10 +22,20 @@ type LoginSchema = {
     password: string,
 }
 
+function validateRedirect(redirectTo: string | null, fallback: string) {
+    if (!redirectTo) return fallback;
+
+    const decodedPath = decodeURIComponent(redirectTo);
+    const isSafe = decodedPath.startsWith("/") && !decodedPath.startsWith("//") && !decodedPath.startsWith("/\\");
+    return isSafe ? redirectTo : fallback;
+}
+
 export default function LoginForm() {
     const t = useTranslations("Login.form");
     const {refreshUserData} = useUser();
     const router = useRouter();
+
+    const [redirectTo] = useQueryState("redirectTo");
 
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<Errors>({});
@@ -65,16 +76,16 @@ export default function LoginForm() {
 
             if (loginResp.ok) {
                 await refreshUserData();
-                router.push("/");
+                router.push(validateRedirect(redirectTo, "/"));
                 router.refresh();
             } else {
                 setErrors({
-                    global: loginResp.status === 401 ? "error-wrong-credentials" : "error-internal-server"
+                    general: loginResp.status === 401 ? "error-wrong-credentials" : "error-internal-server"
                 });
             }
         } catch (e) {
             setErrors({
-                global: "error-internal-server"
+                general: "error-internal-server"
             });
         } finally {
             setIsLoading(false)
@@ -125,8 +136,8 @@ export default function LoginForm() {
             <Button type="submit" className="w-full" disabled={isLoading}>
                 {isLoading && <Spinner/>} {t("label-submit")}
             </Button>
-            {errors.global && <FieldDescription className="text-destructive">
-                {t(errors.global)}
+            {errors.general && <FieldDescription className="text-destructive">
+                {t(errors.general)}
             </FieldDescription>}
         </Field>
     </form>
