@@ -4,5 +4,24 @@
       "title": "MVCS",
       "description": "Multitracks Version Control System"
     }
+  },
+  "Header": {
+    "label-login": "Вхід"
+  },
+  "Login": {
+    "meta": {
+      "title": "Вхід | MVCS",
+      "description": "Вхід в обліковий запис"
+    },
+    "title": "Вхід",
+    "form": {
+      "label-email": "Email або Логін",
+      "label-password": "Пароль",
+      "label-submit": "Увійти",
+      "error-email-required": "Це поле обовʼязкове",
+      "error-password-required": "Це поле обовʼязкове",
+      "error-wrong-credentials": "Невірні дані для входу",
+      "error-internal-server": "Сталася помилка. Спробуйте пізніше"
+    }
   }
 }
