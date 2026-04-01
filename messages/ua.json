@@ -6,7 +6,13 @@
     }
   },
   "Header": {
-    "label-login": "Вхід"
+    "label-login": "Вхід",
+    "user-menu": {
+      "label-profile": "Профіль",
+      "label-settings": "Налаштування",
+      "label-logout": "Вийти",
+      "error-logout-failed": "Виникла помилка. Спробуйте пізніше"
+    }
   },
   "Login": {
     "meta": {
@@ -21,7 +27,7 @@
       "error-email-required": "Це поле обовʼязкове",
       "error-password-required": "Це поле обовʼязкове",
       "error-wrong-credentials": "Невірні дані для входу",
-      "error-internal-server": "Сталася помилка. Спробуйте пізніше"
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
     }
   }
 }

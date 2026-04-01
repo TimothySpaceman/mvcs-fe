@@ -47,7 +47,7 @@ export function UserProvider({initialUser, children}: UserProviderProps) {
 
     useEffect(() => {
         refreshUserData();
-    }, [])
+    }, [refreshUserData])
 
     return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>;
 }

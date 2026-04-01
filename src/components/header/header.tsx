@@ -4,6 +4,7 @@ import {useUser} from "@/components/userProvider/userProvider";
 import {Button} from "@/components/ui/button";
 import {useTranslations} from "next-intl";
 import {Link} from "@/i18n/navigation";
+import UserMenu from "@/components/header/userMenu";
 
 export default function Header() {
     const {user} = useUser();
@@ -14,7 +15,7 @@ export default function Header() {
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
             <div className="font-bold text-3xl">MVCS</div>
             {user ?
-                <pre>{user.id}</pre> :
+                <UserMenu/> :
                 <Button asChild>
                     <Link href="/login">{t("label-login")}</Link>
                 </Button>

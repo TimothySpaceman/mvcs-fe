@@ -8,6 +8,7 @@ import Header from "@/components/header/header";
 import {GeistSans} from "geist/font/sans"
 import {GeistMono} from "geist/font/mono"
 import {PropsWithChildren} from "react";
+import {Toaster} from "@/components/ui/sonner";
 
 export async function generateMetadata(): Promise<Metadata> {
     const t = await getTranslations("global.meta");
@@ -36,6 +37,7 @@ export default function RootLayout({children}: PropsWithChildren) {
                 >
                     <Header/>
                     {children}
+                    <Toaster/>
                 </ThemeProvider>
             </UserProvider>
         </NextIntlClientProvider>
