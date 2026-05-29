@@ -2,7 +2,7 @@
 
 import {Field, FieldDescription, FieldGroup} from "@/components/ui/field";
 import {useTranslations} from "next-intl";
-import {SubmitEvent, useEffect, useLayoutEffect, useState} from "react";
+import {SubmitEvent, useEffect, useState} from "react";
 import {Button} from "@/components/ui/button";
 import {useUser} from "@/components/userProvider/userProvider";
 import {Spinner} from "@/components/ui/spinner";
@@ -25,7 +25,7 @@ type Props = {
 // TODO: Prettify device info
 export default function ConfirmForm({codeAutofill = ""}: Props) {
     const t = useTranslations("ConfirmDevice.form");
-    const {user} = useUser();
+    const {user, isLoading: isUserLoading} = useUser();
     const router = useRouter();
 
     const [isLoading, setIsLoading] = useState(false);
@@ -77,13 +77,13 @@ export default function ConfirmForm({codeAutofill = ""}: Props) {
         }
     }
 
-    useLayoutEffect(() => {
-        if (user) return;
+    useEffect(() => {
+        if (user || isUserLoading) return;
         const redirectTo = `/confirm-device?${new URLSearchParams({code: code})}`;
         const params = new URLSearchParams({redirectTo});
         router.push(`/login?${params}`);
         router.refresh();
-    })
+    }, [user, isLoading]);
 
     useEffect(() => {
         if (code.length < 6) {

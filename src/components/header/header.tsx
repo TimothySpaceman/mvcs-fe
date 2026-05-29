@@ -5,21 +5,23 @@ import {Button} from "@/components/ui/button";
 import {useTranslations} from "next-intl";
 import {Link} from "@/i18n/navigation";
 import UserMenu from "@/components/header/userMenu";
+import {Spinner} from "@/components/ui/spinner";
 
 export default function Header() {
-    const {user} = useUser();
+    const {user, isLoading} = useUser();
 
     const t = useTranslations("Header");
 
+    const UserInteraction = user ?
+        <UserMenu/> :
+        <Button asChild>
+            <Link href="/login">{t("label-login")}</Link>
+        </Button>
+
     return <header className="sticky top-0 bg-card border-b">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
-            <div className="font-bold text-3xl">MVCS</div>
-            {user ?
-                <UserMenu/> :
-                <Button asChild>
-                    <Link href="/login">{t("label-login")}</Link>
-                </Button>
-            }
+            <Link href="/" className="font-bold text-3xl">MVCS</Link>
+            {isLoading ? <Spinner className="size-6"/> : UserInteraction}
         </div>
     </header>
 }

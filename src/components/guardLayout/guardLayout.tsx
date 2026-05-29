@@ -26,10 +26,11 @@ const triggerHandlers: TriggerHandlersMap = {
 }
 
 export default function GuardLayout({children, rules}: Props) {
-    const {user} = useUser();
+    const {user, isLoading} = useUser();
     const router = useRouter();
 
     useLayoutEffect(() => {
+        if (isLoading) return;
         for (const rule of rules) {
             if (triggerHandlers[rule.trigger](user)) {
                 router.push(rule.redirectTo);
@@ -37,7 +38,7 @@ export default function GuardLayout({children, rules}: Props) {
                 return;
             }
         }
-    }, [user])
+    }, [user, isLoading])
 
     return <>{children}</>
 }
