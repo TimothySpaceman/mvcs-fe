@@ -5,7 +5,7 @@ import {getLocale} from "next-intl/server";
 
 export default async function Layout({children}: PropsWithChildren) {
     const user = await getCurrentUser();
-    if (user) redirect({
+    if (!user) redirect({
         href: "/",
         locale: await getLocale()
     });

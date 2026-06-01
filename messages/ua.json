@@ -8,6 +8,8 @@
   "Header": {
     "label-login": "Вхід",
     "user-menu": {
+      "label-projects": "Проєкти",
+      "label-storages": "Сховища",
       "label-profile": "Профіль",
       "label-settings": "Налаштування",
       "label-logout": "Вийти",
@@ -73,5 +75,19 @@
     },
     "title": "Вхід на пристрої успішно підтверджено!",
     "description": "Ви можете закрити цю вкладку і продовжити роботу в додатку"
+  },
+  "Storages": {
+    "meta": {
+      "title": "Сховища | MVCS",
+      "description": "Керування сховищами"
+    },
+    "title": "Сховища",
+    "list": {
+      "label-no-storages": "Жодного доступного сховища"
+    },
+    "card": {
+      "badge-default": "Стандартне",
+      "badge-public": "Публічне"
+    }
   }
 }
