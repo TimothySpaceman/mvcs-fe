@@ -1,0 +1,77 @@
+{
+  "global": {
+    "meta": {
+      "title": "MVCS",
+      "description": "Multitracks Version Control System"
+    }
+  },
+  "Header": {
+    "label-login": "Вхід",
+    "user-menu": {
+      "label-profile": "Профіль",
+      "label-settings": "Налаштування",
+      "label-logout": "Вийти",
+      "error-logout-failed": "Виникла помилка. Спробуйте пізніше"
+    }
+  },
+  "Login": {
+    "meta": {
+      "title": "Вхід | MVCS",
+      "description": "Вхід в обліковий запис"
+    },
+    "title": "Вхід",
+    "form": {
+      "label-email": "Email або Логін",
+      "label-password": "Пароль",
+      "label-submit": "Увійти",
+      "message-register": "Ще не маєте акаунт? ",
+      "link-register": "Зареєструватися",
+      "error-email-required": "Це поле обовʼязкове",
+      "error-password-required": "Це поле обовʼязкове",
+      "error-wrong-credentials": "Невірні дані для входу",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    }
+  },
+  "Register": {
+    "meta": {
+      "title": "Реєстрація | MVCS",
+      "description": "Створення облікового запису"
+    },
+    "title": "Реєстрація",
+    "form": {
+      "label-username": "Логін",
+      "label-display-name": "Імʼя",
+      "label-email": "Email",
+      "label-password": "Пароль",
+      "label-confirm-password": "Підтвердження паролю",
+      "label-submit": "Зареєструватись",
+      "message-login": "Вже маєте акаунт? ",
+      "link-login": "Увійти",
+      "error-passwords-mismatch": "Паролі не збігаються",
+      "error-already-exists": "Користувач з таким логіном або email вже існує",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    }
+  },
+  "ConfirmDevice": {
+    "meta": {
+      "title": "Підтвердження пристрою | MVCS",
+      "description": "Підтвердження входу з пристрою"
+    },
+    "title": "Підтвердьте вхід на пристрої",
+    "form": {
+      "description": "Введіть код, отриманий в додатку для входу",
+      "label-code": "Код підтвердження",
+      "label-confirm": "Підтвердити вхід",
+      "error-invalid-code": "Недійсний код підтвердження",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    }
+  },
+  "ConfirmDeviceSuccess": {
+    "meta": {
+      "title": "Підтвердження пристрою | MVCS",
+      "description": "Підтвердження входу з пристрою"
+    },
+    "title": "Вхід на пристрої успішно підтверджено!",
+    "description": "Ви можете закрити цю вкладку і продовжити роботу в додатку"
+  }
+}
