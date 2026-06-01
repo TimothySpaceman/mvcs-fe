@@ -2,72 +2,51 @@
 
 import {createContext, useCallback, useContext, useEffect, useMemo, useState} from "react";
 
-import {User} from "@/lib/auth/types";
+import {User, UserMetadata} from "@/lib/auth/types";
 import {api} from "@/lib/api";
-
-const USER_CACHE_KEY = "user-cached";
+import {USER_METADATA_COOKIE_NAME} from "@/lib/auth";
 
 type UserContext = {
-    user: User | undefined;
+    user: UserMetadata | undefined;
     isLoading: boolean;
-    setUser: (user: User | undefined) => void;
+    setUser: (user: UserMetadata | undefined) => void;
     refreshUserData: () => Promise<void>;
 };
 
 const UserContext = createContext<UserContext | undefined>(undefined);
 
 type UserProviderProps = {
-    initialUser?: User;
+    initialUser?: UserMetadata;
     children: React.ReactNode;
 };
 
 export function UserProvider({initialUser, children}: UserProviderProps) {
-    console.log("Rendering provider")
+    const [user, setUser] = useState<UserMetadata | undefined>(initialUser);
+    const [isLoading, setIsLoading] = useState(false);
 
-    const [user, setUser] = useState<User | undefined>(initialUser);
-    const [isLoading, setIsLoading] = useState(true);
-
-    const setUserAndCache = useCallback((newUser: User | undefined) => {
+    const setUserAndCache = useCallback((newUser: UserMetadata | undefined) => {
         setUser(newUser);
-        if (!!newUser) {
-            localStorage.setItem(USER_CACHE_KEY, JSON.stringify(newUser));
-        } else {
-            localStorage.removeItem(USER_CACHE_KEY);
+        if (!newUser) {
+            cookieStore.delete(USER_METADATA_COOKIE_NAME).catch(
+                () => console.error("Failed to clean auth metadata cookies")
+            );
         }
     }, [setUser]);
 
     const refreshUserData = useCallback(async () => {
+        setIsLoading(true);
         try {
             const response = await api.fetch("/auth/me", {auth: true});
             setUserAndCache(response.ok ? await response.json() as User : undefined);
         } catch (e) {
             console.error("Error fetching /me", e);
-            setUserAndCache(undefined);
         } finally {
             setIsLoading(false);
         }
     }, [setUserAndCache, setIsLoading]);
 
     useEffect(() => {
-        console.log("Restoring cache...");
-        try {
-            const cached = localStorage.getItem(USER_CACHE_KEY);
-            if (!!cached) setUser(JSON.parse(cached));
-        } catch (e) {
-            console.error("Error restoring cache", e);
-        }
-    }, []);
-
-    useEffect(() => {
         refreshUserData();
-    }, [refreshUserData])
-
-    useEffect(() => {
-        const handleVisibilityChange = () => {
-            if (document.visibilityState === "visible") refreshUserData();
-        };
-        document.addEventListener("visibilitychange", handleVisibilityChange);
-        return () => document.removeEventListener("visibilitychange", handleVisibilityChange);
     }, [refreshUserData]);
 
     const contextValue = useMemo(

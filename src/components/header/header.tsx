@@ -12,16 +12,15 @@ export default function Header() {
 
     const t = useTranslations("Header");
 
-    const UserInteraction = user ?
-        <UserMenu/> :
-        <Button asChild>
-            <Link href="/login">{t("label-login")}</Link>
-        </Button>
-
     return <header className="sticky top-0 bg-card border-b">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
             <Link href="/" className="font-bold text-3xl">MVCS</Link>
-            {isLoading ? <Spinner className="size-6"/> : UserInteraction}
+            <div className="flex items-center gap-2">
+                {isLoading && <Spinner className="size-4"/>}
+                {user ? <UserMenu/> : <Button asChild>
+                    <Link href="/login">{t("label-login")}</Link>
+                </Button>}
+            </div>
         </div>
     </header>
 }

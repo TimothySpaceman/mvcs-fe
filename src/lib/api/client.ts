@@ -15,6 +15,7 @@ export type ApiClientInit = {
     host: string
     needsRefresh: NeedsRefreshHandler
     refresh: RefreshHandler
+    cookies?: string
 }
 
 type QueueSlot = {
@@ -25,6 +26,7 @@ type QueueSlot = {
 
 export class ApiClient {
     private readonly host: string
+    private readonly cookies?: string
 
     private readonly needsRefresh: NeedsRefreshHandler
     private readonly refresh: RefreshHandler
@@ -32,19 +34,25 @@ export class ApiClient {
     private queue: QueueSlot[] = []
     private isRefreshing: boolean = false
 
-    constructor({host, needsRefresh, refresh}: ApiClientInit) {
+    constructor({host, needsRefresh, refresh, cookies}: ApiClientInit) {
         this.host = host
+        this.cookies = cookies
         this.needsRefresh = needsRefresh
         this.refresh = refresh;
     }
 
     private completeOptions(options: ApiRequestOptions): ApiRequestOptions {
         const auth = options.auth ?? false;
+        const cookieHeader: HeadersInit = this.cookies ? {Cookie: this.cookies} : {};
         return {
             credentials: "include",
             auth,
             retry: options.retry ?? auth,
-            ...options
+            ...options,
+            headers: {
+                ...cookieHeader,
+                ...options.headers,
+            }
         }
     }
 

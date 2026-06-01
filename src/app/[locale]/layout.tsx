@@ -10,6 +10,7 @@ import {GeistMono} from "geist/font/mono"
 import {PropsWithChildren} from "react";
 import {Toaster} from "@/components/ui/sonner";
 import {NuqsAdapter} from "nuqs/adapters/next";
+import {getCurrentUser} from "@/lib/auth/getCurrentUser";
 
 export async function generateMetadata(): Promise<Metadata> {
     const t = await getTranslations("global.meta");
@@ -20,7 +21,9 @@ export async function generateMetadata(): Promise<Metadata> {
     };
 }
 
-export default function RootLayout({children}: PropsWithChildren) {
+export default async function RootLayout({children}: PropsWithChildren) {
+    const user = await getCurrentUser();
+
     return (
         <html
             lang="ua"
@@ -30,7 +33,7 @@ export default function RootLayout({children}: PropsWithChildren) {
         <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>
             <NuqsAdapter>
-                <UserProvider>
+                <UserProvider initialUser={user}>
                     <ThemeProvider
                         attribute="class"
                         defaultTheme="system"

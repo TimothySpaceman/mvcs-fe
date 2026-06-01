@@ -6,13 +6,16 @@ export type UserAvatar = {
     createdAt: string,
 }
 
-export type User = {
+export type UserMetadata = {
     id: string,
     username: string,
     displayName: string,
-    email: string,
     isEmailVerified: boolean,
     avatar: UserAvatar | null,
+}
+
+export type User = UserMetadata & {
+    email: string,
     createdAt: string,
     updatedAt: string,
 }

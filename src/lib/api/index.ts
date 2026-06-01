@@ -10,4 +10,16 @@ const refresh: RefreshHandler = async (client) => {
     return response.ok;
 }
 
-export const api = new ApiClient({host, needsRefresh, refresh})
+export const api = new ApiClient({host, needsRefresh, refresh});
+
+export async function getServerApi(): Promise<ApiClient> {
+    const {cookies} = await import('next/headers');
+    const cookieStore = await cookies();
+
+    return new ApiClient({
+        host: process.env.API_HOST ?? host,
+        cookies: cookieStore.toString(),
+        needsRefresh,
+        refresh
+    });
+}
