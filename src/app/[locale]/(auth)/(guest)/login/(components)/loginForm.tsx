@@ -8,8 +8,9 @@ import {Button} from "@/components/ui/button";
 import {api} from "@/lib/api";
 import {useUser} from "@/components/userProvider/userProvider";
 import {Spinner} from "@/components/ui/spinner";
-import {useRouter} from "@/i18n/navigation";
+import {Link, useRouter} from "@/i18n/navigation";
 import {useQueryState} from "nuqs";
+import {toast} from "sonner";
 
 type Errors = {
     email?: string,
@@ -79,14 +80,12 @@ export default function LoginForm() {
                 router.push(validateRedirect(redirectTo, "/"));
                 router.refresh();
             } else {
-                setErrors({
-                    general: loginResp.status === 401 ? "error-wrong-credentials" : "error-internal-server"
-                });
+                toast.error(t(
+                    loginResp.status === 401 ? "error-wrong-credentials" : "error-internal-server"
+                ));
             }
         } catch (e) {
-            setErrors({
-                general: "error-internal-server"
-            });
+            toast.error(t("error-internal-server"));
         } finally {
             setIsLoading(false)
         }
@@ -140,5 +139,14 @@ export default function LoginForm() {
                 {t(errors.general)}
             </FieldDescription>}
         </Field>
+        <p className="text-center">
+            {t("message-register")}
+            <Link
+                className="font-bold hover:underline"
+                href={redirectTo ? `/register?redirectTo=${redirectTo}` : "/register"}
+            >
+                {t("link-register")}
+            </Link>
+        </p>
     </form>
 }

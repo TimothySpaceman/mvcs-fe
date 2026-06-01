@@ -24,9 +24,31 @@
       "label-email": "Email або Логін",
       "label-password": "Пароль",
       "label-submit": "Увійти",
+      "message-register": "Ще не маєте акаунт? ",
+      "link-register": "Зареєструватися",
       "error-email-required": "Це поле обовʼязкове",
       "error-password-required": "Це поле обовʼязкове",
       "error-wrong-credentials": "Невірні дані для входу",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    }
+  },
+  "Register": {
+    "meta": {
+      "title": "Реєстрація | MVCS",
+      "description": "Створення облікового запису"
+    },
+    "title": "Реєстрація",
+    "form": {
+      "label-username": "Логін",
+      "label-display-name": "Імʼя",
+      "label-email": "Email",
+      "label-password": "Пароль",
+      "label-confirm-password": "Підтвердження паролю",
+      "label-submit": "Зареєструватись",
+      "message-login": "Вже маєте акаунт? ",
+      "link-login": "Увійти",
+      "error-passwords-mismatch": "Паролі не збігаються",
+      "error-already-exists": "Користувач з таким логіном або email вже існує",
       "error-internal-server": "Виникла помилка. Спробуйте пізніше"
     }
   },
