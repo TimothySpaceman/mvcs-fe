@@ -11,6 +11,9 @@ import {PropsWithChildren} from "react";
 import {Toaster} from "@/components/ui/sonner";
 import {NuqsAdapter} from "nuqs/adapters/next";
 import {getCurrentUser} from "@/lib/auth/getCurrentUser";
+import {SWRProvider} from "@/components/swrProvider/swrProvider";
+import {ModalProvider} from "@/components/modal/modalProvider";
+import ModalContainer from "@/components/modal/modalContainer";
 
 export async function generateMetadata(): Promise<Metadata> {
     const t = await getTranslations("global.meta");
@@ -33,18 +36,23 @@ export default async function RootLayout({children}: PropsWithChildren) {
         <body className="min-h-full flex flex-col">
         <NextIntlClientProvider>
             <NuqsAdapter>
-                <UserProvider initialUser={user}>
-                    <ThemeProvider
-                        attribute="class"
-                        defaultTheme="system"
-                        enableSystem
-                        disableTransitionOnChange
-                    >
-                        <Header/>
-                        {children}
-                        <Toaster/>
-                    </ThemeProvider>
-                </UserProvider>
+                <SWRProvider>
+                    <UserProvider initialUser={user}>
+                        <ThemeProvider
+                            attribute="class"
+                            defaultTheme="system"
+                            enableSystem
+                            disableTransitionOnChange
+                        >
+                            <ModalProvider>
+                                <Header/>
+                                {children}
+                                <ModalContainer/>
+                                <Toaster/>
+                            </ModalProvider>
+                        </ThemeProvider>
+                    </UserProvider>
+                </SWRProvider>
             </NuqsAdapter>
         </NextIntlClientProvider>
         </body>
