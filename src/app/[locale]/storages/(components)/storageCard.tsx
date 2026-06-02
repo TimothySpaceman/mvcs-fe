@@ -3,7 +3,22 @@ import {useTranslations} from "next-intl";
 import {Card, CardAction, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {Badge} from "@/components/ui/badge";
 import {Button} from "@/components/ui/button";
-import {GearIcon} from "@phosphor-icons/react";
+import {
+    AmazonLogoIcon,
+    DatabaseIcon,
+    DropboxLogoIcon,
+    GearIcon,
+    GoogleDriveLogoIcon,
+    HardDrivesIcon
+} from "@phosphor-icons/react";
+import {ReactNode} from "react";
+
+const storageIcons: { [key: string]: ReactNode } = {
+    "aws-s3": <AmazonLogoIcon/>,
+    "google-drive": <GoogleDriveLogoIcon/>,
+    "dropbox": <DropboxLogoIcon/>,
+    "ftp": <HardDrivesIcon/>
+}
 
 type Props = {
     storage: Storage;
@@ -19,6 +34,7 @@ export default function StorageCard({storage}: Props) {
             </CardTitle>
             <CardDescription className="flex flex-wrap gap-1">
                 <Badge variant="secondary">
+                    {storageIcons[storage.typeKey] ?? <DatabaseIcon/>}
                     {storage.typeLabel}
                 </Badge>
                 {storage.isDefault && <Badge>

@@ -1,6 +1,6 @@
 "use client";
 
-import {Field, FieldDescription, FieldGroup} from "@/components/ui/field";
+import {Field, FieldError, FieldGroup} from "@/components/ui/field";
 import {useTranslations} from "next-intl";
 import {SubmitEvent, useEffect, useState} from "react";
 import {Button} from "@/components/ui/button";
@@ -109,9 +109,9 @@ export default function ConfirmForm({codeAutofill = ""}: Props) {
                             </InputOTPGroup>
                         </InputOTP>
                     </div>
-                    {errors.code && <FieldDescription className="text-destructive">
+                    {errors.code && <FieldError className="text-destructive">
                         {t(errors.code)}
-                    </FieldDescription>}
+                    </FieldError>}
                 </Field>
             </FieldGroup>
 
@@ -122,9 +122,9 @@ export default function ConfirmForm({codeAutofill = ""}: Props) {
             </Item>}
 
             <Field>
-                {errors.general && <FieldDescription className="text-destructive">
+                {errors.general && <FieldError className="text-destructive">
                     {t(errors.general)}
-                </FieldDescription>}
+                </FieldError>}
                 <Button type="submit" className="w-max! mx-auto px-8" disabled={isLoading || !deviceInfo}>
                     {isLoading && <Spinner/>} {t("label-confirm")}
                 </Button>
