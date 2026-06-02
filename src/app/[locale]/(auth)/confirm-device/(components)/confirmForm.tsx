@@ -126,7 +126,7 @@ export default function ConfirmForm({codeAutofill = ""}: Props) {
                     {t(errors.general)}
                 </FieldError>}
                 <Button type="submit" className="w-max! mx-auto px-8" disabled={isLoading || !deviceInfo}>
-                    {isLoading && <Spinner/>} {t("label-confirm")}
+                    {isLoading && <Spinner data-icon="inline-start"/>} {t("label-confirm")}
                 </Button>
             </Field>
         </form>

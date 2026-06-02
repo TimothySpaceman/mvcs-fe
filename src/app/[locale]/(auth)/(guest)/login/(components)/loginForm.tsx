@@ -133,7 +133,7 @@ export default function LoginForm() {
         </FieldGroup>
         <Field>
             <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading && <Spinner/>} {t("label-submit")}
+                {isLoading && <Spinner data-icon="inline-start"/>} {t("label-submit")}
             </Button>
             {errors.general && <FieldError className="text-destructive">
                 {t(errors.general)}

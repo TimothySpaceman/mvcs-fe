@@ -21,6 +21,7 @@ export function ModalProvider({children}: ModalProviderProps) {
 
     function addModal(factory: ModalFactory, options?: Partial<ModalOptions>) {
         const modal = {
+            ...options,
             id: options?.id ?? uuidv4(),
             closeOnBlur: options?.closeOnBlur ?? true,
             contentFactory: factory

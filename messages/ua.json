@@ -82,12 +82,27 @@
       "description": "Керування сховищами"
     },
     "title": "Сховища",
+    "bar": {
+      "label-add": "Додати"
+    },
     "list": {
       "label-no-storages": "Жодного доступного сховища"
     },
     "card": {
       "badge-default": "Стандартне",
       "badge-public": "Публічне"
+    },
+    "addModal": {
+      "title": "Додавання сховища",
+      "label-add": "Додати",
+      "label-cancel": "Скасувати",
+      "label-name": "Назва сховища",
+      "description-name": "Під цією назвою сховище буде відображуватися у всіх відповдіних списках та меню",
+      "label-storage-type": "Тип сховища",
+      "placeholder-storage-type": "Оберіть",
+      "message-select-type": "Оберіть тип сховища для подальшої конфігурації",
+      "error-failed": "Не вдалося додати сховище",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
     }
   }
 }

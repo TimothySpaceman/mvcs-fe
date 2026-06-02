@@ -1,21 +1,20 @@
 import {SchemaField} from "@/lib/entities/storage";
 import {FieldGroup} from "@/components/ui/field";
-import {useCallback, useState} from "react";
+import {Dispatch, SetStateAction, useCallback} from "react";
 import FieldEditor, {FieldValue} from "@/components/storageConfigEditor/fields/fieldEditor";
 
 type Props = {
     schemaFields: SchemaField[]
-    initialValues?: Record<string, FieldValue>
-    isLoading: boolean
+    values: Record<string, FieldValue>
+    onChange: Dispatch<SetStateAction<Record<string, FieldValue>>>;
+    errors?: Record<string, string | undefined>
+    isLoading?: boolean
 }
 
-export default function StorageConfigEditor({schemaFields, initialValues = {}, isLoading}: Props) {
-    const [values, setValues] = useState<Record<string, FieldValue>>(initialValues);
-    const [errors, setErrors] = useState<Record<string, string | undefined>>({});
-
+export default function StorageConfigEditor({schemaFields, values, onChange, errors = {}, isLoading = false}: Props) {
     const setValue = useCallback((key: string, value: FieldValue) => {
-        setValues(prev => ({...prev, [key]: value}));
-    }, [setValues]);
+        onChange(prev => ({...prev, [key]: value}));
+    }, [onChange]);
 
     return <FieldGroup className="gap-3">
         {schemaFields.map(schema => <FieldEditor

@@ -5,16 +5,17 @@ import {Card, CardContent} from "@/components/ui/card";
 export type ModalFactory = (onClose: () => void) => ReactNode;
 
 export type ModalOptions = {
-    id: string;
-    closeOnBlur: boolean;
+    id: string
+    closeOnBlur?: boolean
+    modalClassName?: string
 }
 
 export type ModalConfig = ModalOptions & {
-    contentFactory: ModalFactory;
+    contentFactory: ModalFactory
 }
 
 type Props = {
-    config: ModalConfig;
+    config: ModalConfig
 }
 
 export default function Modal({config}: Props) {
@@ -28,7 +29,10 @@ export default function Modal({config}: Props) {
         onClick={config.closeOnBlur ? onClose : undefined}
         className="bg-neutral-950/70 h-screen w-screen fixed top-0 left-0 z-5000 p-2 flex items-center justify-center"
     >
-        <Card onClick={(e) => e.stopPropagation()}>
+        <Card
+            className={config.modalClassName}
+            onClick={(e) => e.stopPropagation()}
+        >
             <CardContent>
                 {config.contentFactory(onClose)}
             </CardContent>

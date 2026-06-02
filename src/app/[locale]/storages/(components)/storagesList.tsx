@@ -22,9 +22,9 @@ export default function StoragesList() {
             .finally(() => setIsLoading(false));
     }, [])
 
-    if (isLoading) return <Spinner className="size-8 mx-auto my-4"/>;
+    if (isLoading) return <Spinner className="size-8 mx-auto"/>;
 
-    return <div className="p-4 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+    return <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
         {storages.length == 0
             ? <p className="text-center text-muted-foreground">{t("label-no-storages")}</p>
             : storages.map((storage) => <StorageCard

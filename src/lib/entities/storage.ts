@@ -77,10 +77,13 @@ export type StorageConfigSchema = {
     fields: SchemaField[]
 }
 
-export type StorageType = {
+export type StorageTypeInfo = {
     id: string
     key: string
     label: string
     description: string
+}
+
+export type StorageType = StorageTypeInfo & {
     configSchema: StorageConfigSchema
 }
