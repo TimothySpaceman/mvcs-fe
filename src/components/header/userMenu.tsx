@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {Button} from "@/components/ui/button";
 import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
-import {GearIcon, SignOutIcon, UserIcon} from "@phosphor-icons/react";
+import {DatabaseIcon, FolderIcon, GearIcon, SignOutIcon, UserIcon} from "@phosphor-icons/react";
 
 export default function UserMenu() {
     const t = useTranslations("Header.user-menu");
@@ -44,6 +44,19 @@ export default function UserMenu() {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="mx-2">
             <DropdownMenuGroup>
+                <DropdownMenuItem asChild>
+                    <Link href="/projects">
+                        <FolderIcon/>
+                        {t("label-projects")}
+                    </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                    <Link href="/storages">
+                        <DatabaseIcon/>
+                        {t("label-storages")}
+                    </Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator/>
                 <DropdownMenuItem asChild>
                     <Link href="/profile">
                         <UserIcon/>

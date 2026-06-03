@@ -4,7 +4,7 @@ import {Card, CardContent, CardHeader, CardTitle} from "@/components/ui/card";
 import {CheckCircleIcon} from "@phosphor-icons/react/dist/ssr";
 
 export async function generateMetadata(): Promise<Metadata> {
-    const t = await getTranslations("ConfirmDeviceSuccess");
+    const t = await getTranslations("ConfirmDeviceSuccessPage");
 
     return {
         title: t("title"),
@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-    const t = await getTranslations("ConfirmDeviceSuccess");
+    const t = await getTranslations("ConfirmDeviceSuccessPage");
 
     return <main className="p-2 grow-1 flex flex-col items-center justify-center">
         <Card className="max-w-120 w-full">

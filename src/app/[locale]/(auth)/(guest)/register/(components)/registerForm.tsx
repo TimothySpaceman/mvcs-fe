@@ -1,6 +1,6 @@
 "use client";
 
-import {Field, FieldDescription, FieldGroup, FieldLabel} from "@/components/ui/field";
+import {Field, FieldError, FieldGroup, FieldLabel} from "@/components/ui/field";
 import {useTranslations} from "next-intl";
 import {Input} from "@/components/ui/input";
 import {ChangeEvent, SubmitEvent, useState} from "react";
@@ -37,7 +37,7 @@ function validateRedirect(redirectTo: string | null, fallback: string) {
 }
 
 export default function RegisterForm() {
-    const t = useTranslations("Register.form");
+    const t = useTranslations("RegisterPage.form");
     const {refreshUserData} = useUser();
     const router = useRouter();
 
@@ -138,9 +138,9 @@ export default function RegisterForm() {
                     disabled={isLoading}
                     aria-invalid={!!errors.username}
                 />
-                {errors.username && <FieldDescription className="text-destructive">
+                {errors.username && <FieldError className="text-destructive">
                     {t(errors.username)}
-                </FieldDescription>}
+                </FieldError>}
             </Field>
             <Field data-invalid={!!errors.displayName}>
                 <FieldLabel htmlFor="register-display-name-input">
@@ -157,9 +157,9 @@ export default function RegisterForm() {
                     disabled={isLoading}
                     aria-invalid={!!errors.displayName}
                 />
-                {errors.displayName && <FieldDescription className="text-destructive">
+                {errors.displayName && <FieldError className="text-destructive">
                     {t(errors.displayName)}
-                </FieldDescription>}
+                </FieldError>}
             </Field>
             <Field data-invalid={!!errors.email}>
                 <FieldLabel htmlFor="register-email-input">
@@ -176,9 +176,9 @@ export default function RegisterForm() {
                     disabled={isLoading}
                     aria-invalid={!!errors.email}
                 />
-                {errors.email && <FieldDescription className="text-destructive">
+                {errors.email && <FieldError className="text-destructive">
                     {t(errors.email)}
-                </FieldDescription>}
+                </FieldError>}
             </Field>
             <Field data-invalid={!!errors.plainPassword}>
                 <FieldLabel htmlFor="register-password-input">
@@ -195,9 +195,9 @@ export default function RegisterForm() {
                     disabled={isLoading}
                     aria-invalid={!!errors.plainPassword}
                 />
-                {errors.plainPassword && <FieldDescription className="text-destructive">
+                {errors.plainPassword && <FieldError className="text-destructive">
                     {t(errors.plainPassword)}
-                </FieldDescription>}
+                </FieldError>}
             </Field>
             <Field data-invalid={!!errors.confirmPassword}>
                 <FieldLabel htmlFor="register-confirm-password-input">
@@ -214,14 +214,14 @@ export default function RegisterForm() {
                     disabled={isLoading}
                     aria-invalid={!!errors.confirmPassword}
                 />
-                {errors.confirmPassword && <FieldDescription className="text-destructive">
+                {errors.confirmPassword && <FieldError className="text-destructive">
                     {t(errors.confirmPassword)}
-                </FieldDescription>}
+                </FieldError>}
             </Field>
         </FieldGroup>
         <Field>
             <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading && <Spinner/>} {t("label-submit")}
+                {isLoading && <Spinner data-icon="inline-start"/>} {t("label-submit")}
             </Button>
         </Field>
         <p className="text-center">

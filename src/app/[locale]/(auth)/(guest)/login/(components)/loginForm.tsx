@@ -1,6 +1,6 @@
 "use client";
 
-import {Field, FieldDescription, FieldGroup, FieldLabel} from "@/components/ui/field";
+import {Field, FieldError, FieldGroup, FieldLabel} from "@/components/ui/field";
 import {useTranslations} from "next-intl";
 import {Input} from "@/components/ui/input";
 import {ChangeEvent, SubmitEvent, useState} from "react";
@@ -32,7 +32,7 @@ function validateRedirect(redirectTo: string | null, fallback: string) {
 }
 
 export default function LoginForm() {
-    const t = useTranslations("Login.form");
+    const t = useTranslations("LoginPage.form");
     const {refreshUserData} = useUser();
     const router = useRouter();
 
@@ -108,9 +108,9 @@ export default function LoginForm() {
                     disabled={isLoading}
                     aria-invalid={!!errors.email}
                 />
-                {errors.email && <FieldDescription className="text-destructive">
+                {errors.email && <FieldError className="text-destructive">
                     {t(errors.email)}
-                </FieldDescription>}
+                </FieldError>}
             </Field>
             <Field data-invalid={!!errors.password}>
                 <FieldLabel htmlFor="login-password-input">
@@ -126,18 +126,18 @@ export default function LoginForm() {
                     disabled={isLoading}
                     aria-invalid={!!errors.password}
                 />
-                {errors.password && <FieldDescription className="text-destructive">
+                {errors.password && <FieldError className="text-destructive">
                     {t(errors.password)}
-                </FieldDescription>}
+                </FieldError>}
             </Field>
         </FieldGroup>
         <Field>
             <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading && <Spinner/>} {t("label-submit")}
+                {isLoading && <Spinner data-icon="inline-start"/>} {t("label-submit")}
             </Button>
-            {errors.general && <FieldDescription className="text-destructive">
+            {errors.general && <FieldError className="text-destructive">
                 {t(errors.general)}
-            </FieldDescription>}
+            </FieldError>}
         </Field>
         <p className="text-center">
             {t("message-register")}
