@@ -1,15 +1,3 @@
-export type Storage = {
-    id: string
-    name: string
-    storageTypeId: string
-    typeKey: string
-    typeLabel: string
-    isDefault: boolean
-    isPublic: boolean
-    createdAt: string
-    updatedAt: string
-}
-
 export const SchemaFieldTypes = {
     text: "text",
     number: "number",
@@ -86,4 +74,19 @@ export type StorageTypeInfo = {
 
 export type StorageType = StorageTypeInfo & {
     configSchema: StorageConfigSchema
+}
+
+export type Storage = {
+    id: string
+    name: string
+    storageType: StorageTypeInfo
+    isDefault: boolean
+    isPublic: boolean
+    createdAt: string
+    updatedAt: string
+}
+
+export type StorageHealth = {
+    isReachable: boolean
+    error: string | null
 }

@@ -23,14 +23,16 @@ export default function StoragesList() {
     }, [])
 
     if (isLoading) return <Spinner className="size-8 mx-auto"/>;
+    if (storages.length === 0) {
+        return <p className="text-center text-muted-foreground">
+            {t("label-no-storages")}
+        </p>;
+    }
 
     return <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-        {storages.length == 0
-            ? <p className="text-center text-muted-foreground">{t("label-no-storages")}</p>
-            : storages.map((storage) => <StorageCard
-                key={`storage-${storage.id}`}
-                storage={storage}
-            />)
-        }
-    </div>
+        {storages.map((storage) => <StorageCard
+            key={`storage-${storage.id}`}
+            storage={storage}
+        />)}
+    </div>;
 }

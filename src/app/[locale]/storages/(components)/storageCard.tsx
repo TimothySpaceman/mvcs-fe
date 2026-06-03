@@ -12,6 +12,7 @@ import {
     HardDrivesIcon
 } from "@phosphor-icons/react";
 import {ReactNode} from "react";
+import {Link} from "@/i18n/navigation";
 
 const storageIcons: { [key: string]: ReactNode } = {
     "aws-s3": <AmazonLogoIcon/>,
@@ -34,8 +35,8 @@ export default function StorageCard({storage}: Props) {
             </CardTitle>
             <CardDescription className="flex flex-wrap gap-1">
                 <Badge variant="secondary">
-                    {storageIcons[storage.typeKey] ?? <DatabaseIcon/>}
-                    {storage.typeLabel}
+                    {storageIcons[storage.storageType.key] ?? <DatabaseIcon/>}
+                    {storage.storageType.label}
                 </Badge>
                 {storage.isDefault && <Badge>
                     {t("badge-default")}
@@ -45,8 +46,8 @@ export default function StorageCard({storage}: Props) {
                 </Badge>}
             </CardDescription>
             <CardAction>
-                <Button size="icon-sm" variant="secondary">
-                    <GearIcon/>
+                <Button size="icon-sm" variant="secondary" asChild>
+                    <Link href={`/storages/${storage.id}`}><GearIcon/></Link>
                 </Button>
             </CardAction>
         </CardHeader>

@@ -104,5 +104,24 @@
       "error-failed": "Не вдалося додати сховище",
       "error-internal-server": "Виникла помилка. Спробуйте пізніше"
     }
+  },
+  "Storage": {
+    "meta": {
+      "title": "{storageName} - Cховища | MVCS",
+      "description": "Керування сховищем {storageName}"
+    },
+    "info": {
+      "badge-default": "Стандартне",
+      "badge-public": "Публічне"
+    },
+    "health": {
+      "badge-unknown": "Невідомо",
+      "badge-loading": "Перевірка",
+      "badge-healthy": "Доступне",
+      "badge-unreachable": "Недоступне",
+      "badge-error": "Помилка",
+      "error-failed": "Не вдалося перевірити стан сховища",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    }
   }
 }
