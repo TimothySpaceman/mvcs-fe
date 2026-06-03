@@ -49,7 +49,7 @@ const variants: { [key: string]: "default" | "secondary" | "destructive" } = {
 }
 
 export default function StorageHealthBadge({storageId}: Props) {
-    const t = useTranslations("Storage.health")
+    const t = useTranslations("StoragePage.health")
 
     const [status, setStatus] = useState<Status>(Statuses.unknown);
     const [details, setDetails] = useState<string>();

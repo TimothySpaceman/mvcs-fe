@@ -24,7 +24,7 @@ type Props = {
 }
 
 export default async function StorageInfo({storage, className}: Props) {
-    const t = await getTranslations("Storage.info");
+    const t = await getTranslations("StoragePage.info");
 
     return <div className={twMerge("flex flex-col gap-2", className)}>
         <h1 className="font-bold text-2xl">{storage.name}</h1>

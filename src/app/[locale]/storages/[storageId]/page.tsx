@@ -24,7 +24,7 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
     const {storageId} = await params;
     const storage = await getStorage(storageId);
 
-    const t = await getTranslations("Storage.meta");
+    const t = await getTranslations("StoragePage.meta");
 
     return {
         title: t("title", {storageName: storage.name}),

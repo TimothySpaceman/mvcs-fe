@@ -18,7 +18,7 @@ type Props = {
 }
 
 export default function AddStorageModal({onClose}: Props) {
-    const t = useTranslations("Storages.addModal");
+    const t = useTranslations("StoragesPage.addModal");
     const router = useRouter();
 
     const [isLoading, setIsLoading] = useState<boolean>(false);

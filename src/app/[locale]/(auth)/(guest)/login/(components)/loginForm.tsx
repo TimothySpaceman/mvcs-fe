@@ -32,7 +32,7 @@ function validateRedirect(redirectTo: string | null, fallback: string) {
 }
 
 export default function LoginForm() {
-    const t = useTranslations("Login.form");
+    const t = useTranslations("LoginPage.form");
     const {refreshUserData} = useUser();
     const router = useRouter();
 

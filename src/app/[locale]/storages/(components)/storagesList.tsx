@@ -8,7 +8,7 @@ import {useTranslations} from "next-intl";
 import StorageCard from "@/app/[locale]/storages/(components)/storageCard";
 
 export default function StoragesList() {
-    const t = useTranslations("Storages.list");
+    const t = useTranslations("StoragesPage.list");
 
     const [isLoading, setIsLoading] = useState(false);
     const [storages, setStorages] = useState<Storage[]>([]);

@@ -16,7 +16,7 @@
       "error-logout-failed": "Виникла помилка. Спробуйте пізніше"
     }
   },
-  "Login": {
+  "LoginPage": {
     "meta": {
       "title": "Вхід | MVCS",
       "description": "Вхід в обліковий запис"
@@ -34,7 +34,7 @@
       "error-internal-server": "Виникла помилка. Спробуйте пізніше"
     }
   },
-  "Register": {
+  "RegisterPage": {
     "meta": {
       "title": "Реєстрація | MVCS",
       "description": "Створення облікового запису"
@@ -54,7 +54,7 @@
       "error-internal-server": "Виникла помилка. Спробуйте пізніше"
     }
   },
-  "ConfirmDevice": {
+  "ConfirmDevicePage": {
     "meta": {
       "title": "Підтвердження пристрою | MVCS",
       "description": "Підтвердження входу з пристрою"
@@ -68,7 +68,7 @@
       "error-internal-server": "Виникла помилка. Спробуйте пізніше"
     }
   },
-  "ConfirmDeviceSuccess": {
+  "ConfirmDeviceSuccessPage": {
     "meta": {
       "title": "Підтвердження пристрою | MVCS",
       "description": "Підтвердження входу з пристрою"
@@ -76,7 +76,7 @@
     "title": "Вхід на пристрої успішно підтверджено!",
     "description": "Ви можете закрити цю вкладку і продовжити роботу в додатку"
   },
-  "Storages": {
+  "StoragesPage": {
     "meta": {
       "title": "Сховища | MVCS",
       "description": "Керування сховищами"
@@ -105,7 +105,7 @@
       "error-internal-server": "Виникла помилка. Спробуйте пізніше"
     }
   },
-  "Storage": {
+  "StoragePage": {
     "meta": {
       "title": "{storageName} - Cховища | MVCS",
       "description": "Керування сховищем {storageName}"

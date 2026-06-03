@@ -8,7 +8,7 @@ import {useModal} from "@/components/modal/modalProvider";
 import AddStorageModal from "@/app/[locale]/storages/(components)/addStorageModal";
 
 export default function StorageSearchBar() {
-    const t = useTranslations("Storages.bar");
+    const t = useTranslations("StoragesPage.bar");
     const {addModal} = useModal();
 
     function handleAdd() {

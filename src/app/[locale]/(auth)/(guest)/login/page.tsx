@@ -4,7 +4,7 @@ import type {Metadata} from "next";
 import LoginForm from "@/app/[locale]/(auth)/(guest)/login/(components)/loginForm";
 
 export async function generateMetadata(): Promise<Metadata> {
-    const t = await getTranslations("Login.meta");
+    const t = await getTranslations("LoginPage.meta");
 
     return {
         title: t("title"),
@@ -13,7 +13,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page(){
-    const t = await getTranslations("Login");
+    const t = await getTranslations("LoginPage");
 
     return <main className="p-2 grow-1 flex flex-col items-center justify-center">
         <Card className="max-w-100 w-full">

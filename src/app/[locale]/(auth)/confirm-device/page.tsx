@@ -7,7 +7,7 @@ import {getCurrentUser} from "@/lib/auth/getCurrentUser";
 import {redirect} from "@/i18n/navigation";
 
 export async function generateMetadata(): Promise<Metadata> {
-    const t = await getTranslations("ConfirmDevice.meta");
+    const t = await getTranslations("ConfirmDevicePage.meta");
 
     return {
         title: t("title"),
@@ -25,7 +25,7 @@ type Props = {
 };
 
 export default async function Page({searchParams}: Props) {
-    const t = await getTranslations("ConfirmDevice");
+    const t = await getTranslations("ConfirmDevicePage");
 
     const {code} = await loadSearchParams(searchParams);
     const user = await getCurrentUser();

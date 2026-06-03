@@ -5,7 +5,7 @@ import StorageSearchBar from "@/app/[locale]/storages/(components)/storageSearch
 import Container from "@/components/container/container";
 
 export async function generateMetadata(): Promise<Metadata> {
-    const t = await getTranslations("Storages.meta");
+    const t = await getTranslations("StoragesPage.meta");
 
     return {
         title: t("title"),
@@ -14,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default async function Page() {
-    const t = await getTranslations("Storages");
+    const t = await getTranslations("StoragesPage");
 
     return <Container className="space-y-4">
         <h1 className="font-bold text-2xl">{t("title")}</h1>

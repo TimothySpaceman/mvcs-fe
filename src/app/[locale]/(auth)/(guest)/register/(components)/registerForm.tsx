@@ -37,7 +37,7 @@ function validateRedirect(redirectTo: string | null, fallback: string) {
 }
 
 export default function RegisterForm() {
-    const t = useTranslations("Register.form");
+    const t = useTranslations("RegisterPage.form");
     const {refreshUserData} = useUser();
     const router = useRouter();
 

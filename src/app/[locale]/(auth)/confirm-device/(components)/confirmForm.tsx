@@ -23,7 +23,7 @@ type Props = {
 
 // TODO: Prettify device info
 export default function ConfirmForm({codeAutofill = ""}: Props) {
-    const t = useTranslations("ConfirmDevice.form");
+    const t = useTranslations("ConfirmDevicePage.form");
     const router = useRouter();
 
     const [isLoading, setIsLoading] = useState(false);

@@ -26,7 +26,7 @@ type Props = {
 }
 
 export default function StorageCard({storage}: Props) {
-    const t = useTranslations("Storages.card");
+    const t = useTranslations("StoragesPage.card");
 
     return <Card>
         <CardHeader>
