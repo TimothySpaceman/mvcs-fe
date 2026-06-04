@@ -7,6 +7,7 @@ import {getTranslations} from "next-intl/server";
 import {Project} from "@/lib/entities/project";
 import {User} from "@/lib/auth/types";
 import ProjectInfo from "@/app/[locale]/projects/[projectId]/(components)/projectInfo";
+import InitInstructions from "@/app/[locale]/projects/[projectId]/(components)/initInstructions";
 
 const getProject = cache(async (projectId: string) => {
     const api = await getServerApi();
@@ -56,6 +57,8 @@ export default async function Page({params}: Props) {
     return <Container className="space-y-4 max-w-3xl">
         <ProjectInfo project={project} author={author}/>
 
-        {JSON.stringify({project, author}, null, 2)}
+        {!project.isInitialized && <InitInstructions projectId={project.id}/>}
+
+        {/*{JSON.stringify({project, author}, null, 2)}*/}
     </Container>
 }
