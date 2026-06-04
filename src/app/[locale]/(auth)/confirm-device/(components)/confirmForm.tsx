@@ -45,7 +45,6 @@ export default function ConfirmForm({codeAutofill = ""}: Props) {
 
             if (resp.ok) {
                 router.push("/confirm-device/success");
-                router.refresh();
             } else {
                 setErrors({general: resp.status == 404 ? "error-invalid-code" : "error-internal-server"})
             }
