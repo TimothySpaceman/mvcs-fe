@@ -168,6 +168,9 @@
       "toast-copied": "Скопійовано в буфер обміну!",
       "toast-copy-failed": "Не вдалося скопіювати ідентифікатор"
     },
+    "refSelector": {
+      "placeholder-branch": "Оберіть гілку"
+    },
     "tree": {
       "label-loading": "Завантаження...",
       "label-empty": "Ця версія не містить файлів",

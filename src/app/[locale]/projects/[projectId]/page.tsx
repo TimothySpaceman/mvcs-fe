@@ -10,6 +10,7 @@ import ProjectInfo from "@/app/[locale]/projects/[projectId]/(components)/projec
 import InitInstructions from "@/app/[locale]/projects/[projectId]/(components)/initInstructions";
 import {Separator} from "@/components/ui/separator";
 import ProjectTreeView from "@/components/projectTreeView/projectTreeView";
+import RefSelector from "@/app/[locale]/projects/[projectId]/(components)/refSelector";
 
 const getProject = cache(async (projectId: string) => {
     const api = await getServerApi();
@@ -59,9 +60,12 @@ export default async function Page({params}: Props) {
     return <Container className="space-y-4 max-w-3xl">
         <ProjectInfo project={project} author={author}/>
         <Separator/>
-        {project.isInitialized
-            ? <ProjectTreeView projectId={project.id} refName="main"/>
-            : <InitInstructions projectId={project.id}/>
+        {!project.isInitialized
+            ? <InitInstructions projectId={project.id}/>
+            : <>
+                <RefSelector projectId={project.id} defaultRef={project.defaultRef}/>
+                <ProjectTreeView projectId={project.id}/>
+            </>
         }
 
         {/*{JSON.stringify({project, author}, null, 2)}*/}

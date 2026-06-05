@@ -5,6 +5,7 @@ export type Project = {
     description?: string,
     isPublic: boolean,
     isInitialized: boolean,
+    defaultRef?: string,
     createdAt: string,
     updatedAt: string
 }
@@ -22,4 +23,9 @@ export type FileSnapshot = {
 
 export type Snapshot = {
     files: Record<string, FileSnapshot>;
+};
+
+export type Ref = {
+    name: string;
+    commitId: string | null;
 };

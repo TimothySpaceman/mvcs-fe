@@ -2,6 +2,7 @@
 
 import {useMemo} from "react";
 import useSWR from "swr";
+import {useQueryState, parseAsString} from "nuqs";
 import {WarningCircleIcon, FolderSimpleDashedIcon} from "@phosphor-icons/react";
 import {Spinner} from "@/components/ui/spinner";
 import {Snapshot} from "@/lib/entities/project";
@@ -13,13 +14,14 @@ import {twMerge} from "tailwind-merge";
 
 type Props = {
     projectId: string;
-    refName?: string;
-    commitId?: string;
     className?: string;
 };
 
-export default function ProjectTreeView({projectId, refName, commitId, className}: Props) {
+export default function ProjectTreeView({projectId, className}: Props) {
     const t = useTranslations("ProjectPage.tree");
+
+    const [refName] = useQueryState("refName", parseAsString);
+    const [commitId] = useQueryState("commitId", parseAsString);
 
     const params = new URLSearchParams();
     if (refName) params.set("refName", refName);
@@ -63,18 +65,8 @@ export default function ProjectTreeView({projectId, refName, commitId, className
         <div className={twMerge("border border-border", className)}>
             {tree.map((node) =>
                 node.kind === "dir"
-                    ? <DirRow
-                        key={node.name}
-                        node={node}
-                        depth={0}
-                        projectId={projectId}
-                    />
-                    : <FileRow
-                        key={node.snapshot.filePath}
-                        node={node}
-                        depth={0}
-                        projectId={projectId}
-                    />
+                    ? <DirRow key={node.name} node={node} depth={0} projectId={projectId}/>
+                    : <FileRow key={node.snapshot.filePath} node={node} depth={0} projectId={projectId}/>
             )}
         </div>
     );
