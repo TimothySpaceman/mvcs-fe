@@ -8,6 +8,8 @@ import {Project} from "@/lib/entities/project";
 import {User} from "@/lib/auth/types";
 import ProjectInfo from "@/app/[locale]/projects/[projectId]/(components)/projectInfo";
 import InitInstructions from "@/app/[locale]/projects/[projectId]/(components)/initInstructions";
+import {Separator} from "@/components/ui/separator";
+import ProjectTreeView from "@/components/projectTreeView/projectTreeView";
 
 const getProject = cache(async (projectId: string) => {
     const api = await getServerApi();
@@ -56,8 +58,11 @@ export default async function Page({params}: Props) {
 
     return <Container className="space-y-4 max-w-3xl">
         <ProjectInfo project={project} author={author}/>
-
-        {!project.isInitialized && <InitInstructions projectId={project.id}/>}
+        <Separator/>
+        {project.isInitialized
+            ? <ProjectTreeView projectId={project.id} refName="main"/>
+            : <InitInstructions projectId={project.id}/>
+        }
 
         {/*{JSON.stringify({project, author}, null, 2)}*/}
     </Container>

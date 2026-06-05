@@ -13,7 +13,7 @@ export default function Header() {
 
     const t = useTranslations("Header");
 
-    return <header className="sticky top-0 bg-card border-b">
+    return <header className="sticky top-0 z-10 bg-card border-b">
         <div className="container mx-auto flex h-16 items-center justify-between px-4">
             <Link href="/" className="font-bold text-3xl">MVCS</Link>
             <div className="flex items-center gap-2">
