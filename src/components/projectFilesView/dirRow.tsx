@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {CaretRightIcon, FolderIcon, FolderOpenIcon} from "@phosphor-icons/react";
-import {countFiles, TreeNode} from "@/components/projectTreeView/utils";
-import FileRow from "@/components/projectTreeView/fileRow";
+import {countFiles, TreeNode} from "@/components/projectFilesView/utils";
+import FileRow from "@/components/projectFilesView/fileRow";
 import {twMerge} from "tailwind-merge";
 
 type Props = {

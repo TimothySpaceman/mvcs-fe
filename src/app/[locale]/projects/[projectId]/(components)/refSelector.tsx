@@ -10,13 +10,14 @@ import {useEffect} from "react";
 
 type Props = {
     projectId: string;
+    allowCommit?: boolean;
     defaultRef?: string;
     className?: string;
 };
 
 const COMMIT_PREFIX = "__commit__:";
 
-export default function RefSelector({projectId, defaultRef, className}: Props) {
+export default function RefSelector({projectId, allowCommit = true, defaultRef, className}: Props) {
     const t = useTranslations("ProjectPage.refSelector");
 
     const [refName, setRefName] = useQueryState("refName", parseAsString);
@@ -25,7 +26,7 @@ export default function RefSelector({projectId, defaultRef, className}: Props) {
     const {data: refs, isLoading} = useSWR<Ref[]>(`/projects/${projectId}/vcs/refs`);
 
     useEffect(() => {
-        if (refName || commitId || !defaultRef) return;
+        if (refName || (allowCommit && commitId) || !defaultRef) return;
         setRefName(defaultRef);
     }, [defaultRef]);
 

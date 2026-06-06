@@ -5,7 +5,7 @@ export type Project = {
     description?: string,
     isPublic: boolean,
     isInitialized: boolean,
-    defaultRef?: string,
+    defaultRefName?: string,
     createdAt: string,
     updatedAt: string
 }
@@ -28,4 +28,18 @@ export type Snapshot = {
 export type Ref = {
     name: string;
     commitId: string | null;
+};
+
+export type UserIdentity = {
+    id: string | null;
+    name: string;
+    email: string | null;
+};
+
+export type CommitInfo = {
+    id: string;
+    parentId: string | null;
+    message: string;
+    author: UserIdentity;
+    createdAt: string;
 };

@@ -1,5 +1,5 @@
 import {DownloadSimpleIcon, FileIcon} from "@phosphor-icons/react";
-import {TreeNode} from "@/components/projectTreeView/utils";
+import {TreeNode} from "@/components/projectFilesView/utils";
 import {twMerge} from "tailwind-merge";
 
 type Props = {

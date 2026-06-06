@@ -176,10 +176,18 @@
     "refSelector": {
       "placeholder-branch": "Оберіть гілку"
     },
-    "tree": {
+    "files": {
       "label-loading": "Завантаження...",
       "label-empty": "Ця версія не містить файлів",
       "error-failed": "Не вдалося завантажити файли"
+    },
+    "history": {
+      "label-loading": "Завантаження...",
+      "label-loading-more": "Завантаження...",
+      "label-load-more": "Завантажити ще",
+      "label-empty": "Ця гілка не містить жодної версії",
+      "label-day-group": "Коміти від {day}",
+      "error-failed": "Не вдалося завантажити історію"
     }
   }
 }

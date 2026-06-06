@@ -9,10 +9,11 @@ import {User} from "@/lib/auth/types";
 import ProjectInfo from "@/app/[locale]/projects/[projectId]/(components)/projectInfo";
 import InitInstructions from "@/app/[locale]/projects/[projectId]/(components)/initInstructions";
 import {Separator} from "@/components/ui/separator";
-import ProjectTreeView from "@/components/projectTreeView/projectTreeView";
+import ProjectFilesView from "@/components/projectFilesView/projectFilesView";
 import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
 import {ClockCounterClockwiseIcon, FolderOpenIcon, GearIcon} from "@phosphor-icons/react/dist/ssr";
 import RefSelector from "@/app/[locale]/projects/[projectId]/(components)/refSelector";
+import ProjectHistory from "@/components/projectHistory/projectHistory";
 
 const getProject = cache(async (projectId: string) => {
     const api = await getServerApi();
@@ -71,7 +72,7 @@ export default async function Page({params}: Props) {
                     <FolderOpenIcon/>
                     {t("tabs.label-files")}
                 </TabsTrigger>
-                <TabsTrigger value="history">
+                <TabsTrigger value="history" disabled={!project.isInitialized}>
                     <ClockCounterClockwiseIcon/>
                     {t("tabs.label-history")}
                 </TabsTrigger>
@@ -87,14 +88,20 @@ export default async function Page({params}: Props) {
                         <RefSelector
                             className="!p-1 !h-6"
                             projectId={project.id}
-                            defaultRef={project.defaultRef}
+                            defaultRef={project.defaultRefName}
                         />
-                        <ProjectTreeView projectId={project.id}/>
+                        <ProjectFilesView projectId={project.id}/>
                     </>
                 }
             </TabsContent>
             <TabsContent value="history">
-                History
+                <RefSelector
+                    className="!p-1 !h-6"
+                    projectId={project.id}
+                    defaultRef={project.defaultRefName}
+                    allowCommit={false}
+                />
+                <ProjectHistory projectId={project.id}/>
             </TabsContent>
         </Tabs>
     </Container>
