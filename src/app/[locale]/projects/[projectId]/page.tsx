@@ -10,6 +10,8 @@ import ProjectInfo from "@/app/[locale]/projects/[projectId]/(components)/projec
 import InitInstructions from "@/app/[locale]/projects/[projectId]/(components)/initInstructions";
 import {Separator} from "@/components/ui/separator";
 import ProjectTreeView from "@/components/projectTreeView/projectTreeView";
+import {Tabs, TabsContent, TabsList, TabsTrigger} from "@/components/ui/tabs";
+import {ClockCounterClockwiseIcon, FolderOpenIcon, GearIcon} from "@phosphor-icons/react/dist/ssr";
 import RefSelector from "@/app/[locale]/projects/[projectId]/(components)/refSelector";
 
 const getProject = cache(async (projectId: string) => {
@@ -57,17 +59,43 @@ export default async function Page({params}: Props) {
     const {projectId} = await params;
     const {project, author} = await getProject(projectId);
 
-    return <Container className="space-y-4 max-w-3xl">
-        <ProjectInfo project={project} author={author}/>
-        <Separator/>
-        {!project.isInitialized
-            ? <InitInstructions projectId={project.id}/>
-            : <>
-                <RefSelector projectId={project.id} defaultRef={project.defaultRef}/>
-                <ProjectTreeView projectId={project.id}/>
-            </>
-        }
+    const t = await getTranslations("ProjectPage");
 
-        {/*{JSON.stringify({project, author}, null, 2)}*/}
+    return <Container className="space-y-4 max-w-3xl">
+        <ProjectInfo project={project} author={author} className="!mb-2"/>
+        <Separator className="!m-0"/>
+
+        <Tabs defaultValue="files">
+            <TabsList variant="line" className="!px-0">
+                <TabsTrigger value="files">
+                    <FolderOpenIcon/>
+                    {t("tabs.label-files")}
+                </TabsTrigger>
+                <TabsTrigger value="history">
+                    <ClockCounterClockwiseIcon/>
+                    {t("tabs.label-history")}
+                </TabsTrigger>
+                <TabsTrigger value="settings" disabled>
+                    <GearIcon/>
+                    {t("tabs.label-settings")}
+                </TabsTrigger>
+            </TabsList>
+            <TabsContent value="files" className="flex flex-col gap-1">
+                {!project.isInitialized
+                    ? <InitInstructions projectId={project.id}/>
+                    : <>
+                        <RefSelector
+                            className="!p-1 !h-6"
+                            projectId={project.id}
+                            defaultRef={project.defaultRef}
+                        />
+                        <ProjectTreeView projectId={project.id}/>
+                    </>
+                }
+            </TabsContent>
+            <TabsContent value="history">
+                History
+            </TabsContent>
+        </Tabs>
     </Container>
 }
