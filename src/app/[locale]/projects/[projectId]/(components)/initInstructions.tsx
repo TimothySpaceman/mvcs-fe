@@ -27,7 +27,7 @@ export default function InitInstructions({projectId, className}: Props) {
     return <div className={twMerge("p-4 flex flex-col gap-4 items-center", className)}>
         <MusicNotesPlusIcon className="size-24"/>
         <h2 className="text-2xl text-center font-bold">{t("title")}</h2>
-        <p>{t("description")}</p>
+        <p className="text-base">{t("description")}</p>
         <Item variant="outline" className="max-w-max p-1 pl-2">
             <ItemContent className="flex flex-row items-center justify-center gap-1 font-bold text-base">
                 {projectId}

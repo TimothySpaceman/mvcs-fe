@@ -3,8 +3,8 @@ import {twMerge} from "tailwind-merge";
 import {Badge} from "@/components/ui/badge";
 import {Project} from "@/lib/entities/project";
 import {User} from "@/lib/auth/types";
-import {Avatar, AvatarFallback, AvatarImage} from "@/components/ui/avatar";
 import ProjectHealthBadge from "@/app/[locale]/projects/[projectId]/(components)/projectHealthBadge";
+import UserInfo from "@/components/userInfo";
 
 type Props = {
     project: Project,
@@ -30,12 +30,10 @@ export default async function ProjectInfo({project, author, className}: Props) {
         >
             {project.description}
         </p>}
-        {author && <div className="flex gap-2 items-center">
-            <Avatar>
-                <AvatarImage src={author.avatar?.url}/>
-                <AvatarFallback>{author.displayName.trim().toUpperCase().at(0)}</AvatarFallback>
-            </Avatar>
-            <span>{author.displayName}</span>
-        </div>}
+        {author && <UserInfo
+            avatarUrl={author.avatar?.url}
+            label={author.displayName}
+            labelClassName="text-foreground"
+        />}
     </div>
 }

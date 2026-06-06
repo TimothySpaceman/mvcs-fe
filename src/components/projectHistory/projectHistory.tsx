@@ -13,7 +13,7 @@ import {Fragment} from "react";
 import Separator from "@/components/projectHistory/separator";
 import CommitRow from "@/components/projectHistory/commitRow";
 
-const ITEMS_PER_PAGE = 5;
+const ITEMS_PER_PAGE = 30;
 
 type Props = {
     projectId: string;
@@ -36,7 +36,7 @@ export default function ProjectHistory({projectId, className}: Props) {
             if (prev?.nextCursor) params.set("fromId", prev.nextCursor);
             params.set("limit", `${ITEMS_PER_PAGE}`);
 
-            return `/projects/${projectId}/vcs/history?${params.toString()}`;
+            return `/projects/${projectId}/vcs/commits?${params.toString()}`;
         },
         {revalidateFirstPage: false}
     );
