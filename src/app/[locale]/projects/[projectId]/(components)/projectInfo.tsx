@@ -5,6 +5,7 @@ import {Project} from "@/lib/entities/project";
 import {User} from "@/lib/auth/types";
 import ProjectHealthBadge from "@/app/[locale]/projects/[projectId]/(components)/projectHealthBadge";
 import UserInfo from "@/components/userInfo";
+import CopyId from "@/app/[locale]/projects/[projectId]/(components)/copyId";
 
 type Props = {
     project: Project,
@@ -30,10 +31,13 @@ export default async function ProjectInfo({project, author, className}: Props) {
         >
             {project.description}
         </p>}
-        {author && <UserInfo
-            avatarUrl={author.avatar?.url}
-            label={author.displayName}
-            labelClassName="text-foreground"
-        />}
+        <div className="flex gap-2 flex-wrap items-center justify-between">
+            {author && <UserInfo
+                avatarUrl={author.avatar?.url}
+                label={author.displayName}
+                labelClassName="text-foreground"
+            />}
+            <CopyId projectId={project.id} className="text-xs text-muted-foreground/60"/>
+        </div>
     </div>
 }

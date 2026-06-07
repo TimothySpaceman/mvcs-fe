@@ -151,7 +151,9 @@
       "description": "Перегляд проєкту {projectName} від {authorName}"
     },
     "info": {
-      "badge-public": "Публічний"
+      "badge-public": "Публічний",
+      "toast-copied": "Ідентифікатор скопійовано",
+      "toast-copy-failed": "Не вдалося скопіювати ідентифікатор"
     },
     "health": {
       "badge-unknown": "Невідомо",
