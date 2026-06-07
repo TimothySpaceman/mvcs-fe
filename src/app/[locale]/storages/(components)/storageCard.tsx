@@ -28,8 +28,8 @@ type Props = {
 export default function StorageCard({storage}: Props) {
     const t = useTranslations("StoragesPage.card");
 
-    return <Card>
-        <CardHeader>
+    return <Card className="!p-3 !pt-2">
+        <CardHeader className="!p-0">
             <CardTitle>
                 <h2 className="text-xl font-bold">{storage.name}</h2>
             </CardTitle>

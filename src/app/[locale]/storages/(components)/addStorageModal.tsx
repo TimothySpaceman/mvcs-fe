@@ -59,7 +59,6 @@ export default function AddStorageModal({onClose}: Props) {
 
             const body = await resp.json() as Storage;
             router.push(`/storages/${body.id}`);
-            router.refresh();
             onClose();
         } catch {
             toast.error(t("error-internal-server"));

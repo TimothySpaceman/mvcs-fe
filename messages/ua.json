@@ -7,6 +7,7 @@
   },
   "Header": {
     "label-login": "Вхід",
+    "label-create-project": "Новий",
     "user-menu": {
       "label-projects": "Проєкти",
       "label-storages": "Сховища",
@@ -86,7 +87,8 @@
       "label-add": "Додати"
     },
     "list": {
-      "label-no-storages": "Жодного доступного сховища"
+      "label-no-storages": "Жодного доступного сховища",
+      "error-failed": "Не вдалося завантажити сховища"
     },
     "card": {
       "badge-default": "Стандартне",
@@ -122,6 +124,74 @@
       "badge-error": "Помилка",
       "error-failed": "Не вдалося перевірити стан сховища",
       "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    }
+  },
+  "NewProjectPage": {
+    "meta": {
+      "title": "Новий проєкт | MVCS",
+      "description": "Створення нового проєкту"
+    },
+    "title": "Новий проєкт",
+    "form": {
+      "label-title": "Назва",
+      "label-description": "Опис (необовʼязково)",
+      "label-is-public": "Публічний проєкт",
+      "description-is-public": "Публічні проєкти доступні для перегляду всім користувачам",
+      "label-storage": "Сховище",
+      "placeholder-storage": "Одне з доступних",
+      "label-submit": "Створити проєкт",
+      "error-storage-required": "Сховище обовʼязкове",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    }
+  },
+  "ProjectPage": {
+    "meta": {
+      "author-fallback": "Невідомого користувача",
+      "title": "{projectName} від {authorName} | MVCS",
+      "description": "Перегляд проєкту {projectName} від {authorName}"
+    },
+    "info": {
+      "badge-public": "Публічний",
+      "toast-copied": "Ідентифікатор скопійовано",
+      "toast-copy-failed": "Не вдалося скопіювати ідентифікатор"
+    },
+    "health": {
+      "badge-unknown": "Невідомо",
+      "badge-loading": "Перевірка",
+      "badge-healthy": "Сховище доступне",
+      "badge-unreachable": "Сховище недоступне",
+      "badge-error": "Помилка",
+      "error-failed": "Не вдалося перевірити стан сховища",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    },
+    "tabs": {
+      "label-files": "Файли",
+      "label-history": "Історія",
+      "label-settings": "Налаштування"
+    },
+    "init": {
+      "title": "Ви ще не завантажили жодної версії",
+      "description": "Для продовження роботи над проєктом, перейдіть у віконний додаток та склонуйте проєкт, або привʼяжіть до вже існуючого, використовуючи цей ідентифікатор:",
+      "toast-copied": "Ідентифікатор скопійовано",
+      "toast-copy-failed": "Не вдалося скопіювати ідентифікатор"
+    },
+    "refSelector": {
+      "placeholder-branch": "Оберіть гілку"
+    },
+    "files": {
+      "label-loading": "Завантаження...",
+      "label-empty": "Ця версія не містить файлів",
+      "error-failed": "Не вдалося завантажити файли"
+    },
+    "history": {
+      "label-loading": "Завантаження...",
+      "label-loading-more": "Завантаження...",
+      "label-load-more": "Завантажити ще",
+      "label-empty": "Ця гілка не містить жодної версії",
+      "label-day-group": "Версії від {day}",
+      "toast-copied": "Ідентифікатор скопійовано",
+      "toast-copy-failed": "Не вдалося скопіювати ідентифікатор",
+      "error-failed": "Не вдалося завантажити історію"
     }
   }
 }
