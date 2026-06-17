@@ -4,3 +4,9 @@ export type PagedResult<T> = {
     itemsPerPage: number;
     totalItems: number;
 };
+
+export type CursorPagedResult<T> = {
+    items: T[];
+    limit: number;
+    nextCursor: string | null;
+};

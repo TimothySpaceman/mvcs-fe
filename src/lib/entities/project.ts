@@ -44,6 +44,12 @@ export type CommitInfo = {
     createdAt: string;
 };
 
+export type SnapshotMetadata = {
+    commitId: string;
+    data: Record<string, string[]>;
+    submittedAt: string;
+};
+
 export type MergeRequest = {
     id: string;
     authorId: string;
