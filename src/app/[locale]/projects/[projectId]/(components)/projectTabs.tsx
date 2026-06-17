@@ -19,6 +19,7 @@ import MergeRequestsList from "@/app/[locale]/projects/[projectId]/(components)/
 import MergeRequestsActions from "@/app/[locale]/projects/[projectId]/(components)/mergeRequestsActions";
 import {useSWRConfig} from "swr";
 import SnapshotMetadataView from "@/components/snapshotMetadataView/snapshotMetadataView";
+import FilesAndMetadata from "@/app/[locale]/projects/[projectId]/(components)/filesAndMetadata";
 
 const TabNames = ["files", "history", "merges", "tasks", "settings"] as const;
 type TabName = typeof TabNames[number];
@@ -75,10 +76,7 @@ export default function ProjectTabs({projectId, defaultRefName, isInitialized}: 
                             />
                             <LatestCommitInfo projectId={projectId} className="p-0.5 pr-1.5 "/>
                         </div>
-                        <div className="flex gap-1">
-                            <ProjectFilesView projectId={projectId} className="flex-1 min-w-0"/>
-                            <SnapshotMetadataView projectId={projectId} className="w-64 shrink-0"/>
-                        </div>
+                        <FilesAndMetadata projectId={projectId}/>
                     </>
                 }
             </TabsContent>
