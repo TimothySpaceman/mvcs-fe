@@ -7,11 +7,11 @@ import {Button} from "@/components/ui/button";
 import {Spinner} from "@/components/ui/spinner";
 import {CommitInfo} from "@/lib/entities/project";
 import {twMerge} from "tailwind-merge";
-import {CursorPage} from "@/lib/api/types";
 import {ClockCountdownIcon, WarningCircleIcon} from "@phosphor-icons/react";
 import {Fragment} from "react";
 import Separator from "@/components/projectHistory/separator";
 import CommitRow from "@/components/projectHistory/commitRow";
+import {CursorPagedResult} from "@/lib/entities/common";
 
 const ITEMS_PER_PAGE = 30;
 
@@ -26,8 +26,8 @@ export default function ProjectHistory({projectId, className}: Props) {
     const [refName] = useQueryState("refName", parseAsString);
     const [commitId] = useQueryState("commitId", parseAsString);
 
-    const {data: pages, error, isLoading, isValidating, size, setSize} = useSWRInfinite<CursorPage<CommitInfo>>(
-        (index, prev: CursorPage<CommitInfo> | null) => {
+    const {data: pages, error, isLoading, isValidating, size, setSize} = useSWRInfinite<CursorPagedResult<CommitInfo>>(
+        (index, prev: CursorPagedResult<CommitInfo> | null) => {
             if (prev && !prev.nextCursor) return null;
 
             const params = new URLSearchParams();

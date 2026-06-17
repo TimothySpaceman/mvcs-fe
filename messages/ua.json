@@ -167,6 +167,8 @@
     "tabs": {
       "label-files": "Файли",
       "label-history": "Історія",
+      "label-merges": "Злиття",
+      "label-tasks": "Задачі",
       "label-settings": "Налаштування"
     },
     "init": {
@@ -183,6 +185,30 @@
       "label-empty": "Ця версія не містить файлів",
       "error-failed": "Не вдалося завантажити файли"
     },
+    "metadata": {
+      "title": "Метадані",
+      "label-loading": "Завантаження...",
+      "label-empty": "Метаданих не знайдено",
+      "error-failed": "не вдалося завантажити метадані",
+      "mode-namespace": "За категоріями",
+      "mode-semantic": "За змістом",
+      "group-general": "Загальне",
+      "group-tempo": "Темп",
+      "group-tracks": "Доріжки",
+      "group-daw": "DAW",
+      "group-technical": "Технічне",
+      "group-other": "Інше",
+      "group-reaper": "Reaper",
+      "key-daw": "DAW",
+      "key-reaper-version": "Версія",
+      "key-reaper-plugins": "Плагіни",
+      "key-reaper-tempo-bpm": "Темп",
+      "key-reaper-time-signature": "Розмір",
+      "key-reaper-sample-rate": "Семпл-рейт",
+      "key-reaper-track-count": "Доріжок",
+      "key-reaper-content-types": "Типи вмісту",
+      "key-reaper-project-files": "Файли проєктів"
+    },
     "history": {
       "label-loading": "Завантаження...",
       "label-loading-more": "Завантаження...",
@@ -192,6 +218,34 @@
       "toast-copied": "Ідентифікатор скопійовано",
       "toast-copy-failed": "Не вдалося скопіювати ідентифікатор",
       "error-failed": "Не вдалося завантажити історію"
+    },
+    "merges": {
+      "label-loading": "Завантаження...",
+      "label-empty": "Жодного злиття ще не виконано",
+      "label-new": "Створити запит",
+      "error-failed": "Не вдалося завантажити дані",
+      "createModal": {
+        "title": "Злиття гілок",
+        "label-title": "Назва",
+        "label-source": "Гілка-джерело",
+        "label-target": "Цільова гілка",
+        "placeholder-branch": "Оберіть гілку",
+        "label-submit": "Злити",
+        "label-cancel": "Скасувати",
+        "toast-success": "Злиття виконано успішно",
+        "error-title-required": "Це поле обовʼязкове",
+        "error-source-required": "Оберіть гілку-джерело",
+        "error-target-required": "Оберіть цільову гілку",
+        "error-same-branch": "Гілки не мають збігатися",
+        "error-empty-branch": "Одна з гілок не містить жодної версії",
+        "error-ref-mismatch": "Гілки змінились під час операції. Спробуйте ще раз",
+        "error-forbidden": "У вас немає прав для виконання злиття",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+      }
     }
+  },
+  "DeviceInfo": {
+    "label-unknown-device": "Невідомий пристрій",
+    "label-unknown-app": "Невідомий додаток"
   }
 }
