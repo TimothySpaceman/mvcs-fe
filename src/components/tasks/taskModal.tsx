@@ -3,6 +3,7 @@
 import {useTranslations} from "next-intl";
 import {useEffect, useState} from "react";
 import useSWR from "swr";
+import {parseAsString, useQueryState} from "nuqs";
 import {api} from "@/lib/api";
 import {toast} from "sonner";
 import {Task, TaskStatus, TaskStatuses, TASK_STATUS_ORDER} from "@/lib/entities/task";
@@ -46,13 +47,41 @@ type Errors = {
     title?: string;
 };
 
+type CommitLinkProps = {
+    commitId: string;
+    onClose: () => void;
+};
+
+function CommitLink({commitId, onClose}: CommitLinkProps) {
+    const [, setTab] = useQueryState("tab", parseAsString.withDefault("files"));
+    const [, setCommitId] = useQueryState("commitId", parseAsString);
+    const [, setRefName] = useQueryState("refName", parseAsString);
+
+    async function handleClick() {
+        await setRefName(null);
+        await setCommitId(commitId);
+        await setTab("files");
+        onClose();
+    }
+
+    return (
+        <button
+            type="button"
+            onClick={handleClick}
+            className="font-mono text-sm text-muted-foreground hover:text-foreground transition-colors text-left"
+        >
+            {commitId.slice(0, 8)}
+        </button>
+    );
+}
+
 export default function TaskModal({projectId, task, initialStatus, onClose, onSuccess}: Props) {
     const t = useTranslations("ProjectPage.tasks.modal");
     const tRoot = useTranslations("ProjectPage.tasks");
     const isEditing = !!task;
 
     const {data: members, isLoading: isMembersLoading} = useSWR<ProjectMember[]>(
-        `/projects/${projectId}/members`
+        `/projects/${projectId}/members?accessLevels=owner&accessLevels=write`
     );
 
     const memberIds = members?.map(m => m.userId) ?? [];
@@ -73,6 +102,7 @@ export default function TaskModal({projectId, task, initialStatus, onClose, onSu
         assignedUsers: [],
     });
     const [assignedUsersInitialized, setAssignedUsersInitialized] = useState(!task);
+    const [errors, setErrors] = useState<Errors>({});
 
     useEffect(() => {
         if (assignedUsersInitialized || !task || users.length === 0) return;
@@ -82,7 +112,6 @@ export default function TaskModal({projectId, task, initialStatus, onClose, onSu
         setForm(prev => ({...prev, assignedUsers: resolved}));
         setAssignedUsersInitialized(true);
     }, [users]);
-    const [errors, setErrors] = useState<Errors>({});
 
     function setField<K extends keyof FormState>(key: K, value: FormState[K]) {
         setForm(prev => ({...prev, [key]: value}));
@@ -246,6 +275,13 @@ export default function TaskModal({projectId, task, initialStatus, onClose, onSu
                                 </SelectGroup>
                             </SelectContent>
                         </Select>
+                    </Field>
+                )}
+
+                {isEditing && task.commitId && (
+                    <Field orientation="horizontal">
+                        <FieldLabel>{t("label-commit")}</FieldLabel>
+                        <CommitLink commitId={task.commitId} onClose={onClose}/>
                     </Field>
                 )}
 

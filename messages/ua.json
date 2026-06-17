@@ -257,6 +257,7 @@
         "label-description": "Опис (необовʼязково)",
         "label-deadline": "Дедлайн (необовʼязково)",
         "label-status": "Статус",
+        "label-commit": "Коміт",
         "label-assignees": "Виконавці",
         "label-no-users": "Користувачів не знайдено",
         "placeholder-add-assignee": "Пошук...",
