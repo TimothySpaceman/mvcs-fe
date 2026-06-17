@@ -167,6 +167,8 @@
     "tabs": {
       "label-files": "Файли",
       "label-history": "Історія",
+      "label-merges": "Злиття",
+      "label-tasks": "Задачі",
       "label-settings": "Налаштування"
     },
     "init": {
@@ -192,6 +194,11 @@
       "toast-copied": "Ідентифікатор скопійовано",
       "toast-copy-failed": "Не вдалося скопіювати ідентифікатор",
       "error-failed": "Не вдалося завантажити історію"
+    },
+    "merges": {
+      "label-loading": "Завантаження...",
+      "label-empty": "Жодного злиття ще не виконано",
+      "error-failed": "Не вдалося завантажити дані"
     }
   },
   "DeviceInfo": {

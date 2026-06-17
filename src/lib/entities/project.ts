@@ -43,3 +43,13 @@ export type CommitInfo = {
     author: UserIdentity;
     createdAt: string;
 };
+
+export type MergeRequest = {
+    id: string;
+    authorId: string;
+    title: string;
+    targetRefName: string;
+    sourceRefName: string;
+    mergeCommitId: string;
+    createdAt: string;
+};
