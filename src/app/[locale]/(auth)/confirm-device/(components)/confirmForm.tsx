@@ -8,9 +8,9 @@ import {Spinner} from "@/components/ui/spinner";
 import {useRouter} from "@/i18n/navigation";
 import {InputOTP, InputOTPGroup, InputOTPSlot} from "@/components/ui/input-otp";
 import {REGEXP_ONLY_DIGITS} from "input-otp";
-import {DeviceInfo} from "@/lib/auth/types";
-import {Item} from "@/components/ui/item";
+import {DeviceInfo as DeviceInfoType} from "@/lib/auth/types";
 import {api} from "@/lib/api";
+import DeviceInfo from "@/components/deviceInfo/deviceInfo";
 
 type Errors = {
     code?: string,
@@ -21,7 +21,6 @@ type Props = {
     codeAutofill?: string
 }
 
-// TODO: Prettify device info
 export default function ConfirmForm({codeAutofill = ""}: Props) {
     const t = useTranslations("ConfirmDevicePage.form");
     const router = useRouter();
@@ -29,7 +28,7 @@ export default function ConfirmForm({codeAutofill = ""}: Props) {
     const [isLoading, setIsLoading] = useState(false);
     const [errors, setErrors] = useState<Errors>({});
     const [code, setCode] = useState(codeAutofill);
-    const [deviceInfo, setDeviceInfo] = useState<DeviceInfo>();
+    const [deviceInfo, setDeviceInfo] = useState<DeviceInfoType>();
 
     async function handleSubmit(e: SubmitEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -114,11 +113,7 @@ export default function ConfirmForm({codeAutofill = ""}: Props) {
                 </Field>
             </FieldGroup>
 
-            {deviceInfo && <Item>
-                <pre>
-                    {JSON.stringify(deviceInfo, null, 2)}
-                </pre>
-            </Item>}
+            {deviceInfo && <DeviceInfo className="w-full overflow-hidden justify-center" data={deviceInfo} />}
 
             <Field>
                 {errors.general && <FieldError className="text-destructive">
