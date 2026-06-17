@@ -49,7 +49,7 @@ export default function ProjectTabs({projectId, defaultRefName, isInitialized}: 
                     <ClockCounterClockwiseIcon/>
                     {t("tabs.label-history")}
                 </TabsTrigger>
-                <TabsTrigger value="merges">
+                <TabsTrigger value="merges" disabled={!isInitialized}>
                     <GitPullRequestIcon/>
                     {t("tabs.label-merges")}
                 </TabsTrigger>

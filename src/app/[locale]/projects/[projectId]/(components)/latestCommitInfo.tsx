@@ -2,11 +2,12 @@
 
 import useSWR from "swr";
 import {useQueryState, parseAsString} from "nuqs";
-import {CommitInfo, Ref} from "@/lib/entities/project";
+import {CommitInfo, CommitKinds, Ref} from "@/lib/entities/project";
 import {Item, ItemContent, ItemTitle} from "@/components/ui/item";
 import {User} from "@/lib/auth/types";
 import UserInfo from "@/components/userInfo";
 import {Spinner} from "@/components/ui/spinner";
+import {GitDiffIcon, GitPullRequestIcon} from "@phosphor-icons/react";
 
 type Props = {
     projectId: string;
@@ -53,7 +54,11 @@ export default function LatestCommitInfo({projectId, className}: Props) {
                                 className={className}
                                 labelClassName="max-sm:hidden"
                             />
-                            <span className="text-foreground truncate">{commit.message}</span>
+                            <div className="text-foreground truncate flex gap-1 items-center">
+                                {commit.kind === CommitKinds.merge && <GitPullRequestIcon className="size-4"/>}
+                                {commit.kind === CommitKinds.revert && <GitDiffIcon className="size-4"/>}
+                                {commit.message}
+                            </div>
                         </div>
                         <div className="flex items-center gap-3">
                         <span className="text-muted-foreground/60 shrink-0" title={date.toLocaleString()}>
