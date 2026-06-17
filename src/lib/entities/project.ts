@@ -1,3 +1,10 @@
+export const ProjectAccessLevels = {
+    owner: "owner",
+    write: "write",
+    read: "read",
+} as const;
+export type ProjectAccessLevel = keyof typeof ProjectAccessLevels;
+
 export type Project = {
     id: string,
     authorId: string,
@@ -7,13 +14,19 @@ export type Project = {
     isInitialized: boolean,
     defaultRefName?: string,
     createdAt: string,
-    updatedAt: string
+    updatedAt: string,
+    accessLevel: ProjectAccessLevel | null,
 }
 
 export type ProjectHealth = {
     isReachable: boolean
     error: string | null
 }
+
+export type ProjectMember = {
+    userId: string;
+    accessLevel: ProjectAccessLevel;
+};
 
 export type FileSnapshot = {
     filePath: string;

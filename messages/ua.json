@@ -242,6 +242,30 @@
         "error-forbidden": "У вас немає прав для виконання злиття",
         "error-internal-server": "Виникла помилка. Спробуйте пізніше"
       }
+    },
+    "tasks": {
+      "label-new": "Нова задача",
+      "label-loading": "Завантаження...",
+      "label-empty": "Задач ще немає",
+      "error-failed": "Не вдалося завантажити задачі",
+      "status-toDo": "До виконання",
+      "status-inProgress": "В роботі",
+      "status-review": "На перегляді",
+      "status-done": "Виконано",
+      "modal": {
+        "label-title": "Назва",
+        "label-description": "Опис (необовʼязково)",
+        "label-deadline": "Дедлайн (необовʼязково)",
+        "label-status": "Статус",
+        "label-assignees": "Виконавці",
+        "label-no-users": "Користувачів не знайдено",
+        "placeholder-add-assignee": "Пошук...",
+        "label-submit": "Зберегти",
+        "label-cancel": "Скасувати",
+        "toast-success": "Задачу збережено",
+        "error-title-required": "Назва обовʼязкова",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+      }
     }
   },
   "DeviceInfo": {

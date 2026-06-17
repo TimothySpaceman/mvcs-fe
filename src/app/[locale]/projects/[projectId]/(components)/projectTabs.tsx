@@ -18,6 +18,7 @@ import MergeRequestsList from "@/app/[locale]/projects/[projectId]/(components)/
 import MergeRequestsActions from "@/app/[locale]/projects/[projectId]/(components)/mergeRequestsActions";
 import {useSWRConfig} from "swr";
 import FilesAndMetadata from "@/app/[locale]/projects/[projectId]/(components)/filesAndMetadata";
+import TasksTab from "@/app/[locale]/projects/[projectId]/(components)/tasksTab";
 
 const TabNames = ["files", "history", "merges", "tasks", "settings"] as const;
 type TabName = typeof TabNames[number];
@@ -53,7 +54,7 @@ export default function ProjectTabs({projectId, defaultRefName, isInitialized}: 
                     <GitPullRequestIcon/>
                     {t("tabs.label-merges")}
                 </TabsTrigger>
-                <TabsTrigger value="tasks" disabled>
+                <TabsTrigger value="tasks">
                     <CheckCircleIcon/>
                     {t("tabs.label-tasks")}
                 </TabsTrigger>
@@ -98,7 +99,9 @@ export default function ProjectTabs({projectId, defaultRefName, isInitialized}: 
                 />
                 <MergeRequestsList className="w-full" projectId={projectId}/>
             </TabsContent>
-            <TabsContent value="tasks"/>
+            <TabsContent value="tasks">
+                <TasksTab projectId={projectId}/>
+            </TabsContent>
             <TabsContent value="settings"/>
         </Tabs>
     );
