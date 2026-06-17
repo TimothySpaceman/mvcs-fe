@@ -5,7 +5,7 @@ import {useTranslations} from "next-intl";
 import {Spinner} from "@/components/ui/spinner";
 import {MergeRequest} from "@/lib/entities/project";
 import {twMerge} from "tailwind-merge";
-import {GitMergeIcon, WarningCircleIcon} from "@phosphor-icons/react";
+import {GitPullRequestIcon, WarningCircleIcon} from "@phosphor-icons/react";
 import {useState} from "react";
 import {
     Pagination,
@@ -67,7 +67,7 @@ export default function MergeRequestsList({projectId, className}: Props) {
 
     if (data?.items.length === 0) return (
         <div className={twMerge("flex flex-col items-center gap-2 py-6", className)}>
-            <GitMergeIcon className="size-8 text-muted-foreground"/>
+            <GitPullRequestIcon className="size-8 text-muted-foreground"/>
             <span className="text-muted-foreground">{t("label-empty")}</span>
         </div>
     );

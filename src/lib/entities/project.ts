@@ -36,9 +36,18 @@ export type UserIdentity = {
     email: string | null;
 };
 
+export const CommitKinds = {
+    "default": "default",
+    "revert": "revert",
+    "merge": "merge"
+} as const;
+type CommitKind = keyof typeof CommitKinds;
+
 export type CommitInfo = {
     id: string;
     parentId: string | null;
+    secondParentId: string | null;
+    kind: CommitKind;
     message: string;
     author: UserIdentity;
     createdAt: string;

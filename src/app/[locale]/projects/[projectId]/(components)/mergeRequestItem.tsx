@@ -2,11 +2,10 @@
 
 import {MergeRequest} from "@/lib/entities/project";
 import {Card, CardAction, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
-import {ArrowRightIcon, GitMergeIcon} from "@phosphor-icons/react";
+import {ArrowRightIcon, GitPullRequestIcon} from "@phosphor-icons/react";
 import useSWR from "swr";
 import {User} from "@/lib/auth/types";
 import UserInfo from "@/components/userInfo";
-import {useTranslations} from "next-intl";
 import {parseAsString, useQueryState} from "nuqs";
 import {twMerge} from "tailwind-merge";
 
@@ -15,8 +14,6 @@ type Props = {
 };
 
 export default function MergeRequestItem({mergeRequest}: Props) {
-    const t = useTranslations("ProjectPage.merges");
-
     const {data: author} = useSWR<User>(`/users/${mergeRequest.authorId}`);
 
     const [, setTab] = useQueryState("tab", parseAsString.withDefault("files"));
@@ -41,7 +38,7 @@ export default function MergeRequestItem({mergeRequest}: Props) {
         <Card className="!p-2">
             <CardHeader className="!p-0 min-w-0">
                 <CardTitle className="truncate flex items-center gap-1.5">
-                    <GitMergeIcon className="size-4 shrink-0 text-muted-foreground"/>
+                    <GitPullRequestIcon className="size-4 shrink-0 text-muted-foreground"/>
                     <span className="truncate">{mergeRequest.title}</span>
                 </CardTitle>
                 <CardAction>

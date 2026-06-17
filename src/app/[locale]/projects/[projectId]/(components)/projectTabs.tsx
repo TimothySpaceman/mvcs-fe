@@ -11,14 +11,12 @@ import {
 } from "@phosphor-icons/react";
 import {useTranslations} from "next-intl";
 import RefSelector from "@/app/[locale]/projects/[projectId]/(components)/refSelector";
-import ProjectFilesView from "@/components/projectFilesView/projectFilesView";
 import ProjectHistory from "@/components/projectHistory/projectHistory";
 import InitInstructions from "@/app/[locale]/projects/[projectId]/(components)/initInstructions";
 import LatestCommitInfo from "@/app/[locale]/projects/[projectId]/(components)/latestCommitInfo";
 import MergeRequestsList from "@/app/[locale]/projects/[projectId]/(components)/mergeRequestsList";
 import MergeRequestsActions from "@/app/[locale]/projects/[projectId]/(components)/mergeRequestsActions";
 import {useSWRConfig} from "swr";
-import SnapshotMetadataView from "@/components/snapshotMetadataView/snapshotMetadataView";
 import FilesAndMetadata from "@/app/[locale]/projects/[projectId]/(components)/filesAndMetadata";
 
 const TabNames = ["files", "history", "merges", "tasks", "settings"] as const;
