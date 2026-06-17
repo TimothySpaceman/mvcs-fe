@@ -198,7 +198,26 @@
     "merges": {
       "label-loading": "Завантаження...",
       "label-empty": "Жодного злиття ще не виконано",
-      "error-failed": "Не вдалося завантажити дані"
+      "label-new": "Створити запит",
+      "error-failed": "Не вдалося завантажити дані",
+      "createModal": {
+        "title": "Злиття гілок",
+        "label-title": "Назва",
+        "label-source": "Гілка-джерело",
+        "label-target": "Цільова гілка",
+        "placeholder-branch": "Оберіть гілку",
+        "label-submit": "Злити",
+        "label-cancel": "Скасувати",
+        "toast-success": "Злиття виконано успішно",
+        "error-title-required": "Це поле обовʼязкове",
+        "error-source-required": "Оберіть гілку-джерело",
+        "error-target-required": "Оберіть цільову гілку",
+        "error-same-branch": "Гілки не мають збігатися",
+        "error-empty-branch": "Одна з гілок не містить жодної версії",
+        "error-ref-mismatch": "Гілки змінились під час операції. Спробуйте ще раз",
+        "error-forbidden": "У вас немає прав для виконання злиття",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+      }
     }
   },
   "DeviceInfo": {

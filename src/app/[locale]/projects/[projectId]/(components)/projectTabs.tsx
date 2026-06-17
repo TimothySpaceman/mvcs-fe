@@ -16,6 +16,8 @@ import ProjectHistory from "@/components/projectHistory/projectHistory";
 import InitInstructions from "@/app/[locale]/projects/[projectId]/(components)/initInstructions";
 import LatestCommitInfo from "@/app/[locale]/projects/[projectId]/(components)/latestCommitInfo";
 import MergeRequestsList from "@/app/[locale]/projects/[projectId]/(components)/mergeRequestsList";
+import MergeRequestsActions from "@/app/[locale]/projects/[projectId]/(components)/mergeRequestsActions";
+import {useSWRConfig} from "swr";
 
 const TabNames = ["files", "history", "merges", "tasks", "settings"] as const;
 type TabName = typeof TabNames[number];
@@ -28,6 +30,8 @@ type Props = {
 
 export default function ProjectTabs({projectId, defaultRefName, isInitialized}: Props) {
     const t = useTranslations("ProjectPage");
+
+    const {mutate} = useSWRConfig();
 
     const [tab, setTab] = useQueryState(
         "tab",
@@ -82,8 +86,17 @@ export default function ProjectTabs({projectId, defaultRefName, isInitialized}: 
                 />
                 <ProjectHistory projectId={projectId}/>
             </TabsContent>
-            <TabsContent value="merges">
-                <MergeRequestsList projectId={projectId}/>
+            <TabsContent value="merges" className="flex flex-col gap-2 items-center">
+                <MergeRequestsActions
+                    className="self-end!"
+                    projectId={projectId}
+                    onSuccess={() => mutate(
+                        (key) => typeof key === "string" && key.startsWith(`/projects/${projectId}/vcs/merge-requests`),
+                        undefined,
+                        {revalidate: true}
+                    )}
+                />
+                <MergeRequestsList className="w-full" projectId={projectId}/>
             </TabsContent>
             <TabsContent value="tasks"/>
             <TabsContent value="settings"/>
