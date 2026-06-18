@@ -60,10 +60,6 @@ export default async function Page({params}: Props) {
     return <Container className="space-y-4 max-w-3xl">
         <ProjectInfo project={project} author={author} className="!mb-2"/>
         <Separator className="!m-0"/>
-        <ProjectTabs
-            projectId={project.id}
-            defaultRefName={project.defaultRefName}
-            isInitialized={project.isInitialized}
-        />
+        <ProjectTabs project={project}/>
     </Container>
 }

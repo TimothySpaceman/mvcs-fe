@@ -19,17 +19,17 @@ import MergeRequestsActions from "@/app/[locale]/projects/[projectId]/(component
 import {useSWRConfig} from "swr";
 import FilesAndMetadata from "@/app/[locale]/projects/[projectId]/(components)/filesAndMetadata";
 import TasksTab from "@/app/[locale]/projects/[projectId]/(components)/tasksTab";
+import ProjectEditForm from "@/app/[locale]/projects/[projectId]/(components)/projectEditForm";
+import {Project} from "@/lib/entities/project";
 
 const TabNames = ["files", "history", "merges", "tasks", "settings"] as const;
 type TabName = typeof TabNames[number];
 
 type Props = {
-    projectId: string;
-    defaultRefName?: string;
-    isInitialized: boolean;
+    project: Project;
 };
 
-export default function ProjectTabs({projectId, defaultRefName, isInitialized}: Props) {
+export default function ProjectTabs({project}: Props) {
     const t = useTranslations("ProjectPage");
 
     const {mutate} = useSWRConfig();
@@ -46,11 +46,11 @@ export default function ProjectTabs({projectId, defaultRefName, isInitialized}: 
                     <FolderOpenIcon/>
                     {t("tabs.label-files")}
                 </TabsTrigger>
-                <TabsTrigger value="history" disabled={!isInitialized}>
+                <TabsTrigger value="history" disabled={!project.isInitialized}>
                     <ClockCounterClockwiseIcon/>
                     {t("tabs.label-history")}
                 </TabsTrigger>
-                <TabsTrigger value="merges" disabled={!isInitialized}>
+                <TabsTrigger value="merges" disabled={!project.isInitialized}>
                     <GitPullRequestIcon/>
                     {t("tabs.label-merges")}
                 </TabsTrigger>
@@ -58,51 +58,53 @@ export default function ProjectTabs({projectId, defaultRefName, isInitialized}: 
                     <CheckCircleIcon/>
                     {t("tabs.label-tasks")}
                 </TabsTrigger>
-                <TabsTrigger value="settings" disabled>
+                <TabsTrigger value="settings">
                     <GearIcon/>
                     {t("tabs.label-settings")}
                 </TabsTrigger>
             </TabsList>
             <TabsContent value="files" className="flex flex-col gap-1">
-                {!isInitialized
-                    ? <InitInstructions projectId={projectId}/>
+                {!project.isInitialized
+                    ? <InitInstructions projectId={project.id}/>
                     : <>
                         <div className="flex gap-1 items-center">
                             <RefSelector
                                 className="!h-full"
-                                projectId={projectId}
-                                defaultRef={defaultRefName}
+                                projectId={project.id}
+                                defaultRef={project.defaultRefName}
                             />
-                            <LatestCommitInfo projectId={projectId} className="p-0.5 pr-1.5 "/>
+                            <LatestCommitInfo projectId={project.id} className="p-0.5 pr-1.5 "/>
                         </div>
-                        <FilesAndMetadata projectId={projectId}/>
+                        <FilesAndMetadata projectId={project.id}/>
                     </>
                 }
             </TabsContent>
             <TabsContent value="history">
                 <RefSelector
-                    projectId={projectId}
-                    defaultRef={defaultRefName}
+                    projectId={project.id}
+                    defaultRef={project.defaultRefName}
                     allowCommit={false}
                 />
-                <ProjectHistory projectId={projectId}/>
+                <ProjectHistory projectId={project.id}/>
             </TabsContent>
             <TabsContent value="merges" className="flex flex-col gap-2 items-center">
                 <MergeRequestsActions
                     className="self-end!"
-                    projectId={projectId}
+                    projectId={project.id}
                     onSuccess={() => mutate(
-                        (key) => typeof key === "string" && key.startsWith(`/projects/${projectId}/vcs/merge-requests`),
+                        (key) => typeof key === "string" && key.startsWith(`/projects/${project.id}/vcs/merge-requests`),
                         undefined,
                         {revalidate: true}
                     )}
                 />
-                <MergeRequestsList className="w-full" projectId={projectId}/>
+                <MergeRequestsList className="w-full" projectId={project.id}/>
             </TabsContent>
             <TabsContent value="tasks">
-                <TasksTab projectId={projectId}/>
+                <TasksTab projectId={project.id}/>
             </TabsContent>
-            <TabsContent value="settings"/>
+            <TabsContent value="settings">
+                <ProjectEditForm project={project}/>
+            </TabsContent>
         </Tabs>
     );
 }

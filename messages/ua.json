@@ -221,7 +221,7 @@
     },
     "merges": {
       "label-loading": "Завантаження...",
-      "label-empty": "Жодного злиття ще не виконано",
+      "label-empty": "Жодного злиття не виконано",
       "label-new": "Створити запит",
       "error-failed": "Не вдалося завантажити дані",
       "createModal": {
@@ -246,7 +246,7 @@
     "tasks": {
       "label-new": "Нова задача",
       "label-loading": "Завантаження...",
-      "label-empty": "Задач ще немає",
+      "label-empty": "Задач немає",
       "error-failed": "Не вдалося завантажити задачі",
       "status-toDo": "До виконання",
       "status-inProgress": "В роботі",
@@ -266,6 +266,25 @@
         "toast-success": "Задачу збережено",
         "error-title-required": "Назва обовʼязкова",
         "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+      }
+    },
+    "settings": {
+      "form": {
+        "label-title": "Назва",
+        "label-description": "Опис",
+        "label-default-branch": "Гілка за замовчуванням",
+        "placeholder-default-branch": "Оберіть гілку",
+        "label-is-public": "Публічний проєкт",
+        "label-submit": "Зберегти зміни",
+        "toast-success": "Зміни збережено",
+        "error-title-required": "Назва обовʼязкова",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше",
+        "confirm-title": "Підтвердження змін",
+        "confirm-make-public": "Проєкт стане доступним для перегляду всім користувачам",
+        "confirm-make-private": "Проєкт стане недоступним для користувачів, яким явно не надано доступ",
+        "confirm-default-branch": "Зміна гілки за замовчуванням вплине на всіх учасників проєкту",
+        "confirm-label-confirm": "Підтвердити",
+        "confirm-label-cancel": "Скасувати"
       }
     }
   },
