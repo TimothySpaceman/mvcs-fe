@@ -19,8 +19,8 @@ import MergeRequestsActions from "@/app/[locale]/projects/[projectId]/(component
 import {useSWRConfig} from "swr";
 import FilesAndMetadata from "@/app/[locale]/projects/[projectId]/(components)/filesAndMetadata";
 import TasksTab from "@/app/[locale]/projects/[projectId]/(components)/tasksTab";
-import ProjectEditForm from "@/app/[locale]/projects/[projectId]/(components)/projectEditForm";
 import {Project} from "@/lib/entities/project";
+import SettingsTab from "@/app/[locale]/projects/[projectId]/(components)/settingsTab";
 
 const TabNames = ["files", "history", "merges", "tasks", "settings"] as const;
 type TabName = typeof TabNames[number];
@@ -103,7 +103,7 @@ export default function ProjectTabs({project}: Props) {
                 <TasksTab projectId={project.id}/>
             </TabsContent>
             <TabsContent value="settings">
-                <ProjectEditForm project={project}/>
+                <SettingsTab project={project}/>
             </TabsContent>
         </Tabs>
     );

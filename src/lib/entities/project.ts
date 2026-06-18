@@ -16,6 +16,7 @@ export type Project = {
     createdAt: string,
     updatedAt: string,
     accessLevel: ProjectAccessLevel | null,
+    storageId: string | null
 }
 
 export type ProjectHealth = {

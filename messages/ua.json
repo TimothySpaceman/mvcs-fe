@@ -269,6 +269,8 @@
       }
     },
     "settings": {
+      "label-general": "Загальне",
+      "label-storage": "Сховище",
       "form": {
         "label-title": "Назва",
         "label-description": "Опис",
@@ -285,6 +287,10 @@
         "confirm-default-branch": "Зміна гілки за замовчуванням вплине на всіх учасників проєкту",
         "confirm-label-confirm": "Підтвердити",
         "confirm-label-cancel": "Скасувати"
+      },
+      "storage": {
+        "label-loading": "Завантаження...",
+        "error-failed": "Не вдалося завантажити інформацію про сховище"
       }
     }
   },
