@@ -345,6 +345,27 @@
       }
     }
   },
+  "ProfilePage": {
+    "meta": {
+      "title": "Профіль | MVCS",
+      "description": "Ваш профіль"
+    },
+    "user": {
+      "badge-verified": "Підтверджено",
+      "label-joined": "Приєднався {date}"
+    },
+    "projects": {
+      "title": "Проєкти",
+      "bar": {
+        "placeholder-search": "Пошук проєктів...",
+        "filter-all": "Всі",
+        "filter-public": "Публічні",
+        "filter-private": "Приватні",
+        "ownership-accessible": "Доступні",
+        "ownership-mine": "Мої"
+      }
+    }
+  },
   "DeviceInfo": {
     "label-unknown-device": "Невідомий пристрій",
     "label-unknown-app": "Невідомий додаток"

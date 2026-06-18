@@ -21,6 +21,10 @@ import ProjectCard from "@/components/projects/projectCard";
 
 const ITEMS_PER_PAGE = 20;
 
+type Props = {
+    staticParams?: Record<string, string>;
+};
+
 function buildPageUrl(params: URLSearchParams, page: number): string {
     const next = new URLSearchParams(params);
     next.set("page", String(page));
@@ -44,18 +48,20 @@ function getPaginationPages(current: number, total: number): (number | "ellipsis
     return pages;
 }
 
-export default function ProjectsList() {
+export default function ProjectsList({staticParams = {}}: Props) {
     const t = useTranslations("ProjectsList");
 
     const [page] = useQueryState("page", parseAsInteger.withDefault(1));
     const [search] = useQueryState("search", parseAsString.withDefault(""));
     const [isPublicFilter] = useQueryState("isPublic", parseAsString.withDefault("all"));
+    const [authorId] = useQueryState("authorId", parseAsString);
 
-    const params = new URLSearchParams();
+    const params = new URLSearchParams(staticParams);
     params.set("page", String(page));
     params.set("itemsPerPage", String(ITEMS_PER_PAGE));
     if (search.trim()) params.set("search", search.trim());
     if (isPublicFilter !== "all") params.set("isPublic", isPublicFilter);
+    if (authorId) params.set("authorId", authorId);
 
     const {data, error, isLoading} = useSWR<PagedResult<Project>>(
         `/projects?${params.toString()}`
@@ -64,6 +70,7 @@ export default function ProjectsList() {
     const filterParams = new URLSearchParams();
     if (search.trim()) filterParams.set("search", search.trim());
     if (isPublicFilter !== "all") filterParams.set("isPublic", isPublicFilter);
+    if (authorId) filterParams.set("authorId", authorId);
 
     if (isLoading) return (
         <div className="flex flex-col items-center gap-2 py-10">
