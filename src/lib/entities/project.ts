@@ -2,6 +2,7 @@ export const ProjectAccessLevels = {
     owner: "owner",
     write: "write",
     read: "read",
+    "public": "public",
 } as const;
 export type ProjectAccessLevel = keyof typeof ProjectAccessLevels;
 
