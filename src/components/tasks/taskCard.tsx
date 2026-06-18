@@ -1,6 +1,6 @@
 "use client";
 
-import {Task} from "@/lib/entities/task";
+import {Task, TaskStatus, TaskStatuses} from "@/lib/entities/task";
 import {Card, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {useModal} from "@/components/modal/modalProvider";
 import UserInfo from "@/components/userInfo";
@@ -16,13 +16,13 @@ type Props = {
     readonly?: boolean;
 };
 
-function DeadlineBadge({deadline}: { deadline: string }) {
+function DeadlineBadge({deadline, status}: { deadline: string, status: TaskStatus }) {
     const date = new Date(deadline);
     const isPast = date < new Date();
     return (
         <span className={twMerge(
             "flex items-center gap-1 text-xs",
-            isPast ? "text-destructive" : "text-muted-foreground"
+            (isPast && status !== TaskStatuses.done) ? "text-destructive" : "text-muted-foreground"
         )}>
             <CalendarIcon className="size-3"/>
             {date.toLocaleDateString()}
@@ -89,7 +89,7 @@ export default function TaskCard({task, projectId, readonly}: Props) {
                         {task.assignments.length > 0 && (
                             <AssigneeAvatars assignments={task.assignments}/>
                         )}
-                        {task.deadline && <DeadlineBadge deadline={task.deadline}/>}
+                        {task.deadline && <DeadlineBadge deadline={task.deadline} status={task.status}/>}
                     </CardDescription>
                 )}
             </CardHeader>

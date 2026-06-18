@@ -7,7 +7,6 @@ import {getTranslations} from "next-intl/server";
 import {Project} from "@/lib/entities/project";
 import {User} from "@/lib/auth/types";
 import ProjectInfo from "@/app/[locale]/projects/[projectId]/(components)/projectInfo";
-import {Separator} from "@/components/ui/separator";
 import ProjectTabs from "@/app/[locale]/projects/[projectId]/(components)/projectTabs";
 
 const getProject = cache(async (projectId: string) => {
@@ -57,9 +56,10 @@ export default async function Page({params}: Props) {
 
     const t = await getTranslations("ProjectPage");
 
-    return <Container className="space-y-4 max-w-3xl">
-        <ProjectInfo project={project} author={author} className="!mb-2"/>
-        <Separator className="!m-0"/>
+    return <div className="space-y-4">
+        <Container className="space-y-4 max-w-3xl" rootClassName="!pb-0 mb-0">
+            <ProjectInfo project={project} author={author} className="!mb-2"/>
+        </Container>
         <ProjectTabs project={project}/>
-    </Container>
+    </div>
 }

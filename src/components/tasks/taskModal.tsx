@@ -26,6 +26,8 @@ import {
     ComboboxList,
     ComboboxValue,
 } from "@/components/ui/combobox";
+import ConfirmModal from "@/app/[locale]/projects/[projectId]/(components)/confirmModal";
+import {useModal} from "@/components/modal/modalProvider";
 
 type Props = {
     projectId: string;
@@ -79,12 +81,13 @@ function CommitLink({commitId, onClose}: CommitLinkProps) {
 export default function TaskModal({projectId, task, readonly, initialStatus, onClose, onSuccess}: Props) {
     const t = useTranslations("ProjectPage.tasks.modal");
     const tRoot = useTranslations("ProjectPage.tasks");
+    const {addModal} = useModal();
+
     const isEditing = !!task;
 
     const {data: members, isLoading: isMembersLoading} = useSWR<ProjectMember[]>(
         `/projects/${projectId}/members?accessLevels=owner&accessLevels=write`
     );
-
     const memberIds = members?.map(m => m.userId) ?? [];
     const bulkParams = memberIds.map(id => `ids=${id}`).join("&");
     const {data: memberUsers, isLoading: isUsersLoading} = useSWR<User[]>(
@@ -95,6 +98,7 @@ export default function TaskModal({projectId, task, readonly, initialStatus, onC
     const isLoading_users = isMembersLoading || isUsersLoading;
 
     const [isLoading, setIsLoading] = useState(false);
+    const [isDeleting, setIsDeleting] = useState(false);
     const [form, setForm] = useState<FormState>({
         title: task?.title ?? "",
         description: task?.description ?? "",
@@ -208,7 +212,50 @@ export default function TaskModal({projectId, task, readonly, initialStatus, onC
         }
     }
 
+    async function confirmDelete() {
+        addModal((onClose) => (
+            <ConfirmModal
+                title={t("confirm-delete-title")}
+                description={t(`confirm-delete-description`)}
+                labelConfirm={t("confirm-delete-label-confirm")}
+                labelCancel={t("confirm-delete-label-cancel")}
+                onConfirm={() => {
+                    onClose();
+                    handleDelete();
+                }}
+                onClose={onClose}
+            />
+        ));
+    }
+
+    async function handleDelete() {
+        if (!task) return;
+
+        try {
+            setIsDeleting(true);
+
+            const resp = await api.fetch(`/projects/${projectId}/tasks/${task.id}`, {
+                auth: true,
+                method: "DELETE",
+            });
+
+            if (!resp.ok) {
+                toast.error(t("error-internal-server"));
+                return;
+            }
+
+            toast.success(t("toast-delete-success"));
+            onSuccess();
+            onClose();
+        } catch {
+            toast.error(t("error-internal-server"));
+        } finally {
+            setIsDeleting(false);
+        }
+    }
+
     const canSubmit = form.title.trim().length > 0;
+    const busy = isLoading || isDeleting;
 
     return (
         <div className="space-y-4 w-88">
@@ -222,7 +269,7 @@ export default function TaskModal({projectId, task, readonly, initialStatus, onC
                         type="text"
                         value={form.title}
                         onChange={e => setField("title", e.target.value)}
-                        disabled={isLoading || readonly}
+                        disabled={busy || readonly}
                         aria-invalid={!!errors.title}
                     />
                     {errors.title && (
@@ -238,7 +285,7 @@ export default function TaskModal({projectId, task, readonly, initialStatus, onC
                         id="task-description-input"
                         value={form.description}
                         onChange={e => setField("description", e.target.value)}
-                        disabled={isLoading || readonly}
+                        disabled={busy || readonly}
                     />
                 </Field>
 
@@ -251,7 +298,7 @@ export default function TaskModal({projectId, task, readonly, initialStatus, onC
                         type="datetime-local"
                         value={form.deadline}
                         onChange={e => setField("deadline", e.target.value)}
-                        disabled={isLoading || readonly}
+                        disabled={busy || readonly}
                     />
                 </Field>
 
@@ -261,7 +308,7 @@ export default function TaskModal({projectId, task, readonly, initialStatus, onC
                         <Select
                             value={form.status}
                             onValueChange={v => setField("status", v as TaskStatus)}
-                            disabled={isLoading || readonly}
+                            disabled={busy || readonly}
                         >
                             <SelectTrigger>
                                 <SelectValue/>
@@ -297,7 +344,7 @@ export default function TaskModal({projectId, task, readonly, initialStatus, onC
                         multiple
                         value={form.assignedUsers}
                         onValueChange={(value) => setField("assignedUsers", value)}
-                        disabled={isLoading || isLoading_users || readonly}
+                        disabled={busy || isLoading_users || readonly}
                     >
                         <ComboboxChips>
                             <ComboboxValue>
@@ -322,11 +369,24 @@ export default function TaskModal({projectId, task, readonly, initialStatus, onC
             </FieldGroup>
 
             <div className="flex gap-2 justify-end">
-                {!readonly && <Button onClick={handleSubmit} disabled={!canSubmit || isLoading}>
-                    {isLoading && <Spinner data-icon="inline-start"/>}
-                    {t("label-submit")}
-                </Button>}
-                <Button onClick={onClose} variant="secondary" disabled={isLoading}>
+                {isEditing && !readonly && (
+                    <Button
+                        onClick={confirmDelete}
+                        variant="destructive"
+                        disabled={busy}
+                        className="mr-auto"
+                    >
+                        {isDeleting && <Spinner data-icon="inline-start"/>}
+                        {t("label-delete")}
+                    </Button>
+                )}
+                {!readonly && (
+                    <Button onClick={handleSubmit} disabled={!canSubmit || busy}>
+                        {isLoading && <Spinner data-icon="inline-start"/>}
+                        {t("label-submit")}
+                    </Button>
+                )}
+                <Button onClick={onClose} variant="secondary" disabled={busy}>
                     {t("label-cancel")}
                 </Button>
             </div>

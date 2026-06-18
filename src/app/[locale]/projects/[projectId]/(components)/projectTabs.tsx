@@ -22,6 +22,8 @@ import {hasAccess, Project} from "@/lib/entities/project";
 import SettingsTab from "@/app/[locale]/projects/[projectId]/(components)/settingsTab";
 import {useQueryState, parseAsStringLiteral} from "nuqs";
 import {useEffect, useMemo} from "react";
+import Container from "@/components/container/container";
+import {Separator} from "@/components/ui/separator";
 
 const TabNames = ["files", "history", "merges", "tasks", "settings"] as const;
 type TabName = typeof TabNames[number];
@@ -58,87 +60,101 @@ export default function ProjectTabs({project}: Props) {
 
     return (
         <Tabs value={activeTab} onValueChange={(v) => setTab(v as TabName)}>
-            <TabsList variant="line" className="!px-0">
-                <TabsTrigger value="files">
-                    <FolderOpenIcon/>
-                    {t("tabs.label-files")}
-                </TabsTrigger>
-                <TabsTrigger value="history" disabled={!project.isInitialized}>
-                    <ClockCounterClockwiseIcon/>
-                    {t("tabs.label-history")}
-                </TabsTrigger>
-                {canRead && (
-                    <TabsTrigger value="merges" disabled={!project.isInitialized}>
-                        <GitPullRequestIcon/>
-                        {t("tabs.label-merges")}
+            <Container className="max-w-3xl" rootClassName="!p-0">
+                <TabsList variant="line" className="!px-0">
+                    <TabsTrigger value="files">
+                        <FolderOpenIcon/>
+                        {t("tabs.label-files")}
                     </TabsTrigger>
-                )}
-                {canRead && (
-                    <TabsTrigger value="tasks">
-                        <CheckCircleIcon/>
-                        {t("tabs.label-tasks")}
+                    <TabsTrigger value="history" disabled={!project.isInitialized}>
+                        <ClockCounterClockwiseIcon/>
+                        {t("tabs.label-history")}
                     </TabsTrigger>
-                )}
-                {hasAccess(project.accessLevel, "owner") && (
-                    <TabsTrigger value="settings">
-                        <GearIcon/>
-                        {t("tabs.label-settings")}
-                    </TabsTrigger>
-                )}
-            </TabsList>
+                    {canRead && (
+                        <TabsTrigger value="merges" disabled={!project.isInitialized}>
+                            <GitPullRequestIcon/>
+                            {t("tabs.label-merges")}
+                        </TabsTrigger>
+                    )}
+                    {canRead && (
+                        <TabsTrigger value="tasks">
+                            <CheckCircleIcon/>
+                            {t("tabs.label-tasks")}
+                        </TabsTrigger>
+                    )}
+                    {hasAccess(project.accessLevel, "owner") && (
+                        <TabsTrigger value="settings">
+                            <GearIcon/>
+                            {t("tabs.label-settings")}
+                        </TabsTrigger>
+                    )}
+                </TabsList>
+            </Container>
 
-            <TabsContent value="files" className="flex flex-col gap-1">
-                {!project.isInitialized
-                    ? <InitInstructions projectId={project.id}/>
-                    : <>
-                        <div className="flex gap-1 items-center">
-                            <RefSelector
-                                className="!h-full"
-                                projectId={project.id}
-                                defaultRef={project.defaultRefName}
-                            />
-                            <LatestCommitInfo projectId={project.id} className="p-0.5 pr-1.5"/>
-                        </div>
-                        <FilesAndMetadata projectId={project.id}/>
-                    </>
-                }
+            <Separator className="!m-0"/>
+
+            <TabsContent value="files">
+                <Container className="max-w-3xl flex flex-col gap-1" rootClassName="!p-0">
+                    {!project.isInitialized
+                        ? <InitInstructions projectId={project.id}/>
+                        : <>
+                            <div className="flex gap-1 items-center">
+                                <RefSelector
+                                    className="!h-full"
+                                    projectId={project.id}
+                                    defaultRef={project.defaultRefName}
+                                />
+                                <LatestCommitInfo projectId={project.id} className="p-0.5 pr-1.5"/>
+                            </div>
+                            <FilesAndMetadata projectId={project.id}/>
+                        </>
+                    }
+                </Container>
             </TabsContent>
 
             <TabsContent value="history">
-                <RefSelector
-                    projectId={project.id}
-                    defaultRef={project.defaultRefName}
-                    allowCommit={false}
-                />
-                <ProjectHistory projectId={project.id}/>
+                <Container className="max-w-3xl" rootClassName="!p-0">
+                    <RefSelector
+                        projectId={project.id}
+                        defaultRef={project.defaultRefName}
+                        allowCommit={false}
+                    />
+                    <ProjectHistory projectId={project.id}/>
+                </Container>
             </TabsContent>
 
             {canRead && (
-                <TabsContent value="merges" className="flex flex-col gap-2 items-center">
-                    {canWrite && (
-                        <MergeRequestsActions
-                            className="self-end!"
-                            projectId={project.id}
-                            onSuccess={() => mutate(
-                                (key) => typeof key === "string" && key.startsWith(`/projects/${project.id}/vcs/merge-requests`),
-                                undefined,
-                                {revalidate: true}
-                            )}
-                        />
-                    )}
-                    <MergeRequestsList className="w-full" projectId={project.id}/>
+                <TabsContent value="merges">
+                    <Container className="max-w-3xl flex flex-col gap-2 items-center" rootClassName="!p-0">
+                        {canWrite && (
+                            <MergeRequestsActions
+                                className="self-end!"
+                                projectId={project.id}
+                                onSuccess={() => mutate(
+                                    (key) => typeof key === "string" && key.startsWith(`/projects/${project.id}/vcs/merge-requests`),
+                                    undefined,
+                                    {revalidate: true}
+                                )}
+                            />
+                        )}
+                        <MergeRequestsList className="w-full" projectId={project.id}/>
+                    </Container>
                 </TabsContent>
             )}
 
             {canRead && (
                 <TabsContent value="tasks">
-                    <TasksTab projectId={project.id} readonly={!canWrite}/>
+                    <Container className="max-w-4xl" rootClassName="!p-0">
+                        <TasksTab projectId={project.id} readonly={!canWrite}/>
+                    </Container>
                 </TabsContent>
             )}
 
             {hasAccess(project.accessLevel, "owner") && (
                 <TabsContent value="settings">
-                    <SettingsTab project={project}/>
+                    <Container className="max-w-3xl" rootClassName="!p-0">
+                        <SettingsTab project={project}/>
+                    </Container>
                 </TabsContent>
             )}
         </Tabs>
