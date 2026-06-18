@@ -52,7 +52,7 @@ export default function ProjectDeleteSection({project}: Props) {
             }
 
             toast.success(t("toast-success"));
-            router.push("/projects");
+            router.push("/");
         } catch {
             toast.error(t("error-internal-server"));
         } finally {

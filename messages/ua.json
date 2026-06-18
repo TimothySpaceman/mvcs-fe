@@ -144,6 +144,19 @@
       "error-internal-server": "Виникла помилка. Спробуйте пізніше"
     }
   },
+  "ProjectsPage": {
+    "meta": {
+      "title": "Проєкти | MVCS",
+      "description": "Перегляд проєктів"
+    },
+    "title": "Проєкти",
+    "bar": {
+      "placeholder-search": "Пошук проєктів...",
+      "filter-all": "Всі",
+      "filter-public": "Публічні",
+      "filter-private": "Приватні"
+    }
+  },
   "ProjectPage": {
     "meta": {
       "author-fallback": "Невідомого користувача",
@@ -335,5 +348,16 @@
   "DeviceInfo": {
     "label-unknown-device": "Невідомий пристрій",
     "label-unknown-app": "Невідомий додаток"
+  },
+  "ProjectsList": {
+    "label-loading": "Завантаження...",
+    "label-empty": "Проєктів не знайдено",
+    "label-total": "Всього: {total}",
+    "pagination-previous": "Назад",
+    "pagination-next": "Далі",
+    "error-failed": "Не вдалося завантажити проєкти"
+  },
+  "ProjectCard": {
+    "badge-public": "Публічний"
   }
 }
