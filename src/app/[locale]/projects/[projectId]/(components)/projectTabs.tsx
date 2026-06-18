@@ -152,7 +152,7 @@ export default function ProjectTabs({project}: Props) {
 
             {hasAccess(project.accessLevel, "owner") && (
                 <TabsContent value="settings">
-                    <Container className="max-w-3xl" rootClassName="!p-0">
+                    <Container className="max-w-3xl" rootClassName="!px-0 !pt-0">
                         <SettingsTab project={project}/>
                     </Container>
                 </TabsContent>

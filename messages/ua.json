@@ -124,6 +124,37 @@
       "badge-error": "Помилка",
       "error-failed": "Не вдалося перевірити стан сховища",
       "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    },
+    "message-no-permission": "У вас немає прав для керування цим сховищем",
+    "settings": {
+      "label-config": "Конфігурація",
+      "label-edit-config": "Редагувати конфігурацію",
+      "label-access": "Доступ"
+    },
+    "configModal": {
+      "title": "Конфігурація сховища",
+      "label-save": "Зберегти",
+      "label-cancel": "Скасувати",
+      "toast-success": "Конфігурацію оновлено",
+      "error-load": "Не вдалося завантажити конфігурацію",
+      "error-failed": "Не вдалося зберегти конфігурацію",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    },
+    "access": {
+      "label-loading": "Завантаження...",
+      "label-add-user": "Додати користувача",
+      "label-add": "Додати",
+      "placeholder-search-user": "Пошук...",
+      "label-no-users": "Користувачів не знайдено",
+      "level-owner": "Власник",
+      "level-write": "Редагування",
+      "level-revoke": "Видалити",
+      "error-failed": "Сталася помилка. Спробуйте пізніше",
+      "toast-success": "Зміни збережено",
+      "confirm-title": "Підтвердження змін",
+      "confirm-description-revoke": "Цього користувача буде позбавлено доступу до сховища",
+      "confirm-label-confirm": "Підтвердити",
+      "confirm-label-cancel": "Скасувати"
     }
   },
   "NewProjectPage": {
