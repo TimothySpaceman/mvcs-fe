@@ -1,11 +1,9 @@
-import {SchemaField, SchemaFieldTypes} from "@/lib/entities/storage";
+import {FieldValue, SchemaField, SchemaFieldTypes} from "@/lib/entities/storage";
 import TextFieldEditor from "@/components/storageConfigEditor/fields/textFieldEditor";
 import NumberFieldEditor from "@/components/storageConfigEditor/fields/numberFieldEditor";
 import BooleanFieldEditor from "@/components/storageConfigEditor/fields/booleanFieldEditor";
 import SelectFieldEditor from "@/components/storageConfigEditor/fields/selectFieldEditor";
 import PasswordFieldEditor from "@/components/storageConfigEditor/fields/passwordFieldEditor";
-
-export type FieldValue = string | number | boolean | null;
 
 type OnChangeCallback<T> = (value: T) => void;
 

@@ -1,12 +1,13 @@
 import {getServerApi} from "@/lib/api";
 import {notFound} from "next/navigation";
-import {Storage} from "@/lib/entities/storage";
+import {Storage, StorageAccessLevels} from "@/lib/entities/storage";
 import Container from "@/components/container/container";
 import {cache} from "react";
 import type {Metadata} from "next";
 import {getTranslations} from "next-intl/server";
 import StorageInfo from "@/app/[locale]/storages/[storageId]/(components)/storageInfo";
 import StorageHealthBadge from "@/app/[locale]/storages/[storageId]/(components)/storageHealthBadge";
+import StorageSettings from "@/app/[locale]/storages/[storageId]/(components)/storageSettings";
 
 const getStorage = cache(async (storageId: string) => {
     const api = await getServerApi();
@@ -33,6 +34,8 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 }
 
 export default async function Page({params}: Props) {
+    const t = await getTranslations("StoragePage");
+
     const {storageId} = await params;
     const storage = await getStorage(storageId);
 
@@ -42,6 +45,10 @@ export default async function Page({params}: Props) {
             <StorageHealthBadge storageId={storage.id}/>
         </div>
 
-        {/*{JSON.stringify(storage, null, 2)}*/}
+        {storage.accessLevel === StorageAccessLevels.owner
+            ? <StorageSettings storageId={storage.id}/>
+            : <p className="text-muted-foreground">
+                {t("message-no-permission")}
+            </p>}
     </Container>
 }

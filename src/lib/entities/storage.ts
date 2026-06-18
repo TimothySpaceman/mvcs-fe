@@ -76,6 +76,13 @@ export type StorageType = StorageTypeInfo & {
     configSchema: StorageConfigSchema
 }
 
+export const StorageAccessLevels = {
+    owner: "owner",
+    write: "write",
+    "public": "public",
+} as const;
+export type StorageAccessLevel = keyof typeof StorageAccessLevels;
+
 export type Storage = {
     id: string
     name: string
@@ -84,9 +91,22 @@ export type Storage = {
     isPublic: boolean
     createdAt: string
     updatedAt: string
+    accessLevel: StorageAccessLevel
 }
 
 export type StorageHealth = {
     isReachable: boolean
     error: string | null
 }
+
+export type StorageMember = {
+    userId: string;
+    accessLevel: StorageAccessLevel;
+};
+
+export type FieldValue = string | number | boolean | null;
+
+export type StorageConfig = {
+    type: StorageType;
+    config: Record<string, FieldValue>;
+};

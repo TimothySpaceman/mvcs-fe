@@ -7,11 +7,11 @@ import {Spinner} from "@/components/ui/spinner";
 import {Field, FieldLabel, FieldDescription} from "@/components/ui/field";
 import {Storage, StorageType, StorageTypeInfo} from "@/lib/entities/storage";
 import StorageConfigEditor from "@/components/storageConfigEditor/storageConfigEditor";
-import {FieldValue} from "@/components/storageConfigEditor/fields/fieldEditor";
-import {toast} from "sonner";
+import {FieldValue} from "@/lib/entities/storage";
 import {api} from "@/lib/api";
 import {useRouter} from "@/i18n/navigation";
 import {Input} from "@/components/ui/input";
+import {toast} from "sonner";
 
 type Props = {
     onClose: () => void
