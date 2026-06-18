@@ -5,6 +5,17 @@
       "description": "Multitracks Version Control System"
     }
   },
+  "NotFoundPage": {
+    "title": "Сторінку не знайдено",
+    "description": "Можливо, її було видалено, перейменовано або вона ніколи не існувала",
+    "label-home": "На головну"
+  },
+  "ErrorPage": {
+    "title": "Щось пішло не так",
+    "description": "Під час завантаження сторінки виникла помилка. Спробуйте ще раз або поверніться на головну",
+    "label-retry": "Спробувати ще раз",
+    "label-home": "На головну"
+  },
   "Header": {
     "label-login": "Вхід",
     "label-create-project": "Новий",

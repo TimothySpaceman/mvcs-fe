@@ -94,7 +94,7 @@ export default function ProjectTabs({project}: Props) {
             <Separator className="!m-0"/>
 
             <TabsContent value="files">
-                <Container className="max-w-3xl flex flex-col gap-1" rootClassName="!p-0">
+                <Container className="max-w-3xl flex flex-col gap-1" rootClassName="!px-0 !pt-0">
                     {!project.isInitialized
                         ? <InitInstructions projectId={project.id}/>
                         : <>
@@ -113,7 +113,7 @@ export default function ProjectTabs({project}: Props) {
             </TabsContent>
 
             <TabsContent value="history">
-                <Container className="max-w-3xl" rootClassName="!p-0">
+                <Container className="max-w-3xl" rootClassName="!px-0 !pt-0">
                     <RefSelector
                         projectId={project.id}
                         defaultRef={project.defaultRefName}
@@ -125,7 +125,7 @@ export default function ProjectTabs({project}: Props) {
 
             {canRead && (
                 <TabsContent value="merges">
-                    <Container className="max-w-3xl flex flex-col gap-2 items-center" rootClassName="!p-0">
+                    <Container className="max-w-3xl flex flex-col gap-2 items-center" rootClassName="!px-0 !pt-0">
                         {canWrite && (
                             <MergeRequestsActions
                                 className="self-end!"
@@ -144,7 +144,7 @@ export default function ProjectTabs({project}: Props) {
 
             {canRead && (
                 <TabsContent value="tasks">
-                    <Container className="max-w-4xl" rootClassName="!p-0">
+                    <Container className="max-w-4xl" rootClassName="!px-0 !pt-0">
                         <TasksTab projectId={project.id} readonly={!canWrite}/>
                     </Container>
                 </TabsContent>
