@@ -25,7 +25,7 @@ export default function FilesAndMetadata({projectId}: Props) {
             </ResizablePanel>
             <ResizableHandle className="w-1 bg-transparent"/>
             <ResizablePanel defaultSize={40} minSize={200}>
-                <SnapshotMetadataView projectId={projectId} className="p-2"/>
+                <SnapshotMetadataView projectId={projectId}/>
             </ResizablePanel>
         </ResizablePanelGroup>
     );

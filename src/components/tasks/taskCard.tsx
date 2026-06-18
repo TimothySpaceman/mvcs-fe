@@ -13,6 +13,7 @@ import TaskModal from "@/components/tasks/taskModal";
 type Props = {
     task: Task;
     projectId: string;
+    readonly?: boolean;
 };
 
 function DeadlineBadge({deadline}: { deadline: string }) {
@@ -54,7 +55,7 @@ function AssigneeAvatars({assignments}: { assignments: Task["assignments"] }) {
     );
 }
 
-export default function TaskCard({task, projectId}: Props) {
+export default function TaskCard({task, projectId, readonly}: Props) {
     const {addModal} = useModal();
     const {mutate} = useSWRConfig();
 
@@ -63,6 +64,7 @@ export default function TaskCard({task, projectId}: Props) {
             <TaskModal
                 projectId={projectId}
                 task={task}
+                readonly={readonly}
                 onClose={onClose}
                 onSuccess={() => mutate(
                     (key) => typeof key === "string" && key.startsWith(`/projects/${projectId}/tasks`),

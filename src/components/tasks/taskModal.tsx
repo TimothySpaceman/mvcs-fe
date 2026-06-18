@@ -30,6 +30,7 @@ import {
 type Props = {
     projectId: string;
     task?: Task;
+    readonly?: boolean;
     initialStatus?: TaskStatus;
     onClose: () => void;
     onSuccess: () => void;
@@ -75,7 +76,7 @@ function CommitLink({commitId, onClose}: CommitLinkProps) {
     );
 }
 
-export default function TaskModal({projectId, task, initialStatus, onClose, onSuccess}: Props) {
+export default function TaskModal({projectId, task, readonly, initialStatus, onClose, onSuccess}: Props) {
     const t = useTranslations("ProjectPage.tasks.modal");
     const tRoot = useTranslations("ProjectPage.tasks");
     const isEditing = !!task;
@@ -221,7 +222,7 @@ export default function TaskModal({projectId, task, initialStatus, onClose, onSu
                         type="text"
                         value={form.title}
                         onChange={e => setField("title", e.target.value)}
-                        disabled={isLoading}
+                        disabled={isLoading || readonly}
                         aria-invalid={!!errors.title}
                     />
                     {errors.title && (
@@ -237,7 +238,7 @@ export default function TaskModal({projectId, task, initialStatus, onClose, onSu
                         id="task-description-input"
                         value={form.description}
                         onChange={e => setField("description", e.target.value)}
-                        disabled={isLoading}
+                        disabled={isLoading || readonly}
                     />
                 </Field>
 
@@ -250,7 +251,7 @@ export default function TaskModal({projectId, task, initialStatus, onClose, onSu
                         type="datetime-local"
                         value={form.deadline}
                         onChange={e => setField("deadline", e.target.value)}
-                        disabled={isLoading}
+                        disabled={isLoading || readonly}
                     />
                 </Field>
 
@@ -260,7 +261,7 @@ export default function TaskModal({projectId, task, initialStatus, onClose, onSu
                         <Select
                             value={form.status}
                             onValueChange={v => setField("status", v as TaskStatus)}
-                            disabled={isLoading}
+                            disabled={isLoading || readonly}
                         >
                             <SelectTrigger>
                                 <SelectValue/>
@@ -296,7 +297,7 @@ export default function TaskModal({projectId, task, initialStatus, onClose, onSu
                         multiple
                         value={form.assignedUsers}
                         onValueChange={(value) => setField("assignedUsers", value)}
-                        disabled={isLoading || isLoading_users}
+                        disabled={isLoading || isLoading_users || readonly}
                     >
                         <ComboboxChips>
                             <ComboboxValue>
@@ -321,10 +322,10 @@ export default function TaskModal({projectId, task, initialStatus, onClose, onSu
             </FieldGroup>
 
             <div className="flex gap-2 justify-end">
-                <Button onClick={handleSubmit} disabled={!canSubmit || isLoading}>
+                {!readonly && <Button onClick={handleSubmit} disabled={!canSubmit || isLoading}>
                     {isLoading && <Spinner data-icon="inline-start"/>}
                     {t("label-submit")}
-                </Button>
+                </Button>}
                 <Button onClick={onClose} variant="secondary" disabled={isLoading}>
                     {t("label-cancel")}
                 </Button>

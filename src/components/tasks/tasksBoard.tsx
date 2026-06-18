@@ -10,6 +10,7 @@ import TaskCard from "@/components/tasks/taskCard";
 
 type Props = {
     projectId: string;
+    readonly?: boolean;
     className?: string;
 };
 
@@ -17,9 +18,10 @@ type ColumnProps = {
     projectId: string;
     status: TaskStatus;
     tasks: Task[];
+    readonly?: boolean;
 };
 
-function BoardColumn({projectId, status, tasks}: ColumnProps) {
+function BoardColumn({projectId, status, tasks, readonly}: ColumnProps) {
     const t = useTranslations("ProjectPage.tasks");
 
     return (
@@ -34,14 +36,14 @@ function BoardColumn({projectId, status, tasks}: ColumnProps) {
             </div>
             <div className="flex flex-col gap-1.5">
                 {tasks.map(task => (
-                    <TaskCard key={task.id} task={task} projectId={projectId}/>
+                    <TaskCard key={task.id} task={task} projectId={projectId} readonly={readonly}/>
                 ))}
             </div>
         </div>
     );
 }
 
-export default function TasksBoard({projectId, className}: Props) {
+export default function TasksBoard({projectId, className, readonly}: Props) {
     const t = useTranslations("ProjectPage.tasks");
 
     const {data: tasks, isLoading, error} = useSWR<Task[]>(
@@ -87,6 +89,7 @@ export default function TasksBoard({projectId, className}: Props) {
                             projectId={projectId}
                             status={status}
                             tasks={byStatus[status]}
+                            readonly={readonly}
                         />
                     ))}
                 </div>

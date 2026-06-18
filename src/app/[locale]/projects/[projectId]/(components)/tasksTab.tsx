@@ -8,14 +8,16 @@ import {PlusIcon} from "@phosphor-icons/react";
 
 type Props = {
     projectId: string;
+    readonly?: boolean;
 };
 
-export default function TasksTab({projectId}: Props) {
+export default function TasksTab({projectId, readonly}: Props) {
     const t = useTranslations("ProjectPage.tasks");
     const {addModal} = useModal();
     const {mutate} = useSWRConfig();
 
     function handleNewTask() {
+        if(readonly) return;
         addModal((onClose) => (
             <TaskModal
                 projectId={projectId}
@@ -31,13 +33,13 @@ export default function TasksTab({projectId}: Props) {
 
     return (
         <div className="flex flex-col gap-2">
-            <div className="flex justify-end">
+            {!readonly && <div className="flex justify-end">
                 <Button onClick={handleNewTask}>
                     <PlusIcon data-icon="inline-start"/>
                     {t("label-new")}
                 </Button>
-            </div>
-            <TasksBoard projectId={projectId}/>
+            </div>}
+            <TasksBoard projectId={projectId} readonly={readonly}/>
         </div>
     );
 }
