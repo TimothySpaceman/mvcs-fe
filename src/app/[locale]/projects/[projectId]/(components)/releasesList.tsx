@@ -5,7 +5,7 @@ import {useEffect} from "react";
 import {useTranslations} from "next-intl";
 import {Button} from "@/components/ui/button";
 import {Spinner} from "@/components/ui/spinner";
-import {Release} from "@/lib/entities/project";
+import {ProjectAccessLevel, Release} from "@/lib/entities/project";
 import {twMerge} from "tailwind-merge";
 import {VinylRecordIcon, WarningCircleIcon} from "@phosphor-icons/react";
 import {PagedResult} from "@/lib/entities/common";
@@ -15,11 +15,12 @@ const ITEMS_PER_PAGE = 20;
 
 type Props = {
     projectId: string;
+    accessLevel: ProjectAccessLevel | null;
     onMutateReady?: (mutate: () => void) => void;
     className?: string;
 };
 
-export default function ReleasesList({projectId, onMutateReady, className}: Props) {
+export default function ReleasesList({projectId, accessLevel, onMutateReady, className}: Props) {
     const t = useTranslations("ProjectPage.releases");
 
     const {data: pages, error, isLoading, isValidating, size, setSize, mutate} = useSWRInfinite<PagedResult<Release>>(
@@ -68,7 +69,13 @@ export default function ReleasesList({projectId, onMutateReady, className}: Prop
     return (
         <div className={twMerge("flex flex-col gap-2", className)}>
             {releases.map((release) => (
-                <ReleaseCard key={release.id} release={release} projectId={projectId}/>
+                <ReleaseCard
+                    key={release.id}
+                    release={release}
+                    projectId={projectId}
+                    accessLevel={accessLevel}
+                    onDeleted={() => void mutate()}
+                />
             ))}
             {hasMore && <div className="flex justify-center mt-2">
                 <Button

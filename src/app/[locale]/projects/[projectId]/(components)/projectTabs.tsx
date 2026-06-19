@@ -131,7 +131,7 @@ export default function ProjectTabs({project}: Props) {
 
             <TabsContent value="releases">
                 <Container className="max-w-3xl" rootClassName="!px-0 !pt-0">
-                    <ReleasesTab projectId={project.id} readonly={!canWrite}/>
+                    <ReleasesTab projectId={project.id} accessLevel={project.accessLevel}/>
                 </Container>
             </TabsContent>
 

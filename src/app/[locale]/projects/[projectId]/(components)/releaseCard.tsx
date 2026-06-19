@@ -1,25 +1,37 @@
 "use client";
 
 import {useMemo} from "react";
-import {Release} from "@/lib/entities/project";
-import {Card, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
+import {hasAccess, ProjectAccessLevel, Release} from "@/lib/entities/project";
+import {Card, CardAction, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {VinylRecordIcon} from "@phosphor-icons/react";
 import useSWR from "swr";
 import {User} from "@/lib/auth/types";
 import UserInfo from "@/components/userInfo/userInfo";
 import ReleaseFileRow from "@/app/[locale]/projects/[projectId]/(components)/releaseFileRow";
+
+import ReleaseDeleteButton from "@/app/[locale]/projects/[projectId]/(components)/releaseDeleteButton";
+import {useUser} from "@/components/userProvider/userProvider";
 import {isAudioFile} from "@/components/player/config";
 
 type Props = {
     release: Release;
     projectId: string;
+    accessLevel: ProjectAccessLevel | null;
+    onDeleted?: () => void;
 };
 
-export default function ReleaseCard({release, projectId}: Props) {
+export default function ReleaseCard({release, projectId, accessLevel, onDeleted}: Props) {
+    const {user} = useUser();
     const {data: author} = useSWR<User>(release.authorId ? `/users/${release.authorId}` : null);
 
     const date = new Date(release.createdAt);
     const day = date.toLocaleDateString();
+
+    const isOwner = hasAccess(accessLevel, "owner");
+    const isAuthorWithWrite = hasAccess(accessLevel, "write")
+        && !!release.authorId
+        && release.authorId === user?.id;
+    const canDelete = isOwner || isAuthorWithWrite;
 
     const sortedFiles = useMemo(() => {
         return release.files
@@ -48,6 +60,15 @@ export default function ReleaseCard({release, projectId}: Props) {
                         {day}
                     </span>
                 </CardDescription>
+                {canDelete && (
+                    <CardAction>
+                        <ReleaseDeleteButton
+                            projectId={projectId}
+                            releaseId={release.id}
+                            onDeleted={onDeleted}
+                        />
+                    </CardAction>
+                )}
             </CardHeader>
 
             <div className="border border-border">

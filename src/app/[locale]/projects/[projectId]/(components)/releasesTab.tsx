@@ -5,17 +5,20 @@ import {useTranslations} from "next-intl";
 import {useModal} from "@/components/modal/modalProvider";
 import {Button} from "@/components/ui/button";
 import {PlusIcon} from "@phosphor-icons/react";
+import {hasAccess, ProjectAccessLevel} from "@/lib/entities/project";
 import ReleasesList from "@/app/[locale]/projects/[projectId]/(components)/releasesList";
 import ReleaseModal from "@/app/[locale]/projects/[projectId]/(components)/releaseModal";
 
 type Props = {
     projectId: string;
-    readonly?: boolean;
+    accessLevel: ProjectAccessLevel | null;
 };
 
-export default function ReleasesTab({projectId, readonly}: Props) {
+export default function ReleasesTab({projectId, accessLevel}: Props) {
     const t = useTranslations("ProjectPage.releases");
     const {addModal} = useModal();
+
+    const canWrite = hasAccess(accessLevel, "write");
 
     const refreshRef = useRef<() => void>(() => {});
     const handleMutateReady = useCallback((mutate: () => void) => {
@@ -23,7 +26,7 @@ export default function ReleasesTab({projectId, readonly}: Props) {
     }, []);
 
     function handleNewRelease() {
-        if (readonly) return;
+        if (!canWrite) return;
         addModal((onClose) => (
             <ReleaseModal
                 projectId={projectId}
@@ -35,13 +38,17 @@ export default function ReleasesTab({projectId, readonly}: Props) {
 
     return (
         <div className="flex flex-col gap-2">
-            {!readonly && <div className="flex justify-end">
+            {canWrite && <div className="flex justify-end">
                 <Button onClick={handleNewRelease}>
                     <PlusIcon data-icon="inline-start"/>
                     {t("label-new")}
                 </Button>
             </div>}
-            <ReleasesList projectId={projectId} onMutateReady={handleMutateReady}/>
+            <ReleasesList
+                projectId={projectId}
+                accessLevel={accessLevel}
+                onMutateReady={handleMutateReady}
+            />
         </div>
     );
 }

@@ -350,6 +350,16 @@
         "error-files-failed": "Не вдалося завантажити файли",
         "error-forbidden": "У вас немає прав для створення релізу",
         "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+      },
+      "delete": {
+        "label-button": "Видалити реліз",
+        "confirm-title": "Видалити реліз?",
+        "confirm-description": "Реліз та всі його файли буде видалено назавжди. Цю дію неможливо скасувати",
+        "confirm-label-confirm": "Видалити",
+        "confirm-label-cancel": "Скасувати",
+        "toast-success": "Реліз видалено",
+        "error-forbidden": "У вас немає прав для видалення цього релізу",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше"
       }
     },
     "merges": {
