@@ -31,7 +31,7 @@ export default function StorageCard({storage}: Props) {
     return <Card className="!p-3 !pt-2">
         <CardHeader className="!p-0">
             <CardTitle>
-                <h2 className="text-xl font-bold">{storage.name}</h2>
+                <h2 className="text-lg">{storage.name}</h2>
             </CardTitle>
             <CardDescription className="flex flex-wrap gap-1">
                 <Badge variant="secondary">

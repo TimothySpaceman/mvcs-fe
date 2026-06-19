@@ -28,7 +28,7 @@ export default function ProjectCard({project}: Props) {
             )}>
                 <CardHeader className="!p-0 min-w-0">
                     <CardTitle className="flex items-center gap-2 min-w-0">
-                        <span className="truncate">{project.title}</span>
+                        <span className="truncate text-lg">{project.title}</span>
                         {project.isPublic && (
                             <Badge variant="secondary" className="shrink-0">
                                 {t("badge-public")}
