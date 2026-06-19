@@ -9,7 +9,7 @@ import {ProjectAccessLevel, Release} from "@/lib/entities/project";
 import {twMerge} from "tailwind-merge";
 import {VinylRecordIcon, WarningCircleIcon} from "@phosphor-icons/react";
 import {PagedResult} from "@/lib/entities/common";
-import ReleaseCard from "@/app/[locale]/projects/[projectId]/(components)/releaseCard";
+import ReleaseCard from "@/app/[locale]/projects/[projectId]/(components)/(releases)/releaseCard";
 
 const ITEMS_PER_PAGE = 20;
 

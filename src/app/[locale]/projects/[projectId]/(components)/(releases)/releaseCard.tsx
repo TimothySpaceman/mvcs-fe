@@ -7,9 +7,9 @@ import {VinylRecordIcon} from "@phosphor-icons/react";
 import useSWR from "swr";
 import {User} from "@/lib/auth/types";
 import UserInfo from "@/components/userInfo/userInfo";
-import ReleaseFileRow from "@/app/[locale]/projects/[projectId]/(components)/releaseFileRow";
+import ReleaseFileRow from "@/app/[locale]/projects/[projectId]/(components)/(releases)/releaseFileRow";
 
-import ReleaseDeleteButton from "@/app/[locale]/projects/[projectId]/(components)/releaseDeleteButton";
+import ReleaseDeleteButton from "@/app/[locale]/projects/[projectId]/(components)/(releases)/releaseDeleteButton";
 import {useUser} from "@/components/userProvider/userProvider";
 import {isAudioFile} from "@/components/player/config";
 

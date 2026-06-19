@@ -1,10 +1,10 @@
 import {Project} from "@/lib/entities/project";
-import ProjectStorageInfo from "@/app/[locale]/projects/[projectId]/(components)/projectStorageInfo";
+import ProjectStorageInfo from "@/app/[locale]/projects/[projectId]/(components)/(settings)/projectStorageInfo";
 import {Separator} from "@/components/ui/separator";
-import ProjectEditForm from "@/app/[locale]/projects/[projectId]/(components)/projectEditForm";
+import ProjectEditForm from "@/app/[locale]/projects/[projectId]/(components)/(settings)/projectEditForm";
 import {useTranslations} from "next-intl";
-import ProjectAccessEditor from "@/app/[locale]/projects/[projectId]/(components)/projectAccessEditor";
-import ProjectDeleteSection from "@/app/[locale]/projects/[projectId]/(components)/projectDeleteSection";
+import ProjectAccessEditor from "@/app/[locale]/projects/[projectId]/(components)/(settings)/projectAccessEditor";
+import ProjectDeleteSection from "@/app/[locale]/projects/[projectId]/(components)/(settings)/projectDeleteSection";
 
 type Props = {
     project: Project;

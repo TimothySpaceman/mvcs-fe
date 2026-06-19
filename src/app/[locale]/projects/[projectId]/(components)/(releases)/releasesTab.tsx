@@ -6,8 +6,8 @@ import {useModal} from "@/components/modal/modalProvider";
 import {Button} from "@/components/ui/button";
 import {PlusIcon} from "@phosphor-icons/react";
 import {hasAccess, ProjectAccessLevel} from "@/lib/entities/project";
-import ReleasesList from "@/app/[locale]/projects/[projectId]/(components)/releasesList";
-import ReleaseModal from "@/app/[locale]/projects/[projectId]/(components)/releaseModal";
+import ReleasesList from "@/app/[locale]/projects/[projectId]/(components)/(releases)/releasesList";
+import ReleaseModal from "@/app/[locale]/projects/[projectId]/(components)/(releases)/releaseModal";
 
 type Props = {
     projectId: string;
