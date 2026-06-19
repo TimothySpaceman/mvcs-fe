@@ -274,6 +274,7 @@
     "tabs": {
       "label-files": "Файли",
       "label-history": "Історія",
+      "label-releases": "Релізи",
       "label-merges": "Злиття",
       "label-tasks": "Задачі",
       "label-settings": "Налаштування"
@@ -325,6 +326,12 @@
       "toast-copied": "Ідентифікатор скопійовано",
       "toast-copy-failed": "Не вдалося скопіювати ідентифікатор",
       "error-failed": "Не вдалося завантажити історію"
+    },
+    "releases": {
+      "label-loading": "Завантаження...",
+      "label-load-more": "Завантажити ще",
+      "label-empty": "Жодного релізу не опубліковано",
+      "error-failed": "Не вдалося завантажити релізи"
     },
     "merges": {
       "label-loading": "Завантаження...",

@@ -6,6 +6,17 @@ export const ProjectAccessLevels = {
 } as const;
 export type ProjectAccessLevel = keyof typeof ProjectAccessLevels;
 
+const ACCESS_RANK: Record<ProjectAccessLevel, number> = {
+    public: 0,
+    read: 1,
+    write: 2,
+    owner: 3,
+};
+
+export function hasAccess(level: ProjectAccessLevel | null, minimum: ProjectAccessLevel) {
+    return ACCESS_RANK[level ?? "public"] >= ACCESS_RANK[minimum];
+}
+
 export type Project = {
     id: string,
     authorId: string,
@@ -84,13 +95,19 @@ export type MergeRequest = {
     createdAt: string;
 };
 
-const ACCESS_RANK: Record<ProjectAccessLevel, number> = {
-    public: 0,
-    read: 1,
-    write: 2,
-    owner: 3,
+export type ReleaseFile = {
+    id: string;
+    releaseId: string;
+    fileName: string;
+    blobId: string;
+    createdAt: string;
 };
 
-export function hasAccess(level: ProjectAccessLevel | null, minimum: ProjectAccessLevel) {
-    return ACCESS_RANK[level ?? "public"] >= ACCESS_RANK[minimum];
-}
+export type Release = {
+    id: string;
+    projectId: string;
+    authorId: string | null;
+    title: string;
+    createdAt: string;
+    files: ReleaseFile[];
+};
