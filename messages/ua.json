@@ -490,7 +490,21 @@
       }
     },
     "sessions": {
-      "placeholder": "Керування сесіями буде доступне незабаром"
+      "section-title": "Активні сесії",
+      "badge-current": "Поточна",
+      "label-created": "Створено:",
+      "label-last-active": "Остання активність:",
+      "label-terminate": "Завершити сесію",
+      "label-terminate-all": "Завершити всі",
+      "confirm-terminate-title": "Завершення сесії",
+      "confirm-terminate-description": "Цю сесію буде завершено. Пристрій буде виведено з системи.",
+      "confirm-terminate-current-description": "Це ваша поточна сесія. Після її завершення ви будете виведені з системи.",
+      "confirm-terminate-all-title": "Завершення всіх сесій",
+      "confirm-terminate-all-description": "Всі активні сесії буде завершено, включаючи поточну. Ви будете виведені з системи.",
+      "confirm-terminate-label": "Завершити",
+      "confirm-cancel-label": "Скасувати",
+      "error-load": "Не вдалося завантажити сесії",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
     }
   },
   "DeviceInfo": {

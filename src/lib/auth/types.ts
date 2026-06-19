@@ -19,10 +19,3 @@ export type User = UserMetadata & {
     createdAt: string,
     updatedAt: string,
 }
-
-export type DeviceInfo = {
-    userAgent?: string
-    device?: string
-    os?: string
-    browser?: string
-}

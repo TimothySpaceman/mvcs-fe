@@ -5,7 +5,7 @@ import {Card, CardAction, CardDescription, CardHeader, CardTitle} from "@/compon
 import {ArrowRightIcon, GitPullRequestIcon} from "@phosphor-icons/react";
 import useSWR from "swr";
 import {User} from "@/lib/auth/types";
-import UserInfo from "@/components/userInfo";
+import UserInfo from "@/components/userInfo/userInfo";
 import {parseAsString, useQueryState} from "nuqs";
 import {twMerge} from "tailwind-merge";
 

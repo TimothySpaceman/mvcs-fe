@@ -7,7 +7,7 @@ import {useTranslations} from "next-intl";
 import {Link} from "@/i18n/navigation";
 import useSWR from "swr";
 import {User} from "@/lib/auth/types";
-import UserInfo from "@/components/userInfo";
+import UserInfo from "@/components/userInfo/userInfo";
 import {twMerge} from "tailwind-merge";
 
 type Props = {

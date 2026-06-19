@@ -5,7 +5,7 @@ import {useQueryState, parseAsString} from "nuqs";
 import {CommitInfo, CommitKinds, Ref} from "@/lib/entities/project";
 import {Item, ItemContent, ItemTitle} from "@/components/ui/item";
 import {User} from "@/lib/auth/types";
-import UserInfo from "@/components/userInfo";
+import UserInfo from "@/components/userInfo/userInfo";
 import {Spinner} from "@/components/ui/spinner";
 import {GitDiffIcon, GitPullRequestIcon} from "@phosphor-icons/react";
 
