@@ -53,29 +53,29 @@ export default function ProjectHealthBadge({projectId, className}: Props) {
     const [status, setStatus] = useState<Status>(Statuses.unknown);
     const [details, setDetails] = useState<string>();
 
-    async function checkHealth() {
-        setStatus(Statuses.loading);
-        setDetails(undefined);
-
-        try {
-            const resp = await api.fetch(`/projects/${projectId}/health`, {auth: true});
-
-            if (!resp.ok) {
-                setStatus(Statuses.error);
-                setDetails(t(resp.status >= 500 ? "error-internal-server" : "error-failed"));
-                return;
-            }
-
-            const body = await resp.json() as ProjectHealth;
-            setStatus(body.isReachable ? Statuses.healthy : Statuses.unreachable);
-            setDetails(body.error ?? undefined);
-        } catch {
-            setStatus(Statuses.error);
-            setDetails(t("error-internal-server"));
-        }
-    }
-
     useEffect(() => {
+        async function checkHealth() {
+            setStatus(Statuses.loading);
+            setDetails(undefined);
+
+            try {
+                const resp = await api.fetch(`/projects/${projectId}/health`, {auth: true});
+
+                if (!resp.ok) {
+                    setStatus(Statuses.error);
+                    setDetails(t(resp.status >= 500 ? "error-internal-server" : "error-failed"));
+                    return;
+                }
+
+                const body = await resp.json() as ProjectHealth;
+                setStatus(body.isReachable ? Statuses.healthy : Statuses.unreachable);
+                setDetails(body.error ?? undefined);
+            } catch {
+                setStatus(Statuses.error);
+                setDetails(t("error-internal-server"));
+            }
+        }
+
         checkHealth();
     }, [])
 
