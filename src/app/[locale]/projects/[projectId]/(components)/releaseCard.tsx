@@ -2,7 +2,6 @@
 
 import {Release} from "@/lib/entities/project";
 import {Card, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
-import {PackageIcon} from "@phosphor-icons/react";
 import useSWR from "swr";
 import {User} from "@/lib/auth/types";
 import UserInfo from "@/components/userInfo/userInfo";
@@ -22,9 +21,8 @@ export default function ReleaseCard({release, projectId}: Props) {
     return (
         <Card className="!p-2 gap-2">
             <CardHeader className="!p-0 min-w-0">
-                <CardTitle className="truncate flex items-center gap-1.5">
-                    <PackageIcon className="size-4 shrink-0 text-muted-foreground"/>
-                    <span className="truncate">{release.title}</span>
+                <CardTitle className="text-lg truncate flex items-center gap-1.5">
+                    {release.title}
                 </CardTitle>
                 <CardDescription className="flex items-center gap-2">
                     {author && <UserInfo

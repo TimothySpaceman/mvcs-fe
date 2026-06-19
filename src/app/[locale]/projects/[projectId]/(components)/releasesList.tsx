@@ -1,6 +1,7 @@
 "use client";
 
 import useSWRInfinite from "swr/infinite";
+import {useEffect} from "react";
 import {useTranslations} from "next-intl";
 import {Button} from "@/components/ui/button";
 import {Spinner} from "@/components/ui/spinner";
@@ -14,13 +15,14 @@ const ITEMS_PER_PAGE = 20;
 
 type Props = {
     projectId: string;
+    onMutateReady?: (mutate: () => void) => void;
     className?: string;
 };
 
-export default function ReleasesList({projectId, className}: Props) {
+export default function ReleasesList({projectId, onMutateReady, className}: Props) {
     const t = useTranslations("ProjectPage.releases");
 
-    const {data: pages, error, isLoading, isValidating, size, setSize} = useSWRInfinite<PagedResult<Release>>(
+    const {data: pages, error, isLoading, isValidating, size, setSize, mutate} = useSWRInfinite<PagedResult<Release>>(
         (index, prev: PagedResult<Release> | null) => {
             if (prev && prev.page * prev.itemsPerPage >= prev.totalItems) return null;
 
@@ -33,6 +35,10 @@ export default function ReleasesList({projectId, className}: Props) {
         },
         {revalidateFirstPage: false}
     );
+
+    useEffect(() => {
+        onMutateReady?.(() => void mutate());
+    }, [onMutateReady, mutate]);
 
     const releases = pages?.flatMap(p => p.items) ?? [];
     const last = pages?.at(-1);

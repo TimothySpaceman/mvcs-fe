@@ -6,7 +6,8 @@ import {
     ClockCounterClockwiseIcon,
     FolderOpenIcon,
     GearIcon,
-    GitPullRequestIcon, PackageIcon, VinylRecordIcon
+    GitPullRequestIcon,
+    VinylRecordIcon
 } from "@phosphor-icons/react";
 import {useTranslations} from "next-intl";
 import RefSelector from "@/app/[locale]/projects/[projectId]/(components)/refSelector";
@@ -24,7 +25,7 @@ import {useQueryState, parseAsStringLiteral} from "nuqs";
 import {useEffect, useMemo} from "react";
 import Container from "@/components/container/container";
 import {Separator} from "@/components/ui/separator";
-import ReleasesList from "@/app/[locale]/projects/[projectId]/(components)/releaseList";
+import ReleasesTab from "@/app/[locale]/projects/[projectId]/(components)/releasesTab";
 
 const TabNames = ["files", "history", "releases", "merges", "tasks", "settings"] as const;
 type TabName = typeof TabNames[number];
@@ -130,7 +131,7 @@ export default function ProjectTabs({project}: Props) {
 
             <TabsContent value="releases">
                 <Container className="max-w-3xl" rootClassName="!px-0 !pt-0">
-                    <ReleasesList projectId={project.id}/>
+                    <ReleasesTab projectId={project.id} readonly={!canWrite}/>
                 </Container>
             </TabsContent>
 

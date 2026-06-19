@@ -331,7 +331,26 @@
       "label-loading": "Завантаження...",
       "label-load-more": "Завантажити ще",
       "label-empty": "Жодного релізу не опубліковано",
-      "error-failed": "Не вдалося завантажити релізи"
+      "label-new": "Створити реліз",
+      "error-failed": "Не вдалося завантажити релізи",
+      "createModal": {
+        "title": "Новий реліз",
+        "label-title": "Назва",
+        "label-branch": "Гілка",
+        "placeholder-branch": "Оберіть гілку",
+        "label-files": "Файли",
+        "label-loading-files": "Завантаження файлів...",
+        "label-files-empty": "Ця гілка не містить файлів",
+        "label-submit": "Створити",
+        "label-cancel": "Скасувати",
+        "toast-success": "Реліз створено успішно",
+        "error-title-required": "Це поле обовʼязкове",
+        "error-ref-required": "Оберіть гілку",
+        "error-files-required": "Оберіть хоча б один файл",
+        "error-files-failed": "Не вдалося завантажити файли",
+        "error-forbidden": "У вас немає прав для створення релізу",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+      }
     },
     "merges": {
       "label-loading": "Завантаження...",
