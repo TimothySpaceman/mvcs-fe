@@ -460,6 +460,39 @@
       }
     }
   },
+  "SettingsPage": {
+    "meta": {
+      "title": "Налаштування | MVCS",
+      "description": "Налаштування облікового запису"
+    },
+    "title": "Налаштування",
+    "tabs": {
+      "label-profile": "Профіль",
+      "label-sessions": "Сесії"
+    },
+    "profile": {
+      "section-avatar": "Аватар",
+      "section-general": "Загальне",
+      "section-password": "Пароль",
+      "form": {
+        "label-upload-avatar": "Завантажити фото",
+        "label-username": "Логін",
+        "label-display-name": "Відображуване імʼя",
+        "label-email": "Email",
+        "label-save": "Зберегти",
+        "label-current-password": "Поточний пароль",
+        "label-new-password": "Новий пароль",
+        "label-confirm-password": "Підтвердження паролю",
+        "label-change-password": "Змінити пароль",
+        "error-display-name-required": "Це поле обовʼязкове",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше",
+        "toast-success": "Зміни збережено"
+      }
+    },
+    "sessions": {
+      "placeholder": "Керування сесіями буде доступне незабаром"
+    }
+  },
   "DeviceInfo": {
     "label-unknown-device": "Невідомий пристрій",
     "label-unknown-app": "Невідомий додаток"
