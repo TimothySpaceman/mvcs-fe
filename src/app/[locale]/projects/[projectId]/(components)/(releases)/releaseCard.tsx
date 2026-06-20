@@ -46,9 +46,8 @@ export default function ReleaseCard({release, projectId, accessLevel, onDeleted}
     return (
         <Card className="!p-2 gap-2">
             <CardHeader className="!p-0 min-w-0">
-                <CardTitle className="truncate flex items-center gap-1.5">
-                    <VinylRecordIcon className="size-4 shrink-0 text-muted-foreground"/>
-                    <span className="truncate">{release.title}</span>
+                <CardTitle className="text-lg truncate">
+                    {release.title}
                 </CardTitle>
                 <CardDescription className="flex items-center gap-2">
                     {author && <UserInfo

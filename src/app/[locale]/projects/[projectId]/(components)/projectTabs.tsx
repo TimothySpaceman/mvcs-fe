@@ -72,7 +72,7 @@ export default function ProjectTabs({project}: Props) {
                         <ClockCounterClockwiseIcon/>
                         {t("tabs.label-history")}
                     </TabsTrigger>
-                    <TabsTrigger value="releases">
+                    <TabsTrigger value="releases" disabled={!project.isInitialized}>
                         <VinylRecordIcon/>
                         {t("tabs.label-releases")}
                     </TabsTrigger>
