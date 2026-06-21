@@ -8,7 +8,7 @@ import {Project} from "@/lib/entities/project";
 import {Button} from "@/components/ui/button";
 import {Spinner} from "@/components/ui/spinner";
 import {useModal} from "@/components/modal/modalProvider";
-import ConfirmModal from "@/app/[locale]/projects/[projectId]/(components)/confirmModal";
+import ConfirmModal from "@/components/confirmModal/confirmModal";
 import {useRouter} from "@/i18n/navigation";
 
 type Props = {

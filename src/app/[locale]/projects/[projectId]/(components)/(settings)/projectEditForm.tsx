@@ -14,8 +14,8 @@ import {Button} from "@/components/ui/button";
 import {Spinner} from "@/components/ui/spinner";
 import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue} from "@/components/ui/select";
 import {useModal} from "@/components/modal/modalProvider";
-import ConfirmModal from "./confirmModal";
 import {useRouter} from "@/i18n/navigation";
+import ConfirmModal from "@/components/confirmModal/confirmModal";
 
 type Props = {
     project: Project;

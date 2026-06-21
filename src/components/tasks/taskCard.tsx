@@ -3,7 +3,7 @@
 import {Task, TaskStatus, TaskStatuses} from "@/lib/entities/task";
 import {Card, CardDescription, CardHeader, CardTitle} from "@/components/ui/card";
 import {useModal} from "@/components/modal/modalProvider";
-import UserInfo from "@/components/userInfo";
+import UserInfo from "@/components/userInfo/userInfo";
 import useSWR, {useSWRConfig} from "swr";
 import {User} from "@/lib/auth/types";
 import {CalendarIcon} from "@phosphor-icons/react";

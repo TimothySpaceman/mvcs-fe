@@ -19,12 +19,12 @@ import {Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVal
 import {Button} from "@/components/ui/button";
 import {Spinner} from "@/components/ui/spinner";
 import {Field, FieldLabel} from "@/components/ui/field";
-import UserInfo from "@/components/userInfo";
+import UserInfo from "@/components/userInfo/userInfo";
 import {api} from "@/lib/api";
 import {StorageAccessLevels, StorageMember} from "@/lib/entities/storage";
 import {User} from "@/lib/auth/types";
 import {useModal} from "@/components/modal/modalProvider";
-import ConfirmModal from "@/app/[locale]/projects/[projectId]/(components)/confirmModal";
+import ConfirmModal from "@/components/confirmModal/confirmModal";
 
 type Props = {
     storageId: string;

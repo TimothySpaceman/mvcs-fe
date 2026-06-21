@@ -17,7 +17,7 @@ import {
     PaginationPrevious,
 } from "@/components/ui/pagination";
 import {PagedResult} from "@/lib/entities/common";
-import MergeRequestItem from "@/app/[locale]/projects/[projectId]/(components)/mergeRequestItem";
+import MergeRequestItem from "@/app/[locale]/projects/[projectId]/(components)/(merges)/mergeRequestItem";
 
 const ITEMS_PER_PAGE = 20;
 

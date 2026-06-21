@@ -4,7 +4,7 @@ import {Badge} from "@/components/ui/badge";
 import {Project} from "@/lib/entities/project";
 import {User} from "@/lib/auth/types";
 import ProjectHealthBadge from "@/app/[locale]/projects/[projectId]/(components)/projectHealthBadge";
-import UserInfo from "@/components/userInfo";
+import UserInfo from "@/components/userInfo/userInfo";
 import CopyId from "@/app/[locale]/projects/[projectId]/(components)/copyId";
 
 type Props = {

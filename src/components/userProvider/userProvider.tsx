@@ -9,6 +9,7 @@ import {USER_METADATA_COOKIE_NAME} from "@/lib/auth";
 type UserContext = {
     user: UserMetadata | undefined;
     isLoading: boolean;
+    currentSessionId: string | undefined;
     setUser: (user: UserMetadata | undefined) => void;
     refreshUserData: () => Promise<void>;
 };
@@ -20,13 +21,31 @@ type UserProviderProps = {
     children: React.ReactNode;
 };
 
+function readSessionIdFromCookie(): string | undefined {
+    if (typeof document === "undefined") return undefined;
+    const match = document.cookie
+        .split("; ")
+        .find(row => row.startsWith(`${USER_METADATA_COOKIE_NAME}=`));
+    if (!match) return undefined;
+    try {
+        const raw = match.split("=").slice(1).join("=");
+        return JSON.parse(decodeURIComponent(raw))?.sessionId as string | undefined;
+    } catch {
+        return undefined;
+    }
+}
+
 export function UserProvider({initialUser, children}: UserProviderProps) {
     const [user, setUser] = useState<UserMetadata | undefined>(initialUser);
     const [isLoading, setIsLoading] = useState(false);
+    const [currentSessionId, setCurrentSessionId] = useState<string | undefined>(
+        readSessionIdFromCookie
+    );
 
     const setUserAndCache = useCallback((newUser: UserMetadata | undefined) => {
         setUser(newUser);
         if (!newUser) {
+            setCurrentSessionId(undefined);
             cookieStore.delete(USER_METADATA_COOKIE_NAME).catch(
                 () => console.error("Failed to clean auth metadata cookies")
             );
@@ -38,6 +57,7 @@ export function UserProvider({initialUser, children}: UserProviderProps) {
         try {
             const response = await api.fetch("/auth/me", {auth: true});
             setUserAndCache(response.ok ? await response.json() as User : undefined);
+            setCurrentSessionId(readSessionIdFromCookie());
         } catch (e) {
             console.error("Error fetching /me", e);
         } finally {
@@ -53,10 +73,11 @@ export function UserProvider({initialUser, children}: UserProviderProps) {
         () => ({
             user,
             isLoading,
+            currentSessionId,
             setUser: setUserAndCache,
             refreshUserData
         }),
-        [user, isLoading, setUserAndCache, refreshUserData]
+        [user, isLoading, currentSessionId, setUserAndCache, refreshUserData]
     );
 
     return <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>;

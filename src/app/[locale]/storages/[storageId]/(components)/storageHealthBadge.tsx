@@ -54,32 +54,46 @@ export default function StorageHealthBadge({storageId}: Props) {
     const [status, setStatus] = useState<Status>(Statuses.unknown);
     const [details, setDetails] = useState<string>();
 
-    async function checkHealth() {
-        setStatus(Statuses.loading);
-        setDetails(undefined);
-
-        try {
-            const resp = await api.fetch(`/storages/${storageId}/health`, {auth: true});
-
-            if (!resp.ok) {
-                setStatus(Statuses.error);
-                setDetails(t(resp.status >= 500 ? "error-internal-server" : "error-failed"));
-                return;
-            }
-
-            const body = await resp.json() as StorageHealth;
-            setStatus(body.isReachable ? Statuses.healthy : Statuses.unreachable);
-            setDetails(body.error ?? undefined);
-        } catch {
-            setStatus(Statuses.error);
-            setDetails(t("error-internal-server"));
-        }
-    }
-
     useEffect(() => {
+        let cancelled = false;
+        let controller = new AbortController();
+
+        async function checkHealth() {
+            controller.abort();
+            controller = new AbortController();
+            setStatus(Statuses.loading);
+            setDetails(undefined);
+
+            try {
+                const resp = await api.fetch(`/storages/${storageId}/health`, {
+                    auth: true,
+                    signal: controller.signal
+                });
+                if (cancelled) return;
+
+                if (!resp.ok) {
+                    setStatus(Statuses.error);
+                    setDetails(t(resp.status >= 500 ? "error-internal-server" : "error-failed"));
+                    return;
+                }
+
+                const body = await resp.json() as StorageHealth;
+                setStatus(body.isReachable ? Statuses.healthy : Statuses.unreachable);
+                setDetails(body.error ?? undefined);
+            } catch {
+                if (cancelled) return;
+                setStatus(Statuses.error);
+                setDetails(t("error-internal-server"));
+            }
+        }
+
         checkHealth();
         const interval = setInterval(() => checkHealth(), REFRESH_INTERVAL);
-        return () => clearInterval(interval);
+        return () => {
+            cancelled = true;
+            clearInterval(interval);
+            controller.abort();
+        }
     }, [])
 
     return <HoverCard openDelay={10} closeDelay={100}>

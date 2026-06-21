@@ -4,7 +4,7 @@ import {useTranslations} from "next-intl";
 import {Button} from "@/components/ui/button";
 import {PlusIcon} from "@phosphor-icons/react";
 import {useModal} from "@/components/modal/modalProvider";
-import MergeRequestModal from "@/app/[locale]/projects/[projectId]/(components)/mergeRequestModal";
+import MergeRequestModal from "@/app/[locale]/projects/[projectId]/(components)/(merges)/mergeRequestModal";
 
 type Props = {
     projectId: string;

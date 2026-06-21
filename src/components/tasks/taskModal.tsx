@@ -26,7 +26,7 @@ import {
     ComboboxList,
     ComboboxValue,
 } from "@/components/ui/combobox";
-import ConfirmModal from "@/app/[locale]/projects/[projectId]/(components)/confirmModal";
+import ConfirmModal from "@/components/confirmModal/confirmModal";
 import {useModal} from "@/components/modal/modalProvider";
 
 type Props = {

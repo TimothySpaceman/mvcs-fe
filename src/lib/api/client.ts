@@ -87,7 +87,9 @@ export class ApiClient {
             const success = await this.refresh(this);
             if (success) {
                 response = await this.perform(request);
-                for (const enqueued of this.queue.splice(0)) enqueued.onReady();
+                await Promise.allSettled(
+                    this.queue.splice(0).map(enqueued => enqueued.onReady())
+                );
             } else {
                 this.queue.splice(0).forEach(enqueued => enqueued.onAbort());
             }

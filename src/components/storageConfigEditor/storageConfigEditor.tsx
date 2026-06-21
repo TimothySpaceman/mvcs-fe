@@ -1,7 +1,7 @@
-import {SchemaField} from "@/lib/entities/storage";
+import {FieldValue, SchemaField} from "@/lib/entities/storage";
 import {FieldGroup} from "@/components/ui/field";
 import {Dispatch, SetStateAction, useCallback} from "react";
-import FieldEditor, {FieldValue} from "@/components/storageConfigEditor/fields/fieldEditor";
+import FieldEditor from "@/components/storageConfigEditor/fields/fieldEditor";
 
 type Props = {
     schemaFields: SchemaField[]

@@ -6,26 +6,28 @@ import {
     ClockCounterClockwiseIcon,
     FolderOpenIcon,
     GearIcon,
-    GitPullRequestIcon
+    GitPullRequestIcon,
+    VinylRecordIcon
 } from "@phosphor-icons/react";
 import {useTranslations} from "next-intl";
 import RefSelector from "@/app/[locale]/projects/[projectId]/(components)/refSelector";
 import ProjectHistory from "@/components/projectHistory/projectHistory";
-import InitInstructions from "@/app/[locale]/projects/[projectId]/(components)/initInstructions";
-import LatestCommitInfo from "@/app/[locale]/projects/[projectId]/(components)/latestCommitInfo";
-import MergeRequestsList from "@/app/[locale]/projects/[projectId]/(components)/mergeRequestsList";
-import MergeRequestsActions from "@/app/[locale]/projects/[projectId]/(components)/mergeRequestsActions";
+import InitInstructions from "@/app/[locale]/projects/[projectId]/(components)/(files)/initInstructions";
+import LatestCommitInfo from "@/app/[locale]/projects/[projectId]/(components)/(files)/latestCommitInfo";
+import MergeRequestsList from "@/app/[locale]/projects/[projectId]/(components)/(merges)/mergeRequestsList";
+import MergeRequestsActions from "@/app/[locale]/projects/[projectId]/(components)/(merges)/mergeRequestsActions";
 import {useSWRConfig} from "swr";
-import FilesAndMetadata from "@/app/[locale]/projects/[projectId]/(components)/filesAndMetadata";
+import FilesAndMetadata from "@/app/[locale]/projects/[projectId]/(components)/(files)/filesAndMetadata";
 import TasksTab from "@/app/[locale]/projects/[projectId]/(components)/tasksTab";
 import {hasAccess, Project} from "@/lib/entities/project";
-import SettingsTab from "@/app/[locale]/projects/[projectId]/(components)/settingsTab";
+import SettingsTab from "@/app/[locale]/projects/[projectId]/(components)/(settings)/settingsTab";
 import {useQueryState, parseAsStringLiteral} from "nuqs";
 import {useEffect, useMemo} from "react";
 import Container from "@/components/container/container";
 import {Separator} from "@/components/ui/separator";
+import ReleasesTab from "@/app/[locale]/projects/[projectId]/(components)/(releases)/releasesTab";
 
-const TabNames = ["files", "history", "merges", "tasks", "settings"] as const;
+const TabNames = ["files", "history", "releases", "merges", "tasks", "settings"] as const;
 type TabName = typeof TabNames[number];
 
 type Props = {
@@ -38,7 +40,7 @@ export default function ProjectTabs({project}: Props) {
 
     const allowedTabs = useMemo((): readonly TabName[] => {
         const level = project.accessLevel;
-        const tabs: TabName[] = ["files", "history"];
+        const tabs: TabName[] = ["files", "history", "releases"];
         if (hasAccess(level, "read")) tabs.push("merges", "tasks");
         if (hasAccess(level, "owner")) tabs.push("settings");
         return tabs;
@@ -69,6 +71,10 @@ export default function ProjectTabs({project}: Props) {
                     <TabsTrigger value="history" disabled={!project.isInitialized}>
                         <ClockCounterClockwiseIcon/>
                         {t("tabs.label-history")}
+                    </TabsTrigger>
+                    <TabsTrigger value="releases" disabled={!project.isInitialized}>
+                        <VinylRecordIcon/>
+                        {t("tabs.label-releases")}
                     </TabsTrigger>
                     {canRead && (
                         <TabsTrigger value="merges" disabled={!project.isInitialized}>
@@ -120,6 +126,12 @@ export default function ProjectTabs({project}: Props) {
                         allowCommit={false}
                     />
                     <ProjectHistory projectId={project.id}/>
+                </Container>
+            </TabsContent>
+
+            <TabsContent value="releases">
+                <Container className="max-w-3xl" rootClassName="!px-0 !pt-0">
+                    <ReleasesTab projectId={project.id} accessLevel={project.accessLevel}/>
                 </Container>
             </TabsContent>
 

@@ -1,7 +1,7 @@
 import {CommitInfo} from "@/lib/entities/project";
 import useSWR from "swr";
 import {User} from "@/lib/auth/types";
-import UserInfo from "@/components/userInfo";
+import UserInfo from "@/components/userInfo/userInfo";
 
 // TODO: Replace with link to profile
 export default function CommitAuthor({author}: { author: CommitInfo["author"] }) {

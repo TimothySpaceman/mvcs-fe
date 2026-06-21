@@ -8,7 +8,7 @@ import {Spinner} from "@/components/ui/spinner";
 import {useRouter} from "@/i18n/navigation";
 import {InputOTP, InputOTPGroup, InputOTPSlot} from "@/components/ui/input-otp";
 import {REGEXP_ONLY_DIGITS} from "input-otp";
-import {DeviceInfo as DeviceInfoType} from "@/lib/auth/types";
+import {DeviceInfo as DeviceInfoType} from "@/lib/entities/session";
 import {api} from "@/lib/api";
 import DeviceInfo from "@/components/deviceInfo/deviceInfo";
 

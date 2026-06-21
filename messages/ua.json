@@ -28,6 +28,58 @@
       "error-logout-failed": "Виникла помилка. Спробуйте пізніше"
     }
   },
+  "HomePage": {
+    "meta": {
+      "title": "MVCS - Контроль версій для музикантів",
+      "description": "Multitracks Version Control System - керування версіями ваших DAW-проєктів, Live-сцен, сесій та творчості"
+    },
+    "hero": {
+      "tagline": "Система контролю версій для музикантів",
+      "description": "MVCS - платформа для керування версіями музичних проєктів. Гілки, злиття та командна робота - все, що колись було \"Проєкт - копія (15)\".",
+      "label-get-started": "Розпочати",
+      "label-browse-projects": "Переглянути проєкти"
+    },
+    "features": {
+      "heading": "Можливості",
+      "branching": {
+        "title": "Гілки",
+        "description": "Створюйте гілки для окремих ідей та аранжувань. Перемикайтеся між версіями без втрати роботи."
+      },
+      "merge-requests": {
+        "title": "Запити на злиття",
+        "description": "Система не диктує ваш потік творчості, а набуває його. Спробували декілька ідей? Система збере з них єдину, цілісну історію."
+      },
+      "daw-metadata": {
+        "title": "Метадані DAW",
+        "description": "Необхідні плагіни, технічні характеристики проєкту - все що потрібно знати заздалегідь, ще до його завантаження та відкриття. Автоматично. Для всіх ходових DAW."
+      },
+      "custom-storages": {
+        "title": "Власні сховища",
+        "description": "Підписка на Google Drive? DropBox? FTP-сервер на студії? Система збереже все там, де скажете ви."
+      },
+      "resumable-uploads": {
+        "title": "Відновлювані завантаження",
+        "description": "Якість інтернет-зʼєднання не стане перешкодою для творчості. Система допомагає творчості, а не перешкоджає їй."
+      },
+      "file-tree": {
+        "title": "Зручне подання",
+        "description": "Структура файлів, історія версій, відомості про проєкт - все доступно прямо в браузері. Миттєво, для усіх членів команди."
+      }
+    },
+    "download": {
+      "heading": "Десктопний клієнт",
+      "title": "Працюйте безпосередньо з DAW",
+      "description": "Нативний клієнт для Windows і MacOS - комендант історії вашої творчості, прямо на вашому робочому пристрої.",
+      "label-windows": "Windows",
+      "label-macos": "MacOS",
+      "note": "Десктопний клієнт знаходиться в активній розробці та тестуванні."
+    },
+    "footer": {
+      "label-projects": "Проєкти",
+      "label-login": "Вхід",
+      "label-register": "Реєстрація"
+    }
+  },
   "LoginPage": {
     "meta": {
       "title": "Вхід | MVCS",
@@ -222,6 +274,7 @@
     "tabs": {
       "label-files": "Файли",
       "label-history": "Історія",
+      "label-releases": "Релізи",
       "label-merges": "Злиття",
       "label-tasks": "Задачі",
       "label-settings": "Налаштування"
@@ -273,6 +326,41 @@
       "toast-copied": "Ідентифікатор скопійовано",
       "toast-copy-failed": "Не вдалося скопіювати ідентифікатор",
       "error-failed": "Не вдалося завантажити історію"
+    },
+    "releases": {
+      "label-loading": "Завантаження...",
+      "label-load-more": "Завантажити ще",
+      "label-empty": "Жодного релізу не опубліковано",
+      "label-new": "Створити реліз",
+      "error-failed": "Не вдалося завантажити релізи",
+      "createModal": {
+        "title": "Новий реліз",
+        "label-title": "Назва",
+        "label-branch": "Гілка",
+        "placeholder-branch": "Оберіть гілку",
+        "label-files": "Файли",
+        "label-loading-files": "Завантаження файлів...",
+        "label-files-empty": "Ця гілка не містить файлів",
+        "label-submit": "Створити",
+        "label-cancel": "Скасувати",
+        "toast-success": "Реліз створено успішно",
+        "error-title-required": "Це поле обовʼязкове",
+        "error-ref-required": "Оберіть гілку",
+        "error-files-required": "Оберіть хоча б один файл",
+        "error-files-failed": "Не вдалося завантажити файли",
+        "error-forbidden": "У вас немає прав для створення релізу",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+      },
+      "delete": {
+        "label-button": "Видалити реліз",
+        "confirm-title": "Видалити реліз?",
+        "confirm-description": "Реліз та всі його файли буде видалено назавжди. Цю дію неможливо скасувати",
+        "confirm-label-confirm": "Видалити",
+        "confirm-label-cancel": "Скасувати",
+        "toast-success": "Реліз видалено",
+        "error-forbidden": "У вас немає прав для видалення цього релізу",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+      }
     },
     "merges": {
       "label-loading": "Завантаження...",
@@ -406,6 +494,53 @@
         "ownership-accessible": "Доступні",
         "ownership-mine": "Мої"
       }
+    }
+  },
+  "SettingsPage": {
+    "meta": {
+      "title": "Налаштування | MVCS",
+      "description": "Налаштування облікового запису"
+    },
+    "title": "Налаштування",
+    "tabs": {
+      "label-profile": "Профіль",
+      "label-sessions": "Сесії"
+    },
+    "profile": {
+      "section-avatar": "Аватар",
+      "section-general": "Загальне",
+      "section-password": "Пароль",
+      "form": {
+        "label-upload-avatar": "Завантажити фото",
+        "label-username": "Логін",
+        "label-display-name": "Відображуване імʼя",
+        "label-email": "Email",
+        "label-save": "Зберегти",
+        "label-current-password": "Поточний пароль",
+        "label-new-password": "Новий пароль",
+        "label-confirm-password": "Підтвердження паролю",
+        "label-change-password": "Змінити пароль",
+        "error-display-name-required": "Це поле обовʼязкове",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше",
+        "toast-success": "Зміни збережено"
+      }
+    },
+    "sessions": {
+      "section-title": "Активні сесії",
+      "badge-current": "Поточна",
+      "label-created": "Створено:",
+      "label-last-active": "Остання активність:",
+      "label-terminate": "Завершити сесію",
+      "label-terminate-all": "Завершити всі",
+      "confirm-terminate-title": "Завершення сесії",
+      "confirm-terminate-description": "Цю сесію буде завершено. Пристрій буде виведено з системи.",
+      "confirm-terminate-current-description": "Це ваша поточна сесія. Після її завершення ви будете виведені з системи.",
+      "confirm-terminate-all-title": "Завершення всіх сесій",
+      "confirm-terminate-all-description": "Всі активні сесії буде завершено, включаючи поточну. Ви будете виведені з системи.",
+      "confirm-terminate-label": "Завершити",
+      "confirm-cancel-label": "Скасувати",
+      "error-load": "Не вдалося завантажити сесії",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
     }
   },
   "DeviceInfo": {
