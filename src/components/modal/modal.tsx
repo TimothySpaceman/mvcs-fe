@@ -1,6 +1,7 @@
 import {ReactNode, useCallback} from "react";
 import {useModal} from "@/components/modal/modalProvider";
 import {Card, CardContent} from "@/components/ui/card";
+import {twMerge} from "tailwind-merge";
 
 export type ModalFactory = (onClose: () => void) => ReactNode;
 
@@ -30,7 +31,7 @@ export default function Modal({config}: Props) {
         className="bg-neutral-950/70 h-screen w-screen fixed top-0 left-0 z-5000 p-2 flex items-center justify-center"
     >
         <Card
-            className={config.modalClassName}
+            className={twMerge("max-h-screen overflow-y-auto", config.modalClassName)}
             onClick={(e) => e.stopPropagation()}
         >
             <CardContent>
