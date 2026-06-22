@@ -1,0 +1,561 @@
+{
+  "global": {
+    "meta": {
+      "title": "MVCS",
+      "description": "Multitracks Version Control System"
+    }
+  },
+  "NotFoundPage": {
+    "title": "Сторінку не знайдено",
+    "description": "Можливо, її було видалено, перейменовано або вона ніколи не існувала",
+    "label-home": "На головну"
+  },
+  "ErrorPage": {
+    "title": "Щось пішло не так",
+    "description": "Під час завантаження сторінки виникла помилка. Спробуйте ще раз або поверніться на головну",
+    "label-retry": "Спробувати ще раз",
+    "label-home": "На головну"
+  },
+  "Header": {
+    "label-login": "Вхід",
+    "label-create-project": "Новий",
+    "user-menu": {
+      "label-projects": "Проєкти",
+      "label-storages": "Сховища",
+      "label-profile": "Профіль",
+      "label-settings": "Налаштування",
+      "label-logout": "Вийти",
+      "error-logout-failed": "Виникла помилка. Спробуйте пізніше"
+    }
+  },
+  "HomePage": {
+    "meta": {
+      "title": "MVCS - Контроль версій для музикантів",
+      "description": "Multitracks Version Control System - керування версіями ваших DAW-проєктів, Live-сцен, сесій та творчості"
+    },
+    "hero": {
+      "tagline": "Система контролю версій для музикантів",
+      "description": "MVCS - платформа для керування версіями музичних проєктів. Гілки, злиття та командна робота - все, що колись було \"Проєкт - копія (15)\".",
+      "label-get-started": "Розпочати",
+      "label-browse-projects": "Переглянути проєкти"
+    },
+    "features": {
+      "heading": "Можливості",
+      "branching": {
+        "title": "Гілки",
+        "description": "Створюйте гілки для окремих ідей та аранжувань. Перемикайтеся між версіями без втрати роботи."
+      },
+      "merge-requests": {
+        "title": "Запити на злиття",
+        "description": "Система не диктує ваш потік творчості, а набуває його. Спробували декілька ідей? Система збере з них єдину, цілісну історію."
+      },
+      "daw-metadata": {
+        "title": "Метадані DAW",
+        "description": "Необхідні плагіни, технічні характеристики проєкту - все що потрібно знати заздалегідь, ще до його завантаження та відкриття. Автоматично. Для всіх ходових DAW."
+      },
+      "custom-storages": {
+        "title": "Власні сховища",
+        "description": "Підписка на Google Drive? DropBox? FTP-сервер на студії? Система збереже все там, де скажете ви."
+      },
+      "resumable-uploads": {
+        "title": "Відновлювані завантаження",
+        "description": "Якість інтернет-зʼєднання не стане перешкодою для творчості. Система допомагає творчості, а не перешкоджає їй."
+      },
+      "file-tree": {
+        "title": "Зручне подання",
+        "description": "Структура файлів, історія версій, відомості про проєкт - все доступно прямо в браузері. Миттєво, для усіх членів команди."
+      }
+    },
+    "download": {
+      "heading": "Десктопний клієнт",
+      "title": "Працюйте безпосередньо з DAW",
+      "description": "Нативний клієнт для Windows і MacOS - комендант історії вашої творчості, прямо на вашому робочому пристрої.",
+      "label-windows": "Windows",
+      "label-macos": "MacOS",
+      "note": "Десктопний клієнт знаходиться в активній розробці та тестуванні."
+    },
+    "footer": {
+      "label-projects": "Проєкти",
+      "label-login": "Вхід",
+      "label-register": "Реєстрація"
+    }
+  },
+  "LoginPage": {
+    "meta": {
+      "title": "Вхід | MVCS",
+      "description": "Вхід в обліковий запис"
+    },
+    "title": "Вхід",
+    "form": {
+      "label-email": "Email або Логін",
+      "label-password": "Пароль",
+      "label-submit": "Увійти",
+      "message-register": "Ще не маєте акаунт? ",
+      "link-register": "Зареєструватися",
+      "error-email-required": "Це поле обовʼязкове",
+      "error-password-required": "Це поле обовʼязкове",
+      "error-wrong-credentials": "Невірні дані для входу",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    }
+  },
+  "RegisterPage": {
+    "meta": {
+      "title": "Реєстрація | MVCS",
+      "description": "Створення облікового запису"
+    },
+    "title": "Реєстрація",
+    "form": {
+      "label-username": "Логін",
+      "label-display-name": "Імʼя",
+      "label-email": "Email",
+      "label-password": "Пароль",
+      "label-confirm-password": "Підтвердження паролю",
+      "label-submit": "Зареєструватись",
+      "message-login": "Вже маєте акаунт? ",
+      "link-login": "Увійти",
+      "error-passwords-mismatch": "Паролі не збігаються",
+      "error-already-exists": "Користувач з таким логіном або email вже існує",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    }
+  },
+  "ConfirmDevicePage": {
+    "meta": {
+      "title": "Підтвердження пристрою | MVCS",
+      "description": "Підтвердження входу з пристрою"
+    },
+    "title": "Підтвердьте вхід на пристрої",
+    "form": {
+      "description": "Введіть код, отриманий в додатку для входу",
+      "label-code": "Код підтвердження",
+      "label-confirm": "Підтвердити вхід",
+      "error-invalid-code": "Недійсний код підтвердження",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    }
+  },
+  "ConfirmDeviceSuccessPage": {
+    "meta": {
+      "title": "Підтвердження пристрою | MVCS",
+      "description": "Підтвердження входу з пристрою"
+    },
+    "title": "Вхід на пристрої успішно підтверджено!",
+    "description": "Ви можете закрити цю вкладку і продовжити роботу в додатку"
+  },
+  "StoragesPage": {
+    "meta": {
+      "title": "Сховища | MVCS",
+      "description": "Керування сховищами"
+    },
+    "title": "Сховища",
+    "bar": {
+      "label-add": "Додати"
+    },
+    "list": {
+      "label-no-storages": "Жодного доступного сховища",
+      "error-failed": "Не вдалося завантажити сховища"
+    },
+    "card": {
+      "badge-default": "Стандартне",
+      "badge-public": "Публічне"
+    },
+    "addModal": {
+      "title": "Додавання сховища",
+      "label-add": "Додати",
+      "label-cancel": "Скасувати",
+      "label-name": "Назва сховища",
+      "description-name": "Під цією назвою сховище буде відображуватися у всіх відповдіних списках та меню",
+      "label-storage-type": "Тип сховища",
+      "placeholder-storage-type": "Оберіть",
+      "message-select-type": "Оберіть тип сховища для подальшої конфігурації",
+      "error-failed": "Не вдалося додати сховище",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    }
+  },
+  "StoragePage": {
+    "meta": {
+      "title": "{storageName} - Cховища | MVCS",
+      "description": "Керування сховищем {storageName}"
+    },
+    "info": {
+      "badge-default": "Стандартне",
+      "badge-public": "Публічне"
+    },
+    "health": {
+      "badge-unknown": "Невідомо",
+      "badge-loading": "Перевірка",
+      "badge-healthy": "Доступне",
+      "badge-unreachable": "Недоступне",
+      "badge-error": "Помилка",
+      "error-failed": "Не вдалося перевірити стан сховища",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    },
+    "message-no-permission": "У вас немає прав для керування цим сховищем",
+    "settings": {
+      "label-config": "Конфігурація",
+      "label-edit-config": "Редагувати конфігурацію",
+      "label-access": "Доступ"
+    },
+    "configModal": {
+      "title": "Конфігурація сховища",
+      "label-save": "Зберегти",
+      "label-cancel": "Скасувати",
+      "toast-success": "Конфігурацію оновлено",
+      "error-load": "Не вдалося завантажити конфігурацію",
+      "error-failed": "Не вдалося зберегти конфігурацію",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    },
+    "access": {
+      "label-loading": "Завантаження...",
+      "label-add-user": "Додати користувача",
+      "label-add": "Додати",
+      "placeholder-search-user": "Пошук...",
+      "label-no-users": "Користувачів не знайдено",
+      "level-owner": "Власник",
+      "level-write": "Редагування",
+      "level-revoke": "Видалити",
+      "error-failed": "Сталася помилка. Спробуйте пізніше",
+      "toast-success": "Зміни збережено",
+      "confirm-title": "Підтвердження змін",
+      "confirm-description-revoke": "Цього користувача буде позбавлено доступу до сховища",
+      "confirm-label-confirm": "Підтвердити",
+      "confirm-label-cancel": "Скасувати"
+    }
+  },
+  "NewProjectPage": {
+    "meta": {
+      "title": "Новий проєкт | MVCS",
+      "description": "Створення нового проєкту"
+    },
+    "title": "Новий проєкт",
+    "form": {
+      "label-title": "Назва",
+      "label-description": "Опис (необовʼязково)",
+      "label-is-public": "Публічний проєкт",
+      "description-is-public": "Публічні проєкти доступні для перегляду всім користувачам",
+      "label-storage": "Сховище",
+      "placeholder-storage": "Одне з доступних",
+      "label-submit": "Створити проєкт",
+      "error-storage-required": "Сховище обовʼязкове",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    }
+  },
+  "ProjectsPage": {
+    "meta": {
+      "title": "Проєкти | MVCS",
+      "description": "Перегляд проєктів"
+    },
+    "title": "Проєкти",
+    "bar": {
+      "placeholder-search": "Пошук проєктів...",
+      "filter-all": "Всі",
+      "filter-public": "Публічні",
+      "filter-private": "Приватні"
+    }
+  },
+  "ProjectPage": {
+    "meta": {
+      "author-fallback": "Невідомого користувача",
+      "title": "{projectName} від {authorName} | MVCS",
+      "description": "Перегляд проєкту {projectName} від {authorName}"
+    },
+    "info": {
+      "badge-public": "Публічний",
+      "toast-copied": "Ідентифікатор скопійовано",
+      "toast-copy-failed": "Не вдалося скопіювати ідентифікатор"
+    },
+    "health": {
+      "badge-unknown": "Невідомо",
+      "badge-loading": "Перевірка",
+      "badge-healthy": "Сховище доступне",
+      "badge-unreachable": "Сховище недоступне",
+      "badge-error": "Помилка",
+      "error-failed": "Не вдалося перевірити стан сховища",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    },
+    "tabs": {
+      "label-files": "Файли",
+      "label-history": "Історія",
+      "label-releases": "Релізи",
+      "label-merges": "Злиття",
+      "label-tasks": "Задачі",
+      "label-settings": "Налаштування"
+    },
+    "init": {
+      "title": "Ви ще не завантажили жодної версії",
+      "description": "Для продовження роботи над проєктом, перейдіть у віконний додаток та склонуйте проєкт, або привʼяжіть до вже існуючого, використовуючи цей ідентифікатор:",
+      "toast-copied": "Ідентифікатор скопійовано",
+      "toast-copy-failed": "Не вдалося скопіювати ідентифікатор"
+    },
+    "refSelector": {
+      "placeholder-branch": "Оберіть гілку"
+    },
+    "files": {
+      "label-loading": "Завантаження...",
+      "label-empty": "Ця версія не містить файлів",
+      "error-failed": "Не вдалося завантажити файли"
+    },
+    "metadata": {
+      "title": "Метадані",
+      "label-loading": "Завантаження...",
+      "label-empty": "Метаданих не знайдено",
+      "error-failed": "не вдалося завантажити метадані",
+      "mode-namespace": "За категоріями",
+      "mode-semantic": "За змістом",
+      "group-general": "Загальне",
+      "group-tempo": "Темп",
+      "group-tracks": "Доріжки",
+      "group-daw": "DAW",
+      "group-technical": "Технічне",
+      "group-other": "Інше",
+      "group-reaper": "Reaper",
+      "key-daw": "DAW",
+      "key-reaper-version": "Версія",
+      "key-reaper-plugins": "Плагіни",
+      "key-reaper-tempo-bpm": "Темп",
+      "key-reaper-time-signature": "Розмір",
+      "key-reaper-sample-rate": "Семпл-рейт",
+      "key-reaper-track-count": "Доріжок",
+      "key-reaper-content-types": "Типи вмісту",
+      "key-reaper-project-files": "Файли проєктів"
+    },
+    "history": {
+      "label-loading": "Завантаження...",
+      "label-loading-more": "Завантаження...",
+      "label-load-more": "Завантажити ще",
+      "label-empty": "Ця гілка не містить жодної версії",
+      "label-day-group": "Версії від {day}",
+      "toast-copied": "Ідентифікатор скопійовано",
+      "toast-copy-failed": "Не вдалося скопіювати ідентифікатор",
+      "error-failed": "Не вдалося завантажити історію"
+    },
+    "releases": {
+      "label-loading": "Завантаження...",
+      "label-load-more": "Завантажити ще",
+      "label-empty": "Жодного релізу не опубліковано",
+      "label-new": "Створити реліз",
+      "error-failed": "Не вдалося завантажити релізи",
+      "createModal": {
+        "title": "Новий реліз",
+        "label-title": "Назва",
+        "label-branch": "Гілка",
+        "placeholder-branch": "Оберіть гілку",
+        "label-files": "Файли",
+        "label-loading-files": "Завантаження файлів...",
+        "label-files-empty": "Ця гілка не містить файлів",
+        "label-submit": "Створити",
+        "label-cancel": "Скасувати",
+        "toast-success": "Реліз створено успішно",
+        "error-title-required": "Це поле обовʼязкове",
+        "error-ref-required": "Оберіть гілку",
+        "error-files-required": "Оберіть хоча б один файл",
+        "error-files-failed": "Не вдалося завантажити файли",
+        "error-forbidden": "У вас немає прав для створення релізу",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+      },
+      "delete": {
+        "label-button": "Видалити реліз",
+        "confirm-title": "Видалити реліз?",
+        "confirm-description": "Реліз та всі його файли буде видалено назавжди. Цю дію неможливо скасувати",
+        "confirm-label-confirm": "Видалити",
+        "confirm-label-cancel": "Скасувати",
+        "toast-success": "Реліз видалено",
+        "error-forbidden": "У вас немає прав для видалення цього релізу",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+      }
+    },
+    "merges": {
+      "label-loading": "Завантаження...",
+      "label-empty": "Жодного злиття не виконано",
+      "label-new": "Створити запит",
+      "error-failed": "Не вдалося завантажити дані",
+      "createModal": {
+        "title": "Злиття гілок",
+        "label-title": "Назва",
+        "label-source": "Гілка-джерело",
+        "label-target": "Цільова гілка",
+        "placeholder-branch": "Оберіть гілку",
+        "label-submit": "Злити",
+        "label-cancel": "Скасувати",
+        "toast-success": "Злиття виконано успішно",
+        "error-title-required": "Це поле обовʼязкове",
+        "error-source-required": "Оберіть гілку-джерело",
+        "error-target-required": "Оберіть цільову гілку",
+        "error-same-branch": "Гілки не мають збігатися",
+        "error-empty-branch": "Одна з гілок не містить жодної версії",
+        "error-ref-mismatch": "Гілки змінились під час операції. Спробуйте ще раз",
+        "error-forbidden": "У вас немає прав для виконання злиття",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+      }
+    },
+    "tasks": {
+      "label-new": "Нова задача",
+      "label-loading": "Завантаження...",
+      "label-empty": "Задач немає",
+      "error-failed": "Не вдалося завантажити задачі",
+      "status-toDo": "До виконання",
+      "status-inProgress": "В роботі",
+      "status-review": "На перегляді",
+      "status-done": "Виконано",
+      "modal": {
+        "label-title": "Назва",
+        "label-description": "Опис (необовʼязково)",
+        "label-deadline": "Дедлайн (необовʼязково)",
+        "label-status": "Статус",
+        "label-commit": "Коміт",
+        "label-assignees": "Виконавці",
+        "label-no-users": "Користувачів не знайдено",
+        "placeholder-add-assignee": "Пошук...",
+        "label-submit": "Зберегти",
+        "label-cancel": "Скасувати",
+        "label-delete": "Видалити",
+        "toast-success": "Задачу збережено",
+        "toast-delete-success": "Задачу видалено",
+        "error-title-required": "Назва обовʼязкова",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше",
+        "confirm-delete-title": "Видалення задачі",
+        "confirm-delete-description": "Ви впевнені? Цю дію неможливо скасувати",
+        "confirm-delete-label-confirm": "Видалити задачу",
+        "confirm-delete-label-cancel": "Скасувати"
+      }
+    },
+    "settings": {
+      "label-general": "Загальне",
+      "label-storage": "Сховище",
+      "label-access": "Доступ",
+      "label-danger-zone": "Небезпечна зона",
+      "form": {
+        "label-title": "Назва",
+        "label-description": "Опис",
+        "label-default-branch": "Гілка за замовчуванням",
+        "placeholder-default-branch": "Оберіть гілку",
+        "label-is-public": "Публічний проєкт",
+        "label-submit": "Зберегти зміни",
+        "toast-success": "Зміни збережено",
+        "error-title-required": "Назва обовʼязкова",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше",
+        "confirm-title": "Підтвердження змін",
+        "confirm-make-public": "Проєкт стане доступним для перегляду всім користувачам",
+        "confirm-make-private": "Проєкт стане недоступним для користувачів, яким явно не надано доступ",
+        "confirm-default-branch": "Зміна гілки за замовчуванням вплине на всіх учасників проєкту",
+        "confirm-label-confirm": "Підтвердити",
+        "confirm-label-cancel": "Скасувати"
+      },
+      "storage": {
+        "label-loading": "Завантаження...",
+        "error-failed": "Не вдалося завантажити інформацію про сховище"
+      },
+      "access": {
+        "label-loading": "Завантаження...",
+        "label-add-user": "Додати користувача",
+        "label-add": "Додати",
+        "placeholder-search-user": "Пошук...",
+        "label-no-users": "Користувачів не знайдено",
+        "level-owner": "Власник",
+        "level-write": "Редагування",
+        "level-read": "Перегляд",
+        "level-revoke": "Видалити",
+        "error-failed": "Сталася помилка. Спробуйте пізніше",
+        "toast-success": "Зміни збережено",
+        "confirm-title": "Підтвердження змін",
+        "confirm-description-change-read": "Цей користувач зможе лише переглядати вміст проєкту",
+        "confirm-description-change-write": "Цей користувач зможе змінювати вміст проєкту, керувати злиттями та задачами",
+        "confirm-description-change-revoke": "Цього користувача буде позбавлено явного права доступу до проєкту",
+        "confirm-label-confirm": "Підтвердити",
+        "confirm-label-cancel": "Скасувати"
+      },
+      "delete": {
+        "label-title": "Видалити проєкт",
+        "label-description": "Цю дію неможливо скасувати. Проєкт та всі його дані буде видалено назавжди",
+        "label-button": "Видалити проєкт",
+        "confirm-title": "Видалити проєкт?",
+        "confirm-description": "Проєкт та всі повʼязані дані буде видалено назавжди. Цю дію неможливо скасувати",
+        "confirm-label-confirm": "Видалити",
+        "confirm-label-cancel": "Скасувати",
+        "toast-success": "Проєкт видалено",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+      }
+    }
+  },
+  "ProfilePage": {
+    "meta": {
+      "title": "Профіль | MVCS",
+      "description": "Ваш профіль"
+    },
+    "user": {
+      "badge-verified": "Підтверджено",
+      "label-joined": "Приєднався {date}"
+    },
+    "projects": {
+      "title": "Проєкти",
+      "bar": {
+        "placeholder-search": "Пошук проєктів...",
+        "filter-all": "Всі",
+        "filter-public": "Публічні",
+        "filter-private": "Приватні",
+        "ownership-accessible": "Доступні",
+        "ownership-mine": "Мої"
+      }
+    }
+  },
+  "SettingsPage": {
+    "meta": {
+      "title": "Налаштування | MVCS",
+      "description": "Налаштування облікового запису"
+    },
+    "title": "Налаштування",
+    "tabs": {
+      "label-profile": "Профіль",
+      "label-sessions": "Сесії"
+    },
+    "profile": {
+      "section-avatar": "Аватар",
+      "section-general": "Загальне",
+      "section-password": "Пароль",
+      "form": {
+        "label-upload-avatar": "Завантажити фото",
+        "label-username": "Логін",
+        "label-display-name": "Відображуване імʼя",
+        "label-email": "Email",
+        "label-save": "Зберегти",
+        "label-current-password": "Поточний пароль",
+        "label-new-password": "Новий пароль",
+        "label-confirm-password": "Підтвердження паролю",
+        "label-change-password": "Змінити пароль",
+        "error-display-name-required": "Це поле обовʼязкове",
+        "error-internal-server": "Виникла помилка. Спробуйте пізніше",
+        "toast-success": "Зміни збережено"
+      }
+    },
+    "sessions": {
+      "section-title": "Активні сесії",
+      "badge-current": "Поточна",
+      "label-created": "Створено:",
+      "label-last-active": "Остання активність:",
+      "label-terminate": "Завершити сесію",
+      "label-terminate-all": "Завершити всі",
+      "confirm-terminate-title": "Завершення сесії",
+      "confirm-terminate-description": "Цю сесію буде завершено. Пристрій буде виведено з системи.",
+      "confirm-terminate-current-description": "Це ваша поточна сесія. Після її завершення ви будете виведені з системи.",
+      "confirm-terminate-all-title": "Завершення всіх сесій",
+      "confirm-terminate-all-description": "Всі активні сесії буде завершено, включаючи поточну. Ви будете виведені з системи.",
+      "confirm-terminate-label": "Завершити",
+      "confirm-cancel-label": "Скасувати",
+      "error-load": "Не вдалося завантажити сесії",
+      "error-internal-server": "Виникла помилка. Спробуйте пізніше"
+    }
+  },
+  "DeviceInfo": {
+    "label-unknown-device": "Невідомий пристрій",
+    "label-unknown-app": "Невідомий додаток"
+  },
+  "ProjectsList": {
+    "label-loading": "Завантаження...",
+    "label-empty": "Проєктів не знайдено",
+    "label-total": "Всього: {total}",
+    "pagination-previous": "Назад",
+    "pagination-next": "Далі",
+    "error-failed": "Не вдалося завантажити проєкти"
+  },
+  "ProjectCard": {
+    "badge-public": "Публічний"
+  }
+}

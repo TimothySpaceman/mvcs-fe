@@ -1,0 +1,1 @@
+export const USER_METADATA_COOKIE_NAME = "auth_metadata";
